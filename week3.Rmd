@@ -69,7 +69,7 @@ This recipe is derived from the Visual Methods paper (Niederer and Colombo, 2019
 
 3. Define the values that you are going to use. Make a note of these values. 
 
-4. Define the composite image to be built. Are you using a Grid, timeline, or a cluster? You may use another form entirely. 
+4. Define the composite image to be built. Are you using a grid, timeline, or a cluster? You may use another form entirely. 
 
 5. Download the images that are required. 
 
@@ -79,7 +79,7 @@ You should make notes on the choices made and paths taken either in a separate a
 
 One example that was created using Google Images search and Warwick's access to Padlet is here:
 https://warwick.padlet.org/iainemsley/xrv64il4qdztwlmc
-It is an example that uses the Canvas template in Padlet to 
+It is an example that uses the Canvas template in Padlet to cluster some images found using Google's Image Search with some notes. 
 ### Lab Exercise
 
 In your groups again, choose a theme and then create your own cluster image that will be discussed by the group. 
