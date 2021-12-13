@@ -15,7 +15,7 @@ Visual media  - from images to gifs to videos - are increasingly prevalent onlin
 
 In the previous labs, we have looked at the getting various types of data such as search results, text from APIs and images. Having found data, the labs will turn to forms of analysis. 
 
-In this lab, like the first week, we are going to use some existing methods from a seminar reading. We will be looking at Google Images and thinking about how to analyse them. While we cannot cover the field, we will provide some techniques to get you started, building on the image search exercise from the first week and images that you may come across online.
+In this lab, like the first week, we are going to use some existing methods from a seminar reading. We will be looking at Google Images and thinking about how to analyse them. While we cannot cover the field, we will provide some techniques to get you started, building on the image search exercise from the first week and images that you may come across online. The focus is on qualitative methods that develop our use of image search in week 1. 
 
 ## Learning Objectives
 After this lesson, you should be able to:
@@ -99,7 +99,7 @@ You might also make notes about the features that you find when you organise you
 
 ## Conclusion
 
-In this lab, we have used images to create a simple analysis using visual images. By starting with a close reading, we can identify forms of the analysis. We should also think about how this can be linked to other forms of analysis, such as networks or text, to enrich our work. As noted, visual methods are a suggestion towards further research (Niederer and Colombo, 2019) and can be enhanced through reading the metadata, such as domain or hashtag. 
+In this lab, we have used images to create a simple analysis using visual images. By starting with a close reading, we can identify forms of the analysis. We should also think about how this can be linked to other forms of analysis, such as networks or text, to enrich our work. As noted, visual methods are a suggestion towards further research (Niederer and Colombo, 2019) and can be enhanced through reading the metadata, such as domain or hashtags. The use of images can also be used to explore the limits of the collections that are given to us (Pearce and De Gaetano, 2021), developing the approaches from week 1. 
 
 In the second half of this lab, we will be discussing the first part of the group assignment. 
 
@@ -117,5 +117,7 @@ Niederer, S. (2018). Networked images: visual methodologies for the digital age.
 https://pure.hva.nl/ws/files/4959407/networked_images_1_.pdf
 
 Niederer, S., Colombo, G., 2019. Visual methodologies for networked images: Designing visualizations for collaborative research, cross-platform analysis, and public participation. Disena 14, 40–67. https://doi.org/10.7764/disena.14.40-67
+
+Pearce, W., & De Gaetano, C. (2021). Google Images, Climate Change, and the Disappearance of Humans. Diseña, (19), Article.3. https://doi.org/10.7764/disena.19.Article.3
 
 
