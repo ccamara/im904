@@ -1,0 +1,246 @@
+---
+title: "Week 5 - Text Analysis 1"
+output:
+  word_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+#knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+```
+
+These are the packages that you will require for this lab. Once they are installed once, we will not need to install them again. 
+```{r install, eval=F}
+install.packages('ggplot2')
+install.packages('dplyr')
+install.packages('tidytext')
+install.packages('tidyr')
+install.packages('wordcloud2')
+install.packages('stringr')
+install.packages('lubridate')
+```
+Now that we have installed the libraries, we need to tell this file that we need them.
+```{r libraries, eval=FALSE}
+library(dplyr)
+library(tidyr)
+library(tidytext)
+library(ggplot2)
+library(wordcloud2)
+library(stringr)
+library(lubridate)
+```
+## Introduction
+
+In this lab, we look at using computers to begin processing text data to help find words and phrases. In previous weeks, we have looked at the networks and graphs as possible options for analysis, now we will look to the content and comments. 
+
+### Learning Objectives
+By the end of this lesson, you will:
+
+* Have a basic understanding of simple text analysis with R;
+* Have a basic understanding of ngrams and bigrams
+
+Let's get the Reddit data back in from the CSV. You may have to change the filename  and may be add the full file path to it. I am using one of the large dataframes that I originally got from Reddit in week 3 as it has a large range of data to read in. Your data may have a different name. 
+```{r global, eval=F}
+  redditFile = "reddit__COP26_2021-11-22 14:00:31_.csv"
+reddit_df <- read.csv(redditFile, stringsAsFactors = FALSE, encoding = 'UTF-8')
+head(reddit_df)
+```
+We will use this data frame through these exercises. We will be using methods from a range of papers from the Content and Comment weeks. In this lab, we are going to apply various computational methods to the comments section data from week 2. I mainly adapt steps from Mike Thelwall's Common Term Frequency Comparison (CTFC) to our data to provide a framework.
+
+The first step is often the query design that finds the data for you. This is an iterative step that was covered in weeks 1 and 2. Now that we have our data, we can run textual analysis on it. 
+
+### Recipe
+
+We should have some idea from the query that we ran in week 2, but here we refine it further. We can do this in a few ways: filter by subreddit, text, or date. Of course, we they can be combined. As a first step, we will create visualisation of all the comments so that we can get an overall feeling for the data. 
+
+We can use a time-series graph to get an idea of the overall patterns in the data over time. These readings should provide an insight into the types of events or subreddits that are active in order to refine your question or to test the data in other ways. 
+
+## Time Series Analysis
+It might be useful to identify the trends in the data over time. We can use a time-series graph to identify the peaks and troughs of the comments posted to see if there are trends that we should be attentive towards. 
+
+Here we draw methods from Mike Thelwall's Social Media Analytics for YouTube (2018) to think about the typical time for comments or posts to be made. The code below reads the comment dates by subreddit and creates a count of the data that will be used in the visualisation.
+
+This first bit of code translates the comment dates, comm_date, into an R datetime type. The second line then counts the subreddit by the date into a table so that ggplot can work with it. You may need to run this each time you change the data.
+```{r timeSeries, eval=F}
+# Create a new column and format the data correctly. 
+reddit_df$Date <- as.Date(reddit_df$date.y,  format = "%Y-%m-%d")
+
+# Here we use aggregate to count two columns, Date and subreddit together
+# to determine the counts of each by the data
+#counted_df = aggregate(reddit_df$Date, by=list(reddit_df$Date, reddit_df$subreddit), length)
+#here we just do it with the date to look at the peaks and troughs for all data. 
+counted_df = aggregate(reddit_df$Date, by=list(reddit_df$Date), length)
+#counted_df = aggregate(filtered_subreddit_df$Date, by=list(filtered_subreddit_df$Date), length)
+head(counted_df)
+```
+GGplot is used to plot the different subreddits using a line chart to show progression over time. From this, I can see if there are any peaks and troughs in the data that suggest an event has taken place. I have used facet_grid() to split the main graph into one graph for each subreddit. Each facet shows the subreddit as its own graph to allow comparison over time. 
+```{r plotTimeseries, eval=F}
+# Use ggplot to create a timeseries graph using the data
+ggplot(counted_df, aes(x = Group.1, y = x,group=1)) +
+    #geom_line(aes(color = Group.2), size = 1) +
+    geom_line( size = 1) +
+    scale_color_brewer("Subreddits") +
+    theme_minimal() +
+    ylab("Number of Comments") +
+    xlab("Date Comment Posted") #
+    #facet_grid(rows=vars(Group.2)) +
+    theme(legend.position = 'none')
+```
+As an alternative, we might use a stack chart as an alternative representation that allows us to see the count in relation to other subreddits over time. 
+```{r stackChart, eval=F}
+ggplot(counted_df, aes(x=Group.1, y=x, fill=Group.2)) + 
+    ylab("Number of Comments") +
+    xlab("Date Comment Posted") +
+    geom_area()
+```
+Both types of graph show the data over time, but they have different emphases in how they present the data.
+
+### Lab Exercise
+In your groups, take one data set and run it through time series analysis graphs. What sort of patterns can you see? Are there peaks and troughs that can be seen? If so, do they link to particular events? 
+
+Are particular subreddits that are prominent? If so, what might this suggest in terms of the potential discourses?
+
+Once we have explored the time series graph, we can use filtering to alter the underlying data and to focus our attentions on particular sections. We are going to use R to filter our data so that we can follow up on the insights from the graph. This can be done in Excel or Numbers if you prefer but you will have to load in the data again. 
+
+In each case, you will need to re-run the aggregation function above to convert the data into a time series graph. You will need to make sure that your variables match. 
+
+### Filtering Comments by Subreddit
+This code filters the data by subreddits so that you can test each subreddit rather than the while dataset. If you have a particular subreddit that you want to test, then add its name to the filterSub variable. 
+```{r filterSubreddit, eval=F}
+filterSub = ''
+filtered_subreddit_df = reddit_df[reddit_df$subreddit==filterSub, ]
+head(filtered_subreddit_df)
+```
+Here we filter out the data by the subbreddit that they are contained in and put it into a new variable. If you are exploring a new data set and are unsure about it, it would be an idea to filter by subreddit and use the techniques below to extract patterns, before diving into the data with more specific queries. 
+
+### Filtering Comments by Text
+One method of using comments is to identify the times where a piece of occurs. Here we draw from Rieder et al.'s Data critique and analytical opportunities for very large Facebook Pages (2015) to search for the number of comments that a word appears in and methods of representing the data. This filtering helps to interact with the data and the original query design to refine it. 
+
+We could do a word frequency analysis to search for the number of times that a word appears. However, identifying the amount of comments in which the word appears maybe more helpful in discovering patterns. We will use the stringr library to find a pattern within the comments columns in the data frame. The filter() function returns the values that are true, so the comments where the pattern is found. The data is put into a new data frame so that we do not affect our original data set. Here we are looking for the word "Australia" as it comes up in climate change discourse in intriguing ways. You can change it to other terms. 
+```{r wordByComment, eval=F}
+pattern = "Australia"
+filtered_word_df <- reddit_df %>%
+  filter(str_detect(comment, pattern))
+head(filtered_word_df)
+```
+In this code, we see the lines where the search string is found in the comment column. 
+
+I'll show a worked example of re-using the R code to generate the table to support a time series analysis. Please do compare this version with the earlier one to understand the changes between them and how to use them with other filters. 
+```{r workedexampe, eval=F}
+counted_df = aggregate(filtered_word_df$Date, by=list(filtered_word_df$Date), length)
+head(counted_df)
+```
+
+### Filtering Comments by Date 
+Here we filter the comments by time. The time format is set by the original data frame. 
+```{r filterDate, eval=F}
+filtered_date_df = reddit_df[reddit_df$Date > "2021-11-01" & reddit_df$Date < "2021-11-05",]
+head(filtered_date_df)
+```
+These data frames can be exported into a csv file or run through the above code, but you will need to make sure that the variable names match. 
+
+You will need to re-run the aggregation second above to create the chart. These filters allow you to search by patterns in your data rather than just rely on reading the whole text. A worked example provided with the words filters. The  filters can be combined to provided different readings as well with a little rewriting of the data frames. 
+
+We now turn to the language that is used in the text itself. In the next step, we can find the common terms (or bigrams for us) for each subreddit.
+
+## Ngrams
+Word frequencies are introduced in Thelwall's third step and are used to identify possible trends and characteristics of the comment data by counting words. One way of discovering the types of words used is to split the text and to count each word to get word frequencies. While this gives us a word frequency list, it is less help when we are trying to interpret a text. Word frequencies are used in the Thelwall framework but here we use a similar method - ngrams and their frequencies. 
+
+Ngrams, a continuous selection of tokens in a language, are a way of looking at language to identify top collections of words. For example, if we have "The quick fox jumped over the lazy fox cub" and split it into ngrams of 2 lengths, called bigrams, we get:
+
+The quick
+quick fox
+fox jumped
+jumped over
+over the
+...
+
+After splitting the words into pairs, each pair is then counted. 
+
+Ngrams are useful to identify words that are near a phrase. They can be useful to understand the key linked words and phrases to help us see potential trends in the text. However, the code does de-contextualise the words, so you may need to find the phrases if you want to understand how they are used. These frequencies can be useful in identifying probabilities or finding collections of words for more automated analysis. 
+
+In this code, we use the tidyverse functions to take the reddit_df data frame, split it into two words (bigrams) before counting them and removing common English phrases.
+
+```{r bigram, eval=F}
+#  Split the text in ngrams. By declaring n as 2, we get bigrams. 
+# We take the post_text column from the reddit_df and split it into bigrams.
+our_bigrams <-
+  #reddit_df is the data frame that is being used. 
+  reddit_df %>%
+  # the 'comment' is a text column from data frame. This will need to be 
+  # changed if the data frame is changed. 
+  # n can be changed to 3 for trigrams or greater numbers of tokens in ngram
+  unnest_tokens(bigram, comment, token = "ngrams", n = 2)
+
+# Separate the bigrams into separate columns. 
+bigrams_separated <- our_bigrams %>%
+  # if the ngrams are changed to trigrams, a new column needs adding 
+  # such as c("word1", "word2", "word3")
+  separate(bigram, c("word1", "word2"), sep = " ")
+
+# Filter out common English words from both columns
+# Filter out the words that appear as NA which should remove spaces and such
+# If a new column is put in, then copy the filters for the new column
+bigrams_filtered <- bigrams_separated %>%
+  filter(!word1 %in% stop_words$word) %>%
+  filter(!is.na(word1)) %>%
+  #add in words to be removed to the list in c()
+  filter(!word1 %in% c('https', 't.co', 'lt', 'gt')) %>%
+  filter(!word2 %in% stop_words$word) %>%
+  filter(!is.na(word2)) %>%
+  filter(!word2 %in% c('https', 't.co', 'lt', 'gt'))
+
+# Now that we have removed the common terms, we can count them
+bigram_counts <- bigrams_filtered %>%
+  # if trigrams are used, then change count to count(word1, word2, word3, sort = TRUE)
+  count(word1, word2, sort = TRUE)
+
+bigram_file = "bigram_counts.csv"
+write.csv(bigram_counts, bigram_file)
+# We'll use head() to inspect the first few rows here.
+head(bigram_counts)
+```
+
+Machines often miss nuance in language, so automated analysis is limited. What we can do is to open up the bigram counts and to visualise them to begin understanding the top terms. This can be used to identify the type of language being used. 
+```{r plotBigramFreq,eval=F}
+# Let's extract the first 25 rows of data from the counts
+top_bigrams <- bigram_counts[1:25,]
+# Merge the two word columns into one for visualisation
+top_bigrams$bigram <- paste(top_bigrams$word1, top_bigrams$word2, sep=" ")
+
+# We use re-order to order the plot by count not alphabetical order
+# To change this to alphabetical ordering, then just have y=bigram
+ggplot(top_bigrams, aes(y=reorder(bigram, -n), x=n))+
+  geom_bar(stat="identity", width=0.7, fill="steelblue")+
+  theme(axis.text.x = element_text(angle = 90,vjust = 1, hjust = 1)) +
+  ylab("Bigrams") +
+  xlab("Counts of Words")
+```
+We can also use a word cloud to visualise the bigram data. 
+```{r wordcloudBigrams, eval=F}
+# Create a dataframe just with counts and the bigrams
+word_bigram <- data.frame(top_bigrams$bigram, top_bigrams$n)
+wordcloud2(word_bigram)
+```
+What happens when we alter the minimum Size (hint: try typing in minSize as an argument to wordcloud2)?
+
+### Lab Exercise
+In your groups, take one data set and run it through the ngrams and word cloud. What are the affordances of the methods and types of representation? What might you find in either method and what sort of pattern is suggested for the data?
+
+We can use filter the cleaned bigrams to search for keywords in them and these might suggest new terms to query. We might want to know what language is being used around certain terms to identify popular terms. Although ngrams are ways of discovering key terms, they are taken out of context. It can make it hard to interpret the data. 
+
+The ngrams and word cloud could be run on the filtered data to explore key topics or words. Other analyses can be run here, such as network analysis from week 4, the comment pattern (if one exists) or topic modelling from week 7.
+
+## Conclusion
+In this session, we use the some basic tools to begin exploring the data in our data sets. Using some basic visualisation, we can begin to see trends and patterns in the data so that we can look at potential places to explore and research. We might identify particular incidents that the provoke comment, such as the COP26 in November, or particular types of subreddit being used. We can use the bigrams to identify word pairings either for interpretation or to be put into a query to test.
+
+These sorts of searches often suggest patterns within the text to help us engage with it. In the next text analysis session, we will build on these foundations and look at how we can use the machine to identify potential features in the data, such as topics. 
+
+## Bibliography
+
+Silge, J and Robinson, D. 2013. Text Mining with R. O'Reilly, Sebastopol. 
+
+Rieder, B., Abdulla, R., Poell, T., Woltering, R., Zack, L., 2015. Data critique and analytical opportunities for very large Facebook Pages: Lessons learned from exploring “We are all Khaled Said.” Big Data & Society 2, 205395171561498. https://doi.org/10.1177/2053951715614980
+
+Thelwall, M. 2018. 'Social Media Analytics for YouTube Comments: Potential and Limitations'. International Journal of Social Research Methodology 21:3, pp 303–16. 

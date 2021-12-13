@@ -1,0 +1,288 @@
+---
+title: "Week 7 - Text Analysis 2"
+output:
+  word_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Text Analysis 2
+
+Here we build on the last text analysis lab. You have used text analysis to identify patterns in our data  using techniques such as ngrams, and bigrams in particular, and  to explore language through frequently occurring terms and used visualisation as an  exploratory method. 
+
+In this, we turn to purely algorithmic methods that are becoming more common. We will use Topic Modelling: an unsupervised machine learning to automate our reading of the data. Instead of guiding the model by tagging data, we let the algorithm identify what we should attend to by identifying points of density between words (as clusters) and then between densities of documents that share these clusters. When we read a topic model, we are not reading the texts but the statistical model of the texts. That means that an algorithm focuses on what language to use and discard and, unlike the previous session, you may not know what data has been ignored. You may wonder if this is a sensible idea and that is an excellent opportunity to reflect on algorithmic criticism. 
+
+Here we begin to use Topic Modelling to take high level approaches to our data and to think about the patterns that might be found in it. Like the first text analysis session and networks, we cannot hope to cover the topics in full in this lab but it should provide enough information to reflect on these approaches. I hope that we can have a group discussion at the end to reflect on the issues raised in this lab and what it means for digital methods presented here and in the previous sessions. 
+
+In this lab, we are going to use topic modelling to reflect on two papers, Thelwall's Social Media for Youtube (2018) and Beytia and Wagner's Visibility Layers (2020). We explore the idea of topical asymmetry from Beytia and Wagner through topic modelling and by using the critical questions as to how to the corpus is created using James Dobson's critique of topic modelling (2019).
+
+### Learning Objectives
+By the end of this lesson, you will have a basic understanding of:
+
+* topic modelling;
+* critical approaches to topic modelling;
+* the differences and similarities of algorithmic versus computational reading. 
+
+Before we get started, we need to set our environment up. We will need some new packages to handle the topic modelling on top of the ones loaded for the last session. 
+```{r install, eval=F}
+install.packages('dplyr')
+install.packages('tidytext')
+install.packages('forcats')
+install.packages('topicmodels')
+install.packages('reshape2')
+```
+### Side Note for Homebrew users
+If you have installed R using Homebrew, you will need to alter a file to complete the installation of the topicmodels package. The details are on this page:
+[https://tinyheero.github.io/2016/02/20/install-r-topicmodels.html](https://tinyheero.github.io/2016/02/20/install-r-topicmodels.html)
+
+If you have installed the packages, you will not need to do this again. You will need to tell R to use them though. 
+```{r libraries, eval=FALSE}
+library(dplyr)
+library(tidytext)
+library(ggplot2)
+library(forcats)
+library(topicmodels)
+library(stringr)
+library(tidyr)
+library(reshape2)
+```
+We will use our Reddit data again. If you do not have any Reddit data, you can use this file:
+<https://files.warwick.ac.uk/iainemsley/files/IM904/reddit_parisagreementclimate_2021-01-27+094516_.csv>
+Please change this path to your data.
+```{r global, eval=F}
+dataFile = "reddit__COP26_2021-11-22 14:00:31_.csv"
+reddit_df <- read.csv(dataFile, stringsAsFactors = FALSE, encoding = 'UTF-8')
+head(reddit_df)
+```
+
+In this lab, we will be using topic modelling as the main technique. We will reflect on the Ben-David et al (2019) paper and use the same algorithm to explore the Reddit data.  
+
+## Topic Modelling
+We can use topic modelling to identify potential areas and threads of discussion. Topic Models break up the document into a series of categories based on probability. The Latent Dirichlet Allocation (LDA) algorithm (Blei, Ng, and Jordan, 2003) is used to identify potential topics based on word similarity. Topic Modelling applies these topics to the documents and provides a statistical count for the likelihood that this topic is present. 
+
+### What are we processing?
+
+In the first step, we need to think carefully about what we are modelling. Here we should think about the format of the data that we are using - is it Reddit, Twitter, Weibo or similar? We also need to consider whether, and how, we might need to clean up our data. You should consider the format of the data. If we use Reddit comments, then we might want to think about how the documents are divided. In the exercise, we will use the Reddit data and you should be attentive to how it is structured: it is subdivided by subreddit (if at all), by post and comment, and by author. Further processing may have taken place to identify particular posts and the data is grouped by these - think about the questions that Beytia and Wagner raise and what steps might be taken to approach them. Hint: think of what they are asking in the reports in their methods and work it backwards.
+
+A process that we might undertake is to prepare our data and one step is to remove stop words. Stop words are commonly occurring terms like 'the', 'a', 'and', 'from' and so on. They are used frequently but may not add meaning to the data. Removing stop words can be tricky. R has a list of stop words that can be used and other tools have their own lists of words. You may also remove words that are either important to some texts or approaches to the text (see Dobson, 2019:49-57). This should be a step for reflection in the use of algorithms to create a reading. What, if anything, has been removed or added and why? 
+
+In our exercise, we use the Reddit data as it is. However, it can be useful to break down the texts into smaller chunks (Jockers, 2013; Buurma, 2015). Rather than process the text in one chuck, it can be broken down into a number of words, by chapter, by subreddit, or by paragraph. Breaking down the test like this will affect the topics that are read or how they are applied to the text and will give alternate readings. Another key question is what is a document? Is it the subreddit or a post or a comment? These choices will affect the type of language that we use and the returned results.
+
+These are questions that you should be applying to data cleaning and preparation processes. Although they occur before the processing happens, these steps can alter what the reading. 
+
+#### Lab Exercise
+
+In your groups, review the data that you have from week 2 and write down some questions and remarks about the format of the data and the processing that you have undertaken already. You can do this in shared document or using pen and paper, if easier.
+
+I will give you 10 minutes to do this and we will briefly discuss the points that you have raised. 
+
+### Modelling the Subreddits
+Now that you are aware of the effects of data cleaning and preparation on the underlying data, we can now begin to process it. 
+
+In this exercise, we will use the subreddit data again. The subreddits are split up into documents with the name of the subreddit and the document id. We can use this later.  They are then split up into word frequencies and we remove the stop words. 
+```{r tidyR,eval=F}
+#split the data up into subreddits from our reddit_df data frame
+by_subreddit <- reddit_df %>%
+  unite(document, subreddit, X)
+
+#now split the comment columns into words
+by_comment_word <- by_subreddit %>%
+  unnest_tokens(word, comment)
+
+#remove the stop words and generate the counts
+word_counts <- by_comment_word %>%
+  anti_join(stop_words) %>%
+  count(document, word, sort = TRUE) %>%
+  ungroup()
+
+word_counts
+```
+What processing choices have been made in this code? How can they be read using the results of the above exercise?
+
+We get a document created by the subreddit and the document id with the word (word) and how many times it appears (n). The comment text now exists as series of word frequencies  to allow the machine to re-format it. We should be aware of not only how the cleaning process is put into code but also how the machine re-formats the text into a computational form. 
+
+The next step is to convert the frequencies into a Document Term Matrix (DTM) to allow the algorithm to run. A DTM is where:
+
+- Each row represents a document, 
+- Each column represents a word, 
+- Each value shows how often that word appears in the document. 
+
+Each row can be sparse, that is they will not contain every term and have a lot of 0s in them. We use the [cast_dtm] function to convert our word counts into a DTM. Matrices can be used to determine clusters of events and to carry out mathematical operations efficiently. 
+```{r, convertToMatrix, eval=F}
+comments_dtm <- word_counts %>%
+  cast_dtm(document, word, n)
+```
+What does this suggest about the format that is being used? What has been selected?
+
+Now that the document is in a matrix, we can apply Latent Dirichlet Allocation (LDA) to the words to identify the places where they might co-occur. Each topic is a dense cluster of associated words. We set up 7 clusters that we want to find to create a model with seven topics. This is an arbitrary number based on the amount of subreddits. I have used a fixed seed to provide some repeatability for the lab. It may be interesting to experiment with the removing the seed=1234 to see what happens in your own time.
+
+What happens when we change the number of clusters? This is a question worth exploring when we have run the models and data. 
+```{r convertToLDA, eval=F}
+number_clusters = 5
+comments_lda <- LDA(comments_dtm, k = number_clusters, control = list(seed = 1234))
+comments_lda
+```
+We now have an LDA model of the texts that we put in. The data was re-formatted and cleaned before being converted through various forms to allow it to be made into clusters that we call topics.  
+
+This is the core of topic modelling: the creation of the LDA model. The following sections will refer to this model as we begin to untangle it. 
+
+## Reading the Topics
+The next step is engage with the topics by both reading and visualising them. The algorithmic readings aid us in reducing text to a series of data points, topics, that suggest potential readings. We should be wary of such readings and approach them critically, such as the question of the social (Buurma, 2015).
+
+The first thing that we should do is to investigate the topics to see what they are. The model will structure the word clusters numerically. The main task is to look at the words in each cluster and to identify the theme that links them or what they might represent. It might help you to assign a name to this so that you can describe it (Jockers, 2013). There is a limitation where you will need to think about what these terms represent and to place them into a wider social context. What term do the words imply and does it have the same connotation as the word that we might use? Rachel Buurma discusses the word social (Buurma, 2015) and Elisabeth Calloway et al discusses how topics can have implications (Calloway et al, 2020) for the reading. It is more than a case of reading the topics, but reflecting on them. 
+
+```{r viewTopics, eval=F}
+comment_topics <- tidy(comments_lda, matrix = "beta")
+
+top_terms <- comment_topics %>%
+  group_by(topic) %>%
+  top_n(5, beta) %>%
+  ungroup() %>%
+  arrange(topic, -beta)
+```
+
+We can provide visualisations of the topics that are generated by the model. These are filtered to provide the top 5 words for each topic. The tidy() function, taken from the tidytext package (https://juliasilge.github.io/tidytext/reference/stm_tidiers.html), converts the Document Term Matrix into a dataframe. The beta option for matrix shows the data as per-term-per-topic. So we will get terms for topics. 
+```{r visualiseTopicsModels, eval=F}
+top_terms %>%
+  mutate(term = reorder_within(term, beta, topic)) %>%
+  ggplot(aes(beta, term, fill = factor(topic))) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ topic, scales = "free") +
+  scale_y_reordered()
+```
+One method of using topic models is to assign thematic names to them so that they can be referenced. It also helps the reader of any report to understand the meaning that you assign. What does the language suggest? How does our original data selection affect the results? (Hint: what was the original query?). One challenge that readers of topics face is that of synonyms. The algorithms look at complex language and reduce it to a series of probabilities, but this means the synonyms or subtle language forms can be ignored within the reading (Ben-David & Soffer, 2019). This linguistic challenge is not limited to topic model but is present in other forms of computational reading, such as sentiment analysis. It is one that you might want to reflect on in your readings. 
+
+Another method is to look at the types of words and language in the topics. Are they emotional words? Do they reference another theme as a response to it? Are the words dialect or jargon? A group read the Gamestop boards last year and a theme was the financial language that used in that area.
+
+If you split your data to look at differing perspectives to an event, then the topics should be compared to discover whether they are asymmetrical (Beytia and Wagner, 2020) or if they show different responses and perspectives from the thread that is being commented upon (Ben-David & Soffer, 2019). 
+
+When you read the topics, it might be of interest to try a different number of clusters in the model above to see how this changes the readings. 
+
+### Applying Topics to Subreddits
+We will now apply the LDA model to the comments and classify the topics by comment so that we can see how they are shared across the subrreddits. We use gamma option in matrix to identify the topic per document probabilities. Keep in mind that the topics are statistical probabilities rather than a human constructed topic. 
+```{r, convertGamma, eval=F}
+comments_gamma <- tidy(comments_lda, matrix = "gamma")
+comments_gamma <- comments_gamma %>%
+  separate(document, c("subreddit", "id"), sep = "_", convert = TRUE)
+```
+Let's create a quick boxplot to visualise the subreddits by topic and to understand what topics might be in the subreddit. Boxplots are useful for viewing the distribution of numerical data and how that data is distributed. It is a quick way of showing how the topics are spread across the subreddits but they do take time to read. 
+```{r boxPlot, eval=F}
+comments_gamma %>%
+  mutate(title = reorder(subreddit, gamma * topic)) %>%
+  ggplot(aes(factor(topic), gamma)) +
+  geom_boxplot() +
+  facet_wrap(~ title) +
+  labs(x = "topic", y = expression(gamma))
+```
+How can this help us interpret the topics that might be found within the subreddits? What sort of topics appear? (Hint: compare this graph with the previous one.) If we compare this with the previous graphs of the topics, can we identify the potential language or themes used and what does that suggest about the subreddit? These questions should encourage you to review your data and to identify examples of the pattern. As with the communities work in week 4, these patterns are algorithmic calculations to suggest patterns that we might not be aware of, but they should be treated with caution. 
+
+### Lab Exercise
+
+In your groups, take some time to investigate the topics that you have generated. A first pass might look at the construction of the topics from the above section. Take some time to think about what is in them. Are there terms that seem strange and what might it suggest about the cleaning processes? When you look at the terms, are there cases where the semantic meaning of a word might be different? How does topic modelling cope with synonyms?
+
+In the second part, review how these appear within the subreddits. What type of topic do you see in them? Given what you know about the topic and the subreddit name, does it match what you would expect? Are new questions raised by the results that you have? Going back to week 1 and Elisabeth Calloway et al's discussion of topic modelling (Calloway et al., 2020), we should also be trying to contextualise the kind of social and medium questions come from our work. 
+
+** NB: ** You will not be able to cover all of this in the time but these questions will help you get started.  
+
+I will give you 20 minutes in your groups to do this and then we will discuss. 
+
+### Critically reviewing the topics
+The plots provide a way of viewing how the topics are assigned to the subreddits and we can use this to be critical about the topic modelling process. It is a glimpse of how the algorithms work that gives us a view of how the data is classified. We can already view this in the boxplots, but examining the parts of the structure allow us to gain a clearer view. Before we can visualise the data, we need to run a few conversion to reformat it and filter it correctly. 
+
+Let us turn to the classifications within the topics. We will take the comments_gamma data frame and group it by subreddit, then the id. 
+```{r checkClassifications, eval=F}
+comment_classifications <- comments_gamma %>%
+  group_by(subreddit, id) %>%
+  slice_max(gamma) %>%
+  ungroup()
+```
+We can look at the places where the subreddit that the topic is associated with does not match the subreddit. In looking at this, we can critically think about the way that the topic model is guessing which topic to which a piece of text belongs. 
+```{r createSubreddits, eval=F}
+#take the classifications, group by subreddit and topic. 
+subreddit_topics <- comment_classifications %>%
+  count(subreddit, topic) %>%
+  group_by(subreddit) %>%
+  top_n(1, n) %>%
+  ungroup() %>%
+  transmute(consensus = subreddit, topic)
+# Let's filter the subreddit classifications where it does not match consensus
+# We'll join the subreddit and classifications together and filter where
+# the subreddit and predicted subreddit do not match. 
+comment_classifications %>%
+  inner_join(subreddit_topics, by = "topic") %>%
+  filter(subreddit != consensus)
+```
+The matrix here can be augmented, using augment to add the columns from the LDA analysis to the Document Term Matrix to get a better view on how the data is created. We separate the names that we originally created to identify the subreddits and comment ids. 
+```{r byWord, eval=F}
+assignments <- augment(comments_lda, data = comments_dtm)
+
+assignments <- assignments %>%
+  separate(document, c("subreddit", "id"), 
+           sep = "_", convert = TRUE) %>%
+  inner_join(subreddit_topics, by = c(".topic" = "topic"))
+head(assignments)
+```
+The top of the assignments is shown to help you understand what the data is. You can see the two topic assignments for the same word, which is the assignment by the topic model. It is not the easiest form to read, so we will visualise it. 
+
+If you want to explore particualr topic further, a simple tool has been written below for you. We can filter the data by a topic to identify the words and what they might come from. You can alter id == ??? to term==??? to identify terms, if you want to filter it further. 
+```{r findTopicLanguage, eval=F} 
+docs <- assignments %>%
+  filter(id==262) %>%
+  arrange(desc(count))
+docs
+```
+We can visualise the way that the topics are constructed by creating a graph of the way that the topics are matched. This allows us to see how the machine is viewing the language that is being used. 
+```{r visualiseTopics, eval=F}
+library(scales)
+
+assignments %>%
+  count(subreddit, consensus, wt = count) %>%
+  mutate(across(c(subreddit, consensus), ~str_wrap(., 20))) %>%
+  group_by(subreddit) %>%
+  mutate(percent = n / sum(n)) %>%
+  ggplot(aes(consensus, subreddit, fill = percent)) +
+  geom_tile() +
+  scale_fill_gradient2(high = "darkred", label = percent_format()) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1),
+        panel.grid = element_blank()) +
+  labs(x = "Comment words were assigned to",
+       y = "Comment words came from",
+       fill = "% of assignments")
+```
+How does this graph help interpret how the process is interpreting the data? How does it help identify places where language might be shared?
+
+## Conclusion
+
+In this lab, we build on the previous text analysis to identify the ways that machines might help us read and understand a text. TF-IDF uses ranking to identify the closeness of the documents and to determine their similarity. In contrast, topic modelling takes a statistical approach to the discovering statistical densities that it calls topics and groups the documents together in that way. As well as being used to explore the data by language, we can use the critical thinking from the previous sessions to think about how the methods presented here work, such as considering ranking or the use of probabilities. 
+
+The questions that we should be raising concern the choices of methods and their affordances; what criteria are used to select, reduce and format the data; how does the method operate - that is, what does it use to create its result? 
+
+The approaches presented here and in the previous two session focus on the documents presented to them, so they are platform agnostic. However, the platform limitations may come into play here, such as constraints on the language length or the type of language that might be used. Unlike the search engine week where we re-purposed the device (the search engine), these methods build on the device (the API) and incorporate it. In each week, we have altered the format of the data to the technique being used. In APIs, we convert JSON into CSVs or data frames. These are transformed into igraph objects in week 4 and then Gephi objects. In the last two sessions, we have transformed a text column into numeric values. When we work with digital methods, we need to be aware of these issues.  
+
+## Bibliography
+
+Ben-David, Anat, and Oren Soffer. 'User Comments across Platforms and Journalistic Genres'. Information, Communication & Society 22, no. 12 (15 October 2019): 1810–29. 
+
+Dobson, J. 2019. "Can an Algorithm be Disturbed? Machine Learning, Intrinsic Criticism, and the Digital Humanities" in Critical Digital Humanities: The Search for a Methodology, University of Illinois Press, Urbana, Chicago and Springfield
+
+Rieder, B. 2020. “From Frequencies to Vectors” in Engines of Order: A Mechanology of Algorithmic Techniques. Amsterdam University Press, Amsterdam.
+
+Rieder, B. 2020. “Interested Learning” in Engines of Order: A Mechanology of Algorithmic Techniques. Amsterdam University Press, Amsterdam.
+
+Silge, J and Robinson, D. 2013. Text Mining with R. O'Reilly, Sebastopol.
+
+### Topic Modelling
+
+Blei, D.M., Ng, A.Y. and Jordan, M.I., 2003. Latent Dirichlet Allocation. The Journal of Machine Learning research, 3, pp.993-1022. <https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf>
+
+Buurma, R.S., 2015 The fictionality of topic modeling: Machine reading Anthony Trollope’s Barsetshire series. Big Data & Society 2:2.
+
+Callaway, E, Turner, J, Stone, H, Halstrom, A. 2020.The Push and Pull of Digital Humanities: Topic Modeling the “What is digital humanities?” Genre. Digital Humanities Quarterly. 14: 1. 
+
+Topic Modeling, Computing for the Social Sciences, <https://cfss.uchicago.edu/notes/topic-modeling/>
+
+Intuitive Guide to Latent Dirichlet Allocation, <https://towardsdatascience.com/light-on-math-machine-learning-intuitive-guide-to-latent-dirichlet-allocation-437c81220158>

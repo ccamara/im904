@@ -1,0 +1,97 @@
+---
+title: "Week 3 - Visual Analysis"
+#author: "Iain  Emsley"
+#date: "07/07/2021"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+In the previous labs, we have looked at the getting various types of data such as search results, text from APIs and images. Having found data, the labs will turn to forms of analysis. 
+
+In this lab, like the first week, we are going to use some existing methods from a seminar reading. We will be looking at Google Images and thinking about how to analyse them. While we cannot cover the field, we will provide some techniques to get you started, building on the image search exercise from the first week and images that you may come across online.
+
+## Learning Objectives
+After this lesson, you should be able to:
+
+*	Conduct a visual analysis;
+*	Understand the affordances and format issues involved;
+
+## Networked Images
+
+Social media relies on various types of networks to link information and people together. We can look at the hashtags and mentions as well as URLs that are linked. These are not the only network that we might want to investigate. Who posts the tweet and at what time?
+
+In this first exercise, we will look at the networks that can be found within networks using a close reading. Social media posts may contain images that we can further read to get other information from them. Some times these are 
+
+We might now only follow the hashtags or mentions to discover other images? We should also look at how the hashtag is used and whether it is linked to a person or a phrase?
+
+
+![](../IM904/figs/visual/week3-networkedimage.png){width=25%}
+
+What sort of data can we find in this image? How does it situate the image within the network?
+
+### Lab Exercise
+
+In your groups, can you find an image on Twitter or Weibo and apply these questions to it?
+
+You will get 10 minutes to find and discuss the image before we share our findings in a group discussion.
+
+## Collections of Images
+
+Having understood how we can conduct close readings of images, we can begin to think about how we do the same to large collections. 
+
+There are two main approaches to this: firstly, we can look at these as data or, secondly, we can look at these as content. By looking at images as data, we are looking at colours and brightness instead of the content. By looking at images as content, we care about what the image has in it: what is it portraying?
+
+When we study visual data, the output is often an image. Gabrielle Colombo mentions using  to create a new composite image. Three types are outlined:
+
+*  Grid - where the images are put into a grid format with the most important at the top. Here one needs to define the value of most important, such as most likes or the most common. 
+
+*  Time - where the images are laid out in a chronological order to tell a story. 
+
+Other options include the image plot (like a scatterplot for images), or image network
+
+### Recipe
+
+This recipe is derived from the Visual Methods paper (Niederer and Colombo, 2019) which is worth reading in full.
+
+1. Take a query term, such as "climate change".
+
+2. Enter it into Google Image Search. 
+
+3. Download the images.
+
+4. Define the composite image to be built.
+
+5. Define the values that you are going to use. 
+
+6. Create image and write notes about the choices made. 
+
+You should make notes on the choices made and paths taken either in a separate and shared, document or using notes on a notepad. 
+
+One example that was created using Google Images search and Warwick's access to Padlet is here:
+https://warwick.padlet.org/iainemsley/xrv64il4qdztwlmc
+
+### Lab Exercise
+
+In your groups again, choose a theme and then create your own cluster image that will be discussed by the group. 
+
+Follow the recipe given with your own query term.
+
+If you are developing your own metrics, then please do read Neiderer and Colombo (2019:57) where they discuss how they came with a cross-platform value for likes of an image. This is part of platform affordances and the challenges of working across platforms. 
+
+In the second half of this lab, we will be discussing the group assignment. 
+
+## Conclusion
+
+In this lab, we have used images to create a simple analysis using visual images. By starting with a close reading, we can identify forms of the analysis. We should also think about how this can be linked to other forms of analysis, such as networks or text, to enrich our work. 
+
+In the remaining lab time, we will discuss the first part of the 
+
+## Bibliography
+
+Niederer, S., Colombo, G., 2019. Visual methodologies for networked images: Designing visualizations for collaborative research, cross-platform analysis, and public participation. Disena 14, 40–67. https://doi.org/10.7764/disena.14.40-67
+
