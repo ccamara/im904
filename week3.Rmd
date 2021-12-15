@@ -11,16 +11,22 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Introduction
 
-Visual media  - from images to gifs to videos - are increasingly prevalent online. Images can be shared as networks using hashtags or comments by users or ranked by platforms such as search engines. As noted by Sabine Niederer and Gabrielle Colombo (Niederer and Colombo, 2019: 44), platforms and users do not order or describe images in the same way. 
+Visual media  - from images to gifs to videos - are increasingly prevalent online. Images are also being read by machines to extract features or other data to be presented as different readings or collections - such as search engines. 
 
-In the previous labs, we have looked at the getting various types of data such as search results, text from APIs and images. Having found data, the labs will turn to forms of analysis. 
+Images can be shared as networks using hashtags or comments by users or ranked by platforms such as search engines. As noted by Sabine Niederer and Gabrielle Colombo (Niederer and Colombo, 2019: 44), platforms and users do not order or describe images in the same way.
 
-In this lab, like the first week, we are going to use some existing methods from a seminar reading. We will be looking at Google Images and thinking about how to analyse them. While we cannot cover the field, we will provide some techniques to get you started, building on the image search exercise from the first week and images that you may come across online. The focus is on qualitative methods that develop our use of image search in week 1. 
+In the previous labs, we have looked at the getting various types of data such as search results, text from APIs and images. Having found data, the labs will now turn to forms of analysis.  This week, we turn to images. Like the first week, we are going to use some existing methods from a seminar reading. We will be looking at Google Images and thinking about how to analyse them. While we cannot cover the whole field, we will provide some techniques to get you started, building on the image search exercise from the first week and images that you may come across online. The focus is on qualitative methods that develop our use of image search in week 1. 
+
+A browser plugin that may be of use is DownThemAll:
+
+https://www.downthemall.org
+
+It might help if you have many images that you want to collect. 
 
 ## Learning Objectives
 After this lesson, you should be able to:
 
-*	Conduct a visual analysis;
+*	Conduct forms of visual analysis;
 *	Understand the affordances and format issues involved;
 
 ## Networked Images
@@ -28,14 +34,16 @@ Social media relies on various types of networks to link information and people 
 
 This sort of analysis treats images as data. We are not thinking about its content but its metadata. Phototrails (Hochman and Manovich, 2013; Manovich, Hochman, and Chow, 2013) uses a tool to organise images from particular locations to discover patterns. Lev Manovich has also created visualisations from image collections (Manovich, 2020: 176-180) to represent them in other ways, such as creating arranging the images by date in a histogram. While we are not using such software, these techniques can be partially repurposed to interrogate them. 
 
-In this first exercise, we will look at the networks that can be found within networks using a close reading. Social media posts may contain images that we can further read to get other information from them. Sometimes
+In this first exercise, we will look at the networks that can be found within networks using a close reading. Social media posts may contain images that we can further read to get other information from them.
 
 We might now only follow the hashtags or mentions to discover other images? We should also look at how the hashtag is used and whether it is linked to a person or a phrase?
 
 
 ![](../IM904/figs/visual/week3-networkedimage.png){width=25%}
 
-What sort of data can we find in this image? How does it situate the image within the network? If users have liked or retweeted, do they share other images? Are images linked through by the hashtags? What sort of images are they? Following the links allows us to create both a collection of images as well as the network that supports their discovery. 
+What sort of data can we find in this image? How does it situate the image within the network? If users have liked or retweeted, do they share other images? Are images linked through by the hashtags? What sort of images are they and are they altered? 
+
+Following the links allows us to create both a collection of images as well as the network that supports their discovery.
 
 ### Lab Exercise
 
@@ -45,7 +53,7 @@ You will get 10 minutes to find and discuss the image before we share our findin
 
 ## Collections of Images
 
-Having understood how we can conduct close readings of images, we can begin to think about how we do the same to large collections. Here we turn to using images as content, so we are thinking of the what the image represents. In doing this, we are mixing methods and making choices about these methods. 
+Having understood how we can conduct close readings of images, we can begin to think about how we do the same to collections. Here we turn to using images as content, so we are thinking of the what the image represents. In doing this, we are mixing methods and making choices about these methods. The abundance of images provide multiple potential methods and it is important that we consider the affordances and what it is that we are producing (Pink, 2017).
 
 There are two main approaches to this: firstly, we can look at these as data or, secondly, we can look at these as content. By looking at images as data, we are looking at colours and brightness instead of the content. By looking at images as content, we care about what the image has in it: what is it portraying?
 
@@ -79,14 +87,18 @@ You should make notes on the choices made and paths taken either in a separate a
 
 One example that was created using Google Images search and Warwick's access to Padlet is here:
 https://warwick.padlet.org/iainemsley/xrv64il4qdztwlmc
-It is an example that uses the Canvas template in Padlet to cluster some images found using Google's Image Search with some notes. 
+
+It is an example that uses the Canvas template in Padlet to cluster some images found using Google's Image Search with some notes.
+
 ### Lab Exercise
 
 In your groups again, choose a theme and then create your own cluster image that will be discussed by the group. 
 
 Follow the recipe given with your own query term.
 
-If you are developing your own metrics, then please do read Neiderer and Colombo (2019:57) where they discuss how they came with a cross-platform value for likes of an image. This is part of platform affordances and the challenges of working across platforms. 
+If you are developing your own metrics, then please do read Niederer and Colombo (2019:57) where they discuss how they came with a cross-platform value for likes of an image. This is part of platform affordances and the challenges of working across platforms. 
+
+Another method might be to look at what appears and disappears over time, if you are ordering by it (Pearce and De Gaetano, 2021). Do trends or patterns appear from this? 
 
 #### Further Notes
 If you are using images taken from a search engine, make a note of the domains that used that image and the time. You may also want to note the image title. Store these in a spreadsheet with the image name. 
@@ -119,5 +131,7 @@ https://pure.hva.nl/ws/files/4959407/networked_images_1_.pdf
 Niederer, S., Colombo, G., 2019. Visual methodologies for networked images: Designing visualizations for collaborative research, cross-platform analysis, and public participation. Disena 14, 40–67. https://doi.org/10.7764/disena.14.40-67
 
 Pearce, W., & De Gaetano, C. (2021). Google Images, Climate Change, and the Disappearance of Humans. Diseña, (19), Article.3. https://doi.org/10.7764/disena.19.Article.3
+
+Pink, S. 2017. "Technologies, Possibilities, Emergence and an Ethics of Responsibility: Refiguring Techniques" in Gómez Cruz E., Sumartojo, S., Pink, S. (eds). Refiguring Techniques in Digital Visual Research. Palgrave, London. 
 
 
