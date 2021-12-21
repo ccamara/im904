@@ -12,3 +12,4 @@ Authors: Iain Emsley, Carlos Cámara-Menoyo
 * [Week 4: Networks](https://pages.github.warwick.ac.uk/u2071219/IM904/week4-slides.html#1)
 * [Week 5: Text Analysis (part 1)](https://pages.github.warwick.ac.uk/u2071219/IM904/week5-slides.html#1)
 * [Week 7: Text Analysis (part 2)](https://pages.github.warwick.ac.uk/u2071219/IM904/week7-slides.html#1)
+
