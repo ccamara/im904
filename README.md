@@ -1,6 +1,6 @@
 ## IM904: Digital Objects, Digital Methods
 
-RMarkdown for IM904's labs and slides.
+Course materials for [IM904: Digital Objects, Digital Methods](https://warwick.ac.uk/fac/cross_fac/cim/apply-to-study/cross-disciplinary-postgraduate-modules/im904-digital-objects-digital-methods/)' labs.
 
 Authors: Iain Emsley, Carlos Cámara-Menoyo
 
