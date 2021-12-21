@@ -1,0 +1,35 @@
+/*$w_aubergine: #552D62;*/
+
+body {
+  color: rgb(56, 56, 56);
+}
+
+a {
+  color: rgba(85,45,98,1);
+}
+
+.remark-container {
+  background: rgba(85,45,98,0.05);
+}
+
+/* Title slide */
+
+/* Add image and change bg color */
+.title-slide {
+  background-image: url(UofW_logo.jpg);
+  background-position: 95% 15%;
+  background-size: 155px;
+  background-color: #fff;
+  padding-left: 100px;  /* delete this for 4:3 aspect ratio */
+  background-color: rgba(85,45,98,1);
+  color: white;
+}
+
+.title-slide h1, h2, h3, p {
+  text-align: left;
+}
+
+.highlight {
+  background-color: rgba(85,45,98,1);
+  color: white;
+}

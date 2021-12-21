@@ -1,23 +1,28 @@
----
-title: "Week 1: Query Design and Search as Research"
-subtitle: "IM904: Digital Objects, Digital Methods"
-author: "Iain  Emsley, Carlos Cámara-Menoyo"
-institute: "Centre for Interdisciplinary Methodologies"
-date: "08/12/2020"
-output:
-  xaringan::moon_reader:
-    # css: ["default", "extra.css"]
-    css: ["css/warwick.css", "css/warwick-fonts.css"]
-    seal: true #Set false to remove default title slide.
-    nature:
-      ratio: '16:9'
-      # titleSlideClass: ["right", "top", "my-title"]
-    yolo: false
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Week 1: Query Design and Search as Research</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Iain Emsley, Carlos Cámara-Menoyo" />
+    <meta name="date" content="2020-08-12" />
+    <script src="week1_files/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="css/warwick.css" type="text/css" />
+    <link rel="stylesheet" href="css/warwick-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Week 1: Query Design and Search as Research
+## IM904: Digital Objects, Digital Methods
+### Iain Emsley, Carlos Cámara-Menoyo
+### Centre for Interdisciplinary Methodologies
+### 08/12/2020
+
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+
+
 
 # Introduction to Digital Objects and Digital Methods Labs
 
@@ -83,9 +88,7 @@ Query design is the creation of a query or queries in search engines that allows
 
 When we use tools, we need to understand how to frame the question that we have in mind to get relevant data. Here we look at a practical example of this using a search engine. The first stage in this is to identify the keywords will be used in the query. We can do this by identifying well-known phrases, such as 'climate change', or neologisms, like 'climate emergency'. One thing to consider is who is using the term that you are interested in? Do these actors differ across the other terms that you are interested in? It is an iterative process. You will often start with one set of terms and when you review the results, you will find some other terms in the language used.
 
-What is it that we want to use as keywords to begin our search? What does a keyword suggest: is it always an explicit meaning or are there implicit meanings? 
 ---
-
 
 ## Search 
 
@@ -102,7 +105,7 @@ One method is to use a research browser. This is a clean browser that you do not
 By using the research browser, you are less likely to get personalised results from the search engine. As you use your normal browser, search engines are getting signals from the your queries and actions that are then used to personalise the results for you. In using a research browser, we aim to minimise the signals that we provide to the search engine to identify us but we cannot remove every signal. We can still offer up search queries from a browser on an IP.
 
 The Digital Methods Initiative have created a video about what setting up a research browser: 
-https://www.youtube.com/watch?v=bj65Xr9GkJM&ab_channel=DigitalMethodsInitiative
+https://www.youtube.com/watch?v=bj65Xr9GkJM&amp;ab_channel=DigitalMethodsInitiative
 
 Having found, or downloaded, a clean browser, we can use the search engine to look at the results given. If you do not use either Firefox (https://www.mozilla.org/en-GB/firefox/new/) or Brave (https://brave.com/), you could download either and use them in private mode. 
 
@@ -165,8 +168,7 @@ The first recipe is to use the same terms but to engage with the results.
 3. Take a range of words and count how often they appear. 
 
 This next part is not in the Noble paper, but I am drawing from Richard Rogers's work. 
-4. Make a list of the words and their counts.
-
+4. Make a list of the words and their counts. 
 You can use a spreadsheet for this.
 4a.  Open a new sheet. 
 4b.  Make two columns. One is the word, the second is the count.
@@ -257,3 +259,107 @@ Rogers, R. 2019. Doing Digital Methods. Sage, London.
 
 Weininger, N.B., Cornea, R.C., Markovich, Y., Zinenko, D. and Fey, N.G., Google LLC, 2013. Presenting autocomplete suggestions. U.S. Patent 8,601,019.
 
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
