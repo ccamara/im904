@@ -2,7 +2,7 @@
 title: "Week 1: Query Design and Search as Research"
 subtitle: "IM904: Digital Objects, Digital Methods"
 author: "Iain  Emsley, Carlos Cámara-Menoyo"
-institute: "Centre for Interdisciplinary Methodologies"
+institute: "Centre for Interdisplinary Methodologies"
 date: "08/12/2020"
 output:
   xaringan::moon_reader:
@@ -92,6 +92,7 @@ In the labs, we will lab will teach you a new method or technique and we will us
 
 You should receive your emails regarding your groups. You will be working in them from week 3 onwards.
 
+
 ???
 
 * Outcome of this module? How do we use digital methods to ask social or cultural questions vs traditional sociological or humanistic methods. Also how does the medium affect what we are doing
@@ -127,6 +128,7 @@ class: slide-primary center middle
 
 ---
 
+
 ## Learning Objectives
 
 After this lesson, you should be able to:
@@ -141,6 +143,7 @@ After this lesson, you should be able to:
 
 *	Understand the browser as a research tool and its challenges.
 
+
 ---
 
 ## Query design
@@ -152,6 +155,7 @@ After this lesson, you should be able to:
 ???
 
 As you will see next week with Nate...
+
 
 This will introduce the concept of query design and how it can be used to understand and refine a research question. Digital methods use online and / or medium based tools for social and medium based research, often by re-purposing or re-imagining them. We will look at how to re-purpose methods built into the medium that recommend or draw attention to items in this lab when we look at search engines and, in subsequent weeks, we will look at other data sources. 
 
@@ -345,9 +349,12 @@ You can remove the browser data from both when you have completed your searches:
 
 * Brave: https://support.brave.com/hc/en-us/articles/360048833872-How-Do-I-Clear-Cookies-And-Site-Data-In-Brave-
 
+
+
 ---
 
 class: slide-secondary
+
 
 ## Autocomplete Exercise
 
@@ -378,7 +385,7 @@ class: interaction
 ]
 
 .pull-right[
- 
+  
 ![](figs/autocomplete/climate_duck_duck_go.png)
 ]
 
@@ -388,7 +395,6 @@ class: interaction
 class: interaction
 
 .pull-left[
-
 Repeat the above using the query "climate change"
 
 ![](figs/autocomplete/climate_change_duck_duck.png)
@@ -414,7 +420,6 @@ Repeat these steps using different search engines.
 As you build up your image collection, you might want to make notes on the type of language and terms being used in them. When you review the language and terms, try experimenting with it. 
 
 For example, instead of `"climate change..."`, you might use `"climate justice..."` or `""`.  You may modify the verb, so rather than just use `"climate change is..."`, try `"climate change will..."` or `"climate change will not ..."`.
-
 
 ???
 
@@ -614,7 +619,6 @@ install.packages('rtweet')
 ???
 
 * **Data Affordances**: We will explore Twitter and Reddit using R packages and discuss the changing formats.
-
 
 ---
 
