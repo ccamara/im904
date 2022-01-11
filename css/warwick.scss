@@ -1,0 +1,66 @@
+// Warwick colors:
+$w_aubergine: #552D62;
+$w_grey: #393A3B;
+$w_ruby_red: #9A1310;
+$w_sky_blue: #00407A;
+
+$primary_color: $w_aubergine;
+
+body {
+  color: $w_grey;
+  //color: rgb(56, 56, 56);
+}
+
+a {
+  color: $w_aubergine;
+}
+
+.remark-container {
+  background: rgba($primary_color,0.05);
+}
+
+/* Slide types */
+
+.title-slide, 
+.highlight,
+.highlight-secondary {
+  h1, h2, h3 {
+    text-shadow: rgba($w_grey,.4)0 3px 3px;
+  }
+}
+
+.highlight, .title-slide {
+  background-color: $primary_color;
+  color: white;
+}
+
+.highlight-grey {
+  background-color: $w_grey;
+  color: white;
+}
+
+.highlight-grey-light {
+  //background-color: rgba($w_grey,.5);
+  background-color: #9B9C9C;
+  color: white;
+}
+
+/* Title slide */
+
+/* Add image and change bg color */
+.title-slide {
+  //background-image: url("/css/UofW_logo.jpg");
+  background-image: url("https://avatars.githubusercontent.com/u/45662315?s=200&v=4");
+  background-position: 95% 15%;
+  background-size: 155px;
+  padding-left: 100px;  /* delete this for 4:3 aspect ratio */
+  
+  h1, h2, h3, p {
+    text-align: left;
+  }
+  
+  h3 {
+    font-weight: 400;
+  }
+}
+
