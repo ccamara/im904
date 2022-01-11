@@ -1,0 +1,11 @@
+- Package: xaringan
+  GithubUsername: yihui
+  GithubRepo: xaringan
+  GithubRef: HEAD
+  GithubSHA1: cea0773a8cfd5e593e4985e87665f513a7fe2d3f
+- Package: remotes
+  Repository: CRAN
+  Version: 2.4.1
+- Package: knitr
+  Repository: CRAN
+  Version: '1.37'
