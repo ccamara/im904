@@ -6,8 +6,9 @@
     <meta name="author" content="Iain Emsley, Carlos Cámara-Menoyo" />
     <meta name="date" content="2020-08-12" />
     <script src="week1-slides_files/header-attrs-2.11/header-attrs.js"></script>
-    <link rel="stylesheet" href="week1-slides_files/sass84a9c9ee4be07bda848ccf0b8b736d9d/warwick.min.css" type="text/css" />
-    <link rel="stylesheet" href="week1-slides_files/sassab76021c87e905e2b9511d84e01c9cf0/warwick-fonts.min.css" type="text/css" />
+    <link href="week1-slides_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="week1-slides_files/sass57b1ec0bac047a6cd801296fb0f82043/warwick.min.css" type="text/css" />
+    <link rel="stylesheet" href="week1-slides_files/sass361ae6458a1a13bf30cc2e26b6420632/warwick-fonts.min.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -23,6 +24,34 @@ class: center, middle, inverse, title-slide
 
 
 
+
+## Introductions
+
+* Me: Dr. **Carlos Cámara-Menoyo**, _SRSEng at CIM_
+
+--
+
+*	You
+
+--
+
+* Module and labs
+
+
+
+
+???
+
+Dr. Carlos Cámara-Menoyo
+I recently (less than one month ago) joined CIM as Senior RSEng. This is my first day teaching this module -&gt; be indulgement with me
+
+I'm an R passionate and previously I've worked as lecturer and researcher and web developer, amongst others. My research interests have been mostly related with the intersections and commodifications between technology, society and built environment, from the lenses of collaboration, peer production and inclusion/exclusion
+
+You: name students from the list.
+
+
+
+---
 
 ## Introduction to DODM Labs
 
@@ -64,13 +93,28 @@ In the labs, we will lab will teach you a new method or technique and we will us
 
 8. **Visualisation**: This week will reflect on the various techniques that have been introduced and storytelling through visualisation. 
 
-9. **Project Surgery**
+9. **Project Surgery** - Project based. Work group.
 
 10. **Presentations** – Each group will give a talk of 5 – 8 minutes with slides. 
 
 You should receive your emails regarding your groups. You will be working in them from week 3 onwards.
 
+
+???
+
+* Outcome of this module? How do we use digital methods to ask social or cultural questions vs traditional sociological or humanistic methods. Also how does the medium affect what we are doing
+* Final assignment? Group project. Practical, you will be building skills. Group project but individual reflections. We'll explain that in more detail in week 3?
+  
 ---
+
+## Tools
+
+* `R` markdown (`Rmd`) (mostly)
+  * Each file has a code block to install dependencies
+* Some other tools: gephi, or today, web browsers (specific occassions)
+
+---
+
 
 ## Learning Objectives
 
@@ -88,7 +132,7 @@ After this lesson, you should be able to:
 
 ---
 
-class: highlight center middle
+class: slide-primary center middle
 
 ## Digital Methods and Query Design
 
@@ -96,8 +140,34 @@ class: highlight center middle
 
 ## Query design
 
+**Search boxes** are omnipresent: Are easy to use + Retrieve and sort (relevant) information 
+
+* Make information accessible in an overloaded information landscape
+
+--
+
+**Search engines:**
+* are mediators of access -&gt; They play a crucial role in culture.
+  * Gatekeepers, curators, filterers
+* Research topics by themselves
+* Need to be repurposed to help conduct social and cultural research -&gt; "Search as Research" (Rogers 2019, p. 107)
+
+--
+
+**Search queries**: are more than what we type in the search bars. We'll explore how
+
+* they can be used to study the 'medium' of search engines and their interfaces
+* they have been used to 'ground' more explicitly social and cultural inquiry. 
+
+--
+
+**Query design** is the .highlight[creation of a query or queries in search engines that allows us to explore trends, voice, or other things]
+
+
 
 ???
+
+As you will see next week with Nate...
 
 This will introduce the concept of query design and how it can be used to understand and refine a research question. Digital methods use online and / or medium based tools for social and medium based research, often by re-purposing or re-imagining them. We will look at how to re-purpose methods built into the medium that recommend or draw attention to items in this lab when we look at search engines and, in subsequent weeks, we will look at other data sources. 
 
@@ -111,27 +181,160 @@ When we use tools, we need to understand how to frame the question that we have 
 
 Using search engines means that we are re-purposing the device to look at how the engine works. 
 
-
 .center[![Duck duck go's search bar](figs/autocomplete/search_bar.png)]
 
-Here I want to think about the query design in search. We can use search to consider the affordances of the medium and as a method. As we search through the search engines, we are being presented aggregated results determined by algorithms and aggregated searches.
+Think about the query design in search. We can use search to consider the affordances of the medium and as a method. .highlight[As we search through the search engines, we are being presented aggregated results determined by algorithms and aggregated searches].
+
+--
+
+
+We need to think about how a question can be considered to think about how it can be broken down into query terms for each method being used. 
+
+* understand and refine a research question: 
+
+.center[`(Research) Question --&gt; Keywords --&gt; Query --&gt; Results`]
 
 ---
+
+class: interaction
+
+### Discussion: keywords
+
+Imagine that we are studying how climate is changing and its causes and consequences. Which keywords can we use? 
+
+We can think of climate as a keyword. We can use `Climate change`, but there are neologisms such as `climate justice` which have overlapping meanings, but do not refer to the same idea nor have the same implications, connotations (political, activism, timeframe)... what kind of term are we interested with?
+
+--
+* Can anyone think of a term? Can you describe it? What are their implications? 
+
+--
+
+* The terms we choose have effects. Who are the actors? Who uses that term? who is the subject? where's the emphasis located?
+
+---
+
+class: center, middle
+
+## Same query, different results?
+
+Nothing is trivial in a query design
+
+
+---
+
+class: center, middle
+background-image: url(figs/query-design/climate-change-google.png)
+background-size: contain
+
+---
+
+class: center, middle
+background-image: url(figs/query-design/climate-change-bing.png)
+background-size: contain
+
+---
+
+class: center, middle
+background-image: url(figs/query-design/climate-change-duckduckgo.png)
+background-size: contain
+
+---
+
+class: center, middle
+background-image: url(figs/query-design/climate-change-ecosia.png)
+background-size: contain
+
+
+
+---
+
+class: interaction
+
+
+### Discussion
+
+* Are queries and search engines innocuous?
+* What might impact your research results?
+* How does the search engine choose what to present to you? 
+* What do the results tell you about...?
+  * the search engine, 
+  * you
+  * our culture
+
+
+
+???
+
+We know search engines are widespread and used worldwide. We use them everyday and for many people are the door to the Internet.
 
 Briefly consider what might impact your research results. How does the search engine choose what to present to you? What do the results tell you about the search engine, you (if you are logged into the search engine) and our culture?
 
 ---
 
-## Research Browsers
+### Some Influencing aspects:
 
-One method is to use a research browser. This is a clean browser that you do not normally use, so that is clean from cookies and other material, and are not logged into any form of online service.
+* ISP provider
+* IP / Geographical location
+* Web Browser (Firefox, Chrome, Safari, Edge, Brave...)
+  * Language
+* Search engine (Google, Bing, Yahoo, DuckDuckGo, Ecosia...)
+  * Search history
+  * Logged in accounts -&gt; data associated to it ()
+* Cookies
+* ...
 
-By using the research browser, you are less likely to get personalised results from the search engine. As you use your normal browser, search engines are getting signals from the your queries and actions that are then used to personalise the results for you. In using a research browser, we aim to minimise the signals that we provide to the search engine to identify us but we cannot remove every signal. We can still offer up search queries from a browser on an IP.
+---
+
+class: interaction center middle
+
+
+## Can we get universal results?
+
+Can you think of some ways to mitigate how results are targeted to us?
+
+???
+
+* Private tabs
+* Log out from accounts
+* Chose a privacy friendly search engine
+
+---
+
+### Research Browsers
+
+One method is to use a research browser. This is a clean browser that you do not normally use, so that is .highlight[clean from cookies and other material, and are not logged into any form of online service].
+
+In using a research browser, we aim to .highlight[minimise the signals that we provide to the search engine to identify us but we cannot remove every signal]. We can still offer up search queries from a browser on an IP.
 
 The Digital Methods Initiative have created a video about what setting up a research browser: 
 https://www.youtube.com/watch?v=bj65Xr9GkJM&amp;ab_channel=DigitalMethodsInitiative
 
-Having found, or downloaded, a clean browser, we can use the search engine to look at the results given. If you do not use either Firefox (https://www.mozilla.org/en-GB/firefox/new/) or Brave (https://brave.com/), you could download either and use them in private mode. 
+
+--
+
+#### Other measures:
+
+* Create different user profiles in the web browser
+* Privacy-friendly software/services:
+  * Web browsers: [Firefox](https://www.mozilla.org/en-GB/firefox/new/), [Brave](https://brave.com/)
+  * Search engine: [DuckDuckGo](https://duckduckgo.com/privacy)
+  * Operating system: [Tails](https://tails.boum.org/) (GNU/Linux distribution)
+* Private tab
+* Extensions:
+  * [Containers](https://support.mozilla.org/en-US/kb/containers)
+  * Clean data after query...
+* Use a VPN
+* Use search engines' APIs (if available)
+
+
+???
+
+By using the research browser, you are less likely to get personalised results from the search engine. 
+
+As you use your normal browser, search engines are getting signals from the your queries and actions that are then used to personalise the results for you. In using a research browser, we aim to minimise the signals that we provide to the search engine to identify us but we cannot remove every signal. We can still offer up search queries from a browser on an IP.
+
+
+Having found, or downloaded, a clean browser, we can use the search engine to look at the results given. If you do not use either Firefox (https://www.mozilla.org/en-GB/firefox/new/) or Brave , you could download either and use them in private mode. 
 
 You can remove the browser data from both when you have completed your searches: 
 
@@ -139,9 +342,11 @@ You can remove the browser data from both when you have completed your searches:
 
 * Brave: https://support.brave.com/hc/en-us/articles/360048833872-How-Do-I-Clear-Cookies-And-Site-Data-In-Brave-
 
+
+
 ---
 
-class: highlight-grey
+class: slide-secondary
 
 
 ## Autocomplete Exercise
@@ -154,11 +359,12 @@ So why might we care about autocomplete? What sort of research can we think abou
 
 ---
 
-class: highlight-grey-light
+class: interaction
 
 ### Recipe
 
-.left[
+.pull-left[
+
 1.	Open a browser on your computer. 
 
 2.	Go to a search engine – Google, Yahoo, Bing, Google, DuckDuckGo
@@ -168,39 +374,45 @@ class: highlight-grey-light
 4.	Read the autocomplete results
 
 5.  Take a screen shot of the drop down list.
+
 ]
 
-.right[
+.pull-right[
+  
 ![](figs/autocomplete/climate_duck_duck_go.png)
 ]
 
 ---
 
-class: highlight-grey-light
 
+class: interaction
+
+.pull-left[
 Repeat the above using the query "climate change"
 
 ![](figs/autocomplete/climate_change_duck_duck.png)
 
----
+]
 
-class: highlight-grey-light
+--
+
+.pull-right[
 
 Repeat these steps using different search engines. 
 
 ![](figs/autocomplete/climate_change_google.png)
 
+]
+
+
 ---
 
-class: highlight-grey-light
 
 ### To consider...
 
 As you build up your image collection, you might want to make notes on the type of language and terms being used in them. When you review the language and terms, try experimenting with it. 
 
-For example, instead of `"climate change..."`, you might use `"climate justice..."` or "".  You may modify the verb, so rather than just use "climate change is...", try "climate change will..." or "climate change will not ...".
-
-You might also want to think about what is not in the drop down. How can you craft a query term that suggests a missing term?
+For example, instead of `"climate change..."`, you might use `"climate justice..."` or `""`.  You may modify the verb, so rather than just use `"climate change is..."`, try `"climate change will..."` or `"climate change will not ..."`.
 
 ???
 
@@ -210,13 +422,24 @@ You might also want to think about what is not in the drop down. How can you cra
 
 ---
 
-class: highlight
+class: slide-secondary
 
-## Case Study
+## Case Study: Searching for Black Girls
 
-Safiya Umoja Noble's research uses search engines for her work. Here we are going to try and reproduce the method in "Searching for Black Girls", the second chapter of Algorithms of Oppression (Noble, 2019). Two methods are presented that we will develop the autocomplete exercise. In this exercise, we will re-use these  but we will change the search terms to climate change to develop our theme for this term. 
+.left-column[
+![](https://hwpi.harvard.edu/files/styles/os_files_xxlarge/public/cchr/files/screen-shot-2020-09-04-at-2.45.57-pm.png?m=1601913613&amp;itok=59xlcKXv)
+]
+
+.right-column[
+**Safiya Umoja Noble**'s research uses search engines for her work. Here we are going to try and reproduce the method in "Searching for Black Girls", the second chapter of _Algorithms of Oppression_ (Noble, 2019). 
+
+Two methods are presented that we will develop the autocomplete exercise. In this exercise, we will re-use these  but we will change the search terms to climate change to develop our theme for this term. 
+
+]
 
 ---
+
+class: interaction
 
 #### Text Recipe
 
@@ -229,20 +452,29 @@ The first recipe is to use the same terms but to engage with the results.
 3. Take a range of words and count how often they appear. 
 
 This next part is not in the Noble paper, but I am drawing from Richard Rogers's work. 
-4. Make a list of the words and their counts. 
-You can use a spreadsheet for this.
-4a.  Open a new sheet. 
-4b.  Make two columns. One is the word, the second is the count.
-4c. Put the word in the word columns and the count in count. 
-4d. Save the file using the search engine and terms and date as the filename. So if using Google.com for Climate Change on December 13 2021, then the name could be google_com_climate_change_131221.csv or .xls . 
 
-5. Take a screen shot of the results page.
+4. Make a list of the words and their counts. You can use a spreadsheet for this.
+  4. Open a new sheet. 
+  4. Make two columns. One is the word, the second is the count.
+  4. Put the word in the word columns and the count in count. 
+  4. Save the file using the search engine and terms and date as the filename.
+  So if using Google.com for Climate Change on December 13 2021, then the name could be `google_com_climate_change_131221.csv`. 
+
+5. Take a screenshot of the results page.
+
+---
+
+class: interaction
+
+#### Discuss
 
 You will need to compare these results with the wider discourse on climate change in society if you are interested in social questions. Do you see any patterns within the words that you have - are they in a certain order or near each other on the page?
 
 We may want to consider the medium effects of the page. What domains are on the page? You will need to cut and paste these into a spreadsheet. 
 
 ---
+
+class: interaction
 
 #### Links Recipe
 
@@ -261,22 +493,30 @@ Paid adverts are targeted towards particular keywords and the advertisers have p
 ### Extra recipes
 
 Once you have gone through these, try using 'climate action' as a term and use the recipes to review the results.
+
 ---
 
 ## Image Search Exercise
 
-Search engines provide more than just text results. Some engines provide image search and we can use this to start exploring the types of images that are presented to us. When we type in a word or phrase, we can begin to look at the types of images that are returned. Again, we are referring to Safiya Umoji Noble's book but re-using terms from our theme. 
+Search engines provide more than just text results. Some engines provide image search and we can use this to start exploring the types of images that are presented to us. When we type in a word or phrase, we can begin to look at the types of images that are returned. 
+
+Again, we are referring to Safiya Umoji Noble's book but re-using terms from our theme. 
 
 ---
 
-### Recipe
+class: interaction
+
+### Recipe: images
+
+The image results are another form of findings and you should take this in to account for the query that you are designing and using.
+
 1.	Go to a search engine.
 2.	Locate the image search.
 3.	Type in the search term. Try starting with "climate justice".
-
-When the results appear, then what type of images are being shown? Other questions to ask are: what did you expect to see and what did you see? The image results are another form of findings and you should take this in to account for the query that you are designing and using.
-
-You can refine this by asking:  What, or who, might be missing from the results?
+4. When the results appear, reflect on this:
+  1. what type of images are being shown? 
+  2. what did you expect to see and what did you see?
+5. You can refine this by asking:  What, or who, might be missing from the results?
 
 ---
 
@@ -316,11 +556,59 @@ We will have a short group discussion about these questions at the end of the se
 
 ---
 
-## Conclusion
+class: slide-secondary
+
+## Wrap up
+
+In this lab we have...
+
+* Reflected on the concept of **query design**: turn a research question into a search term
+* Observed that same queries may yield different results (tailored results)
+* Discussed and used ways to minimise personalised results (**research browser**)
+* Experimented with some search engine's features (autocomplete, image search) and reflected on their implications (affordances, bias...)
+
+---
+
+class: slide-primary
+
+## Conclusions:
+
+* Search engines are not innocuous: gatekeepers/mediators
+  * They need to be considered as research objects
+  * Importance of considering query design (search as research)
+* Autocomplete provides insight into how the term is seen and what search queries there might be
+* When we use search, we begin to look at the way that the results are indexed, ordered and considered by the engines as well as being able to ask some basic social questions. 
+* Explore images to understand how different terms are understood and whether these point to assumptions and bias in the training data sets. 
+
+???
 
 In this worksheet, we consider query design to turn a research question into a search term. This is developed through the use of search engines as a site of re-purposing the device to provide some insight into how it works. Autocomplete provides insight into how the term is seen and what search queries there might be. When we use search, we begin to look at the way that the results are indexed, ordered and considered by the engines as well as being able to ask some basic social questions. Finally, we explore images to understand how different terms are understood and whether these point to assumptions and bias in the training data sets. 
 
-In the next lab, we will return to query design and to consider and use APIs. You will need to prepare some tools for next week, if you do not have them. We will need both R and RStudio. You will need to download the RMarkdown document for Week 2 when it is available and to ensure that the knitr package is installed in RStudio. *If you have already installed R, RStudio and knitr, you should not need to re-install them*. The first video on the [R Workshop page](https://warwick.ac.uk/fac/cross_fac/cim/people/academic-technology/rworkshop/) will help you if you need to install these from scratch. You will also need a Twitter account that you can use.
+---
+
+class: interaction
+
+## Next week... Data Affordances
+
+In the next lab, we will return to query design and to consider and use APIs.
+
+You will need to prepare some tools for next week, if you do not have them. We will need both R and RStudio. You will need to download the RMarkdown document for Week 2 when it is available and to ensure that the knitr package is installed in RStudio. *If you have already installed R, RStudio and knitr, you should not need to re-install them*. 
+
+### ~~Homework~~ Preparation:
+
+* Install latest versions of R (&gt;4.1.0) and RStudio
+* Install dependencies: 
+```r
+install.packages('knitr')
+install.packages('RedditExtractoR')
+install.packages('rtweet')
+```
+* Be able to log into your Twitter account
+* If, unfamiliar with R: The first video on the [R Workshop page](https://warwick.ac.uk/fac/cross_fac/cim/people/academic-technology/rworkshop/) will help you if you need to install these from scratch. You will also need a Twitter account that you can use.
+
+???
+
+* **Data Affordances**: We will explore Twitter and Reddit using R packages and discuss the changing formats.
 
 ---
 
