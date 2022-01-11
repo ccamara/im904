@@ -2,7 +2,7 @@
 title: "Week 1: Query Design and Search as Research"
 subtitle: "IM904: Digital Objects, Digital Methods"
 author: "Iain  Emsley, Carlos Cámara-Menoyo"
-institute: "Centre for Interdisciplinary Methodologies"
+institute: "Centre for Interdischttps://github.warwick.ac.uk/u2071219/IM904/tree/xaringaniplinary Methodologies"
 date: "08/12/2020"
 output:
   xaringan::moon_reader:
