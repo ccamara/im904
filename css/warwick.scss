@@ -4,7 +4,8 @@ $w_grey: #393A3B;
 $w_ruby_red: #9A1310;
 $w_sky_blue: #00407A;
 
-$primary_color: $w_aubergine;
+$color-primary: $w_aubergine;
+$color-secondary: $w_grey;
 
 body {
   color: $w_grey;
@@ -12,34 +13,42 @@ body {
 }
 
 a {
-  color: $w_aubergine;
+  color: $color-primary;
 }
 
 .remark-container {
-  background: rgba($primary_color,0.05);
+  background: rgba($color-primary,0.05);
 }
 
 /* Slide types */
 
 .title-slide, 
-.highlight,
-.highlight-secondary {
+.slide-primary,
+.slide-secondary {
   h1, h2, h3 {
     text-shadow: rgba($w_grey,.4)0 3px 3px;
   }
+
+  a {
+    color: white !important;
+    &:hover {
+      background-color: white;
+      color: $color-primary !important;
+    }
+  }
 }
 
-.highlight, .title-slide {
-  background-color: $primary_color;
+.slide-primary, .title-slide {
+  background-color: $color-primary;
   color: white;
 }
 
-.highlight-grey {
-  background-color: $w_grey;
+.slide-secondary {
+  background-color: $color-secondary;
   color: white;
 }
 
-.highlight-grey-light {
+.interaction {
   //background-color: rgba($w_grey,.5);
   background-color: #9B9C9C;
   color: white;
@@ -62,5 +71,10 @@ a {
   h3 {
     font-weight: 400;
   }
+}
+
+.highlight {
+  background: rgba($color-primary, 0.25);
+  color: $w-grey;
 }
 
