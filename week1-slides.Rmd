@@ -115,6 +115,7 @@ You should receive your emails regarding your groups. You will be working in the
   * Theory
   * Practice (Instructions and code you can run by yourselves)
   * References
+* Slides can be found here: https://pages.github.warwick.ac.uk/u2071219/IM904/
 * Aim: work together in reproducing the files
   * Usually, there's more content than what we will be able to cover at class for those who want to go further
   * You can continue (or repeat) the exercises/recipes on your own
