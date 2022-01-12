@@ -1,6 +1,8 @@
-# IM904: Digital Objects, Digital Methods
+## IM904: Digital Objects, Digital Methods
 
-RMarkdown for IM904
+RMarkdown for IM904's labs and slides.
+
+Authors: Iain Emsley, Carlos Cámara-Menoyo
 
 ### Slides
 
