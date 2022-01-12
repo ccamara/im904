@@ -24,17 +24,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * Me: Dr. **Carlos Cámara-Menoyo**, _SRSEng at CIM_
 
---
-
-*	You
-
---
-
-* Module and labs
-
-
-
-
 ???
 
 Dr. Carlos Cámara-Menoyo
@@ -42,8 +31,17 @@ I recently (less than one month ago) joined CIM as Senior RSEng. This is my firs
 
 I'm an R passionate and previously I've worked as lecturer and researcher and web developer, amongst others. My research interests have been mostly related with the intersections and commodifications between technology, society and built environment, from the lenses of collaboration, peer production and inclusion/exclusion
 
-You: name students from the list.
+--
 
+*	You
+
+???
+You: name students from the list.
+Register attendance
+
+--
+
+* Module and labs
 
 
 ---
@@ -110,6 +108,12 @@ You should receive your emails regarding your groups. You will be working in the
 
 ---
 
+class: slide-primary center middle
+
+## Digital Methods and Query Design
+
+---
+
 
 ## Learning Objectives
 
@@ -125,11 +129,6 @@ After this lesson, you should be able to:
 
 *	Understand the browser as a research tool and its challenges.
 
----
-
-class: slide-primary center middle
-
-## Digital Methods and Query Design
 
 ---
 
@@ -138,6 +137,17 @@ class: slide-primary center middle
 **Search boxes** are omnipresent: Are easy to use + Retrieve and sort (relevant) information 
 
 * Make information accessible in an overloaded information landscape
+
+???
+
+As you will see next week with Nate...
+
+
+This will introduce the concept of query design and how it can be used to understand and refine a research question. Digital methods use online and / or medium based tools for social and medium based research, often by re-purposing or re-imagining them. We will look at how to re-purpose methods built into the medium that recommend or draw attention to items in this lab when we look at search engines and, in subsequent weeks, we will look at other data sources. 
+
+Query design is the creation of a query or queries in search engines that allows us to explore trends, voice, or other things. We need to think about how a question can be considered to think about how it can be broken down into query terms for each method being used. An initial question to ask is 'what is our research aim?' Are we looking at social or medium questions? As we are searching using the medium, we should always be aware of media effects: they cannot be entirely removed. What we are doing is considering the affordances of the medium.
+
+When we use tools, we need to understand how to frame the question that we have in mind to get relevant data. Here we look at a practical example of this using a search engine. The first stage in this is to identify the keywords will be used in the query. We can do this by identifying well-known phrases, such as 'climate change', or neologisms, like 'climate emergency'. One thing to consider is who is using the term that you are interested in? Do these actors differ across the other terms that you are interested in? It is an iterative process. You will often start with one set of terms and when you review the results, you will find some other terms in the language used.
 
 --
 
@@ -159,17 +169,6 @@ class: slide-primary center middle
 **Query design** is the .highlight[creation of a query or queries in search engines that allows us to explore trends, voice, or other things]
 
 
-
-???
-
-As you will see next week with Nate...
-
-This will introduce the concept of query design and how it can be used to understand and refine a research question. Digital methods use online and / or medium based tools for social and medium based research, often by re-purposing or re-imagining them. We will look at how to re-purpose methods built into the medium that recommend or draw attention to items in this lab when we look at search engines and, in subsequent weeks, we will look at other data sources. 
-
-Query design is the creation of a query or queries in search engines that allows us to explore trends, voice, or other things. We need to think about how a question can be considered to think about how it can be broken down into query terms for each method being used. An initial question to ask is 'what is our research aim?' Are we looking at social or medium questions? As we are searching using the medium, we should always be aware of media effects: they cannot be entirely removed. What we are doing is considering the affordances of the medium.
-
-When we use tools, we need to understand how to frame the question that we have in mind to get relevant data. Here we look at a practical example of this using a search engine. The first stage in this is to identify the keywords will be used in the query. We can do this by identifying well-known phrases, such as 'climate change', or neologisms, like 'climate emergency'. One thing to consider is who is using the term that you are interested in? Do these actors differ across the other terms that you are interested in? It is an iterative process. You will often start with one set of terms and when you review the results, you will find some other terms in the language used.
-
 ---
 
 ## Search 
@@ -183,9 +182,7 @@ Think about the query design in search. We can use search to consider the afford
 --
 
 
-We need to think about how a question can be considered to think about how it can be broken down into query terms for each method being used. 
-
-* understand and refine a research question: 
+We need to think about how a question can be considered to think about how it can be broken down into query terms for each method being used. -> understand and refine a research question: 
 
 .center[`(Research) Question --> Keywords --> Query --> Results`]
 
@@ -197,9 +194,13 @@ class: interaction
 
 Imagine that we are studying how climate is changing and its causes and consequences. Which keywords can we use? 
 
-We can think of climate as a keyword. We can use `Climate change`, but there are neologisms such as `climate justice` which have overlapping meanings, but do not refer to the same idea nor have the same implications, connotations (political, activism, timeframe)... what kind of term are we interested with?
+We can think of `climate` as a keyword. 
+
+We can use `climate change`, but there are neologisms such as `climate justice` which have overlapping meanings, but do not refer to the same idea nor have the same implications, connotations (political, activism, timeframe)... 
 
 --
+What kind of term are we interested with?
+
 * Can anyone think of a term? Can you describe it? What are their implications? 
 
 --
@@ -304,6 +305,11 @@ In using a research browser, we aim to .highlight[minimise the signals that we p
 The Digital Methods Initiative have created a video about what setting up a research browser: 
 https://www.youtube.com/watch?v=bj65Xr9GkJM&ab_channel=DigitalMethodsInitiative
 
+???
+
+By using the research browser, you are less likely to get personalised results from the search engine. 
+
+As you use your normal browser, search engines are getting signals from the your queries and actions that are then used to personalise the results for you. In using a research browser, we aim to minimise the signals that we provide to the search engine to identify us but we cannot remove every signal. We can still offer up search queries from a browser on an IP.
 
 --
 
@@ -322,11 +328,7 @@ https://www.youtube.com/watch?v=bj65Xr9GkJM&ab_channel=DigitalMethodsInitiative
 * Use search engines' APIs (if available)
 
 
-???
 
-By using the research browser, you are less likely to get personalised results from the search engine. 
-
-As you use your normal browser, search engines are getting signals from the your queries and actions that are then used to personalise the results for you. In using a research browser, we aim to minimise the signals that we provide to the search engine to identify us but we cannot remove every signal. We can still offer up search queries from a browser on an IP.
 
 
 Having found, or downloaded, a clean browser, we can use the search engine to look at the results given. If you do not use either Firefox (https://www.mozilla.org/en-GB/firefox/new/) or Brave , you could download either and use them in private mode. 
@@ -436,7 +438,7 @@ Two methods are presented that we will develop the autocomplete exercise. In thi
 
 class: interaction
 
-#### Text Recipe
+### Text Recipe
 
 The first recipe is to use the same terms but to engage with the results. 
 
@@ -461,7 +463,7 @@ This next part is not in the Noble paper, but I am drawing from Richard Rogers's
 
 class: interaction
 
-#### Discuss
+### Discuss
 
 You will need to compare these results with the wider discourse on climate change in society if you are interested in social questions. Do you see any patterns within the words that you have - are they in a certain order or near each other on the page?
 
@@ -471,7 +473,7 @@ We may want to consider the medium effects of the page. What domains are on the 
 
 class: interaction
 
-#### Links Recipe
+### Links Recipe
 
 Noble follows this by engaging with the links. 
 
@@ -487,9 +489,11 @@ Paid adverts are targeted towards particular keywords and the advertisers have p
 
 ### Extra recipes
 
-Once you have gone through these, try using 'climate action' as a term and use the recipes to review the results.
+Once you have gone through these, try using `climate action` as a term and use the recipes to review the results.
 
 ---
+
+class: slide-secondary
 
 ## Image Search Exercise
 
@@ -507,7 +511,7 @@ The image results are another form of findings and you should take this in to ac
 
 1.	Go to a search engine.
 2.	Locate the image search.
-3.	Type in the search term. Try starting with "climate justice".
+3.	Type in the search term. Try starting with `climate justice`.
 4. When the results appear, reflect on this:
   1. what type of images are being shown? 
   2. what did you expect to see and what did you see?
@@ -517,7 +521,7 @@ The image results are another form of findings and you should take this in to ac
 
 ### Search Engine as Medium Experiment
 
-One question that we can answer using search engines is the order of the results. When we search, the engine converts our query into a set of links that ordered by relevance using machine learning. The signals - such as our cookies, queries and history - that that we provide when searching are involved in this process.
+One question that we can answer using search engines is the .highlight[order of the results]. When we search, the engine converts our query into a set of links that ordered by relevance using machine learning. The signals - such as our cookies, queries and history - that that we provide when searching are involved in this process.
 
 *	Is the ordering of the result the same?
 
@@ -543,9 +547,10 @@ Try this with a different term, such as "climate injustice". What are the differ
 
 These images are found by a machine learning system, so we can begin to ask questions about what assumptions and biases might exist in the training data.
 
-What happens when we change the sub-domain? We can search for the query using sub-domains such as .co.uk, .com, .de, .br. Do these return different results?
+* What happens when we change the sub-domain? We can search for the query using sub-domains such as `.co.uk`, `.com`, `.de`, `.br`. Do these return different results?
+* Try this with a browser that you normally use. What are the differences or similarities? When we compare these results, we are looking at personalisation and how the browser constructs the results.
 
-Try this with a browser that you normally use. What are the differences or similarities? When we compare these results, we are looking at personalisation and how the browser constructs the results.
+???
 
 We will have a short group discussion about these questions at the end of the session, so please do prepare some notes. 
 
