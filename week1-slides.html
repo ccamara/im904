@@ -7,8 +7,8 @@
     <meta name="date" content="2020-08-12" />
     <script src="week1-slides_files/header-attrs-2.11/header-attrs.js"></script>
     <link href="week1-slides_files/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link rel="stylesheet" href="week1-slides_files/sass53f614fed778b40fd5fa8e05595e5f49/warwick.min.css" type="text/css" />
-    <link rel="stylesheet" href="week1-slides_files/sass361ae6458a1a13bf30cc2e26b6420632/warwick-fonts.min.css" type="text/css" />
+    <link rel="stylesheet" href="week1-slides_files/sass2cd9c03072d13b65cbf34a4221bef9a6/warwick.min.css" type="text/css" />
+    <link rel="stylesheet" href="week1-slides_files/sasseed923a9821688484827363e6baab5c4/warwick-fonts.min.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -53,11 +53,11 @@ Register attendance
 
 ## Introduction to DODM Labs
 
-### WHAT? 
+### What? 
 
 * **Explore the concept** of digital object and digital methods
 
-### HOW? 
+### How? 
 
 * Exploring a single issue using the various methods presented (usually Climate Change)
 * One new method or technique per lab  
@@ -81,15 +81,15 @@ In the labs, we will lab will teach you a new method or technique and we will us
 
 1. **Visual Analysis**: We will explore how to use images.  
 
-1. **Network Analysis**: This week will look at Twitter replies to explore the network as digital object and will visualise the results using Gephi. 
+1. **Network Analysis**: We will look at Twitter replies to explore the network as digital object and will visualise the results using Gephi. 
 
 1. **Text Analysis 1**: We will use the results of the Reddit work to explore some text analysis techniques. 
 
 1. Reading Week: No labs
 
-7. **Text Analysis 2**:We will use the results of the Reddit work with an automated reading. 
+7. **Text Analysis 2**: We will use the results of the Reddit work with an automated reading. 
 
-8. **Visualisation**: This week will reflect on the various techniques that have been introduced and storytelling through visualisation. 
+8. **Visualisation**: We will reflect on the various techniques that have been introduced and storytelling through visualisation. 
 
 9. **Project Surgery** - Project based. Work group.
 
@@ -109,7 +109,20 @@ You should receive your emails regarding your groups. You will be working in the
 
 * `R` markdown (`Rmd`) (mostly)
   * Each file has a code block to install dependencies
-* Some other tools: gephi, or today, web browsers (specific occassions)
+* Some other tools: [gephi](https://gephi.org/), or today, web browsers (specific occassions)
+
+--
+
+## Structure
+
+* Labs are designed as a way to scaffold seminar's contents
+* Labs' contents are `Rmd` files that can be found at [Moodle course](https://moodle.warwick.ac.uk/course/view.php?id=47435). Each file combines:
+  * Theory
+  * Practice (Instructions and code you can run by yourselves)
+  * References
+* Aim: work together in reproducing the files
+  * Usually, there's more content than what we will be able to cover at class for those who want to go further
+  * You can continue (or repeat) the exercises/recipes on your own
 
 ---
 
@@ -157,9 +170,9 @@ When we use tools, we need to understand how to frame the question that we have 
 --
 
 **Search engines:**
-* are mediators of access -&gt; They play a crucial role in culture.
+* are .highlight[mediators] of access -&gt; They play a crucial role in culture.
   * Gatekeepers, curators, filterers
-* Research topics by themselves
+* Medium + Research objects by themselves
 * Need to be repurposed to help conduct social and cultural research -&gt; "Search as Research" (Rogers 2019, p. 107)
 
 --
@@ -204,6 +217,7 @@ We can think of `climate` as a keyword.
 We can use `climate change`, but there are neologisms such as `climate justice` which have overlapping meanings, but do not refer to the same idea nor have the same implications, connotations (political, activism, timeframe)... 
 
 --
+
 What kind of term are we interested with?
 
 * Can anyone think of a term? Can you describe it? What are their implications? 
@@ -245,12 +259,9 @@ class: center, middle
 background-image: url(figs/query-design/climate-change-ecosia.png)
 background-size: contain
 
-
-
 ---
 
 class: interaction
-
 
 ### Discussion
 
@@ -307,8 +318,8 @@ One method is to use a research browser. This is a clean browser that you do not
 
 In using a research browser, we aim to .highlight[minimise the signals that we provide to the search engine to identify us but we cannot remove every signal]. We can still offer up search queries from a browser on an IP.
 
-The Digital Methods Initiative have created a video about what setting up a research browser: 
-https://www.youtube.com/watch?v=bj65Xr9GkJM&amp;ab_channel=DigitalMethodsInitiative
+The [Digital Methods Initiative](https://wiki.digitalmethods.net/Dmi/DmiAbout) have created a video about setting up a research browser: 
+https://youtu.be/bj65Xr9GkJM
 
 ???
 
@@ -332,9 +343,7 @@ As you use your normal browser, search engines are getting signals from the your
 * Use a VPN
 * Use search engines' APIs (if available)
 
-
-
-
+???
 
 Having found, or downloaded, a clean browser, we can use the search engine to look at the results given. If you do not use either Firefox (https://www.mozilla.org/en-GB/firefox/new/) or Brave , you could download either and use them in private mode. 
 
@@ -355,7 +364,7 @@ class: slide-secondary
 
 In this exercise, we look at the autocomplete function in a search engine. When a term is typed into the search, the engine identifies the potential next term in the query and returns a short list of suggestions. The list of terms is constructed from the popular terms and queries for that engine.  
 
-This method allows you to engage with the search engine as a device that is affecting what you might enter as a search term. From this, we should be looking at what the results are presented by the search engine. You can compare these across the search engine to start thinking about what the search engine is providing to us as users. We might also consider what phrases and language are being given back.
+This method allows you to engage with the **search engine as a device that is affecting what you might enter as a search term**. From this, we should be looking at what the results are presented by the search engine. You can compare these across the search engine to start thinking about what the search engine is providing to us as users. We might also consider what phrases and language are being given back.
 
 So why might we care about autocomplete? What sort of research can we think about with it?
 
@@ -548,7 +557,7 @@ The question that we want to answer is where the results are from in terms of th
  
 #### Extra Recipe
 
-Try this with a different term, such as "climate injustice". What are the differences and what might this suggest for the way that the term is represented by the search engine?
+Try this with a different term, such as `climate injustice`. What are the differences and what might this suggest for the way that the term is represented by the search engine?
 
 These images are found by a machine learning system, so we can begin to ask questions about what assumptions and biases might exist in the training data.
 
