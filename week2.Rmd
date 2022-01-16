@@ -99,6 +99,7 @@ In the first query, we search for all the threads that mention the query term an
 In the second term, we search for the content belonging to the thread url before merging the two pieces of data to create one spreadsheet. We will be re-using this spreadsheet in week 5 onwards. The data file should save the merged sheets but will take some time.  
 ```{r redditComments, eval=FALSE}
 #Save the options as variables
+#try Glasgow+Pact
 query_term = "COP26"
 
 #we might want to filter our search to a particular subreddit
@@ -106,7 +107,7 @@ sub_reddit= NA
 
 sort_ops = "comments"
 #period can be changed. Type ?find_thread_urls into the terminal to get help. 
-time_period = "month"
+time_period = "week"
 
 #Get the Reddit urls that match contain the keyword that we are looking for
 reddit_urls = find_thread_urls(keywords = query_term, subreddit= sub_reddit, sort_by = sort_ops, period = time_period)
@@ -157,6 +158,7 @@ To use rtweet, you will have to sign into Twitter with your own account. The API
 In this search, I use the term "ParisAgreement", which is both a username for the Paris Agreement process and a main hashtag for the event. It is worth taking a moment to compare the terms being used to search for data and to think about what it means for the query term. 
 ```{r tweets, eval=FALSE}
 #Save the options as variables
+#try #GlasgowPact
 query = 'COP26'
 number_tweets = 1000
 
