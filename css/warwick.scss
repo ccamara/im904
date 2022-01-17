@@ -34,13 +34,19 @@ a {
   h1, h2, h3 {
     text-shadow: rgba($w_grey,.4)0 3px 3px;
   }
-
+  
   a {
     color: white !important;
     &:hover {
       background-color: white;
       color: $color-primary !important;
     }
+  }
+}
+
+.title-slide {
+  h2, h3 {
+    font-size: 120%;
   }
 }
 
