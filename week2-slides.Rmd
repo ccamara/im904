@@ -43,7 +43,6 @@ Before you start this lab, you must have:
 *	A Twitter account;
 *	Installed R, RStudio, and the `knitr` package
 
-
 ```r
 install.packages('knitr')
 install.packages('RedditExtractoR')
@@ -316,7 +315,6 @@ Results are limited by API's permissions, which may affect:
 * the amount of data that can be retrieved, or even 
 * the time ranges for the data. 
 
-
 The software that is used also contains affordances, based on the API, but also what it allows the user to achieve and its reliance on computational objects, such as types or data structures. It is helpful to apply this framework when working with APIs and the provided data.
 
 
@@ -393,6 +391,7 @@ install.packages('rtweet')
 ```
 Now that we have installed the packages, we need to include them in the script to give us access to their methods. You will need to include these files each time
 ```{r dependencies}
+
 library('rtweet')
 library('RedditExtractoR')
 ```
@@ -592,6 +591,7 @@ library(rtweet)
 
 #Save the options as variables
 query_term = "COP26" #try with GlasgowPact, too
+
 number_tweets = 1000
 
 #Get the Twitter data. Retweets are excluded.
