@@ -62,7 +62,7 @@ The data from each platform/website/forum/archive is different.  The different A
 
 The genre of a social media site determines what is accepted by the sites and how it will be shared. This can be seen in the metadata that we read in the column names. These considerations should make you think about the CSV files that you have and the metadata that is given back. What column names do you have in the datasets? Why? What does it say about the underlying platform?
 
-Consider the different formats our data is transformed into. The data that comes from the website API is JSON but when we interact with it in R, the SDK turns it into an R object, like a data frame or list, that we convert as a CSV to read it. The data is remediated between the different media being used. It is more useful to share data online as JSON, but a programming language is likely to have its own structures within it. We convert it into a CSV for reading and sharing. The format of the data is determined by the protocols, "a set of technical recommendations and rules that outline specific technical standards" (Galloway, 2004: 6), and specifications, a "code - whether in software, policy, or instructions for manufacture and use - that conditions the experience of the medium and its processing protocols" (Sterne, 2013: 8),  in use and the people or developers involved.
+Consider the different formats our data is transformed into. The data that comes from the website API is JSON but when we interact with it in R, the SDK turns it into an R object, like a data frame or list, that we convert as a CSV to read it. The data is remediated between the different media being used. It is more useful to share data online as JSON, but a programming language is likely to have its own structures within it. We convert it into a CSV for reading and sharing. The format of the data is determined by the protocols, "a set of technical recommendations and rules that outline specific technical standards" (Galloway, 2004: 6), and specifications, a "code - whether in software, policy, or instructions for manufacture and use - that conditions the experience of the medium and its processing protocols" (Sterne, 2013: 8), in use and the people or developers involved.
 
 Reddit is a comment board so it has listed comments and, unlike Twitter, does not have the same set of limitations on how much text that you can write. The threads may also have comments or votes indicating different ways to view the data. Twitter, however, has a limit of 280 characters and uses hashtags and replies more heavily to create a different way of sharing. Its API is limited to searching data for the last 6 - 9 days, unless you pay for greater access.
 
@@ -128,6 +128,14 @@ We might want to inspect the first few rows of data. We can use R's head() funct
 ```{r inspectData, eval=FALSE}
 head(merged_data)
 ```
+### Reddit API Exercise
+
+A simple search has been set up for you in the code examples. However, what happens when the sorting operation is changed? How might the timeliness of the query affect your search term?
+
+If you are searching for a particular term, how else might you do it? RedditextractoR provides a find_subbreddit() function to find the subreddits that contain a particular term. How might that be used? What code might you re-use to write the result out to CSV?
+
+This function could be used to compare query terms to find common subreddits. 
+
 ### Reddit API Affordances Lab Exercise
 
 In this exercise, I want you to look the documentation for one of the software packages that we are using and to reflect on the changes between them. The RedditextractoR library changed to echo changes in the Reddit API. By reading and comparing the documentation, we can start to explore the changing affordances and to apply the Davis and Chouinard framework. 
@@ -155,10 +163,10 @@ We can use Rtweet's search_tweets to get the tweets data for 6 to 9 days using t
 To use rtweet, you will have to sign into Twitter with your own account. The API will open up a browser on the first search. Sign in and close the window. After you have searched once, and while the cookie is active, you should be authenticated automatically. 
 
 ### Exercise
-In this search, I use the term "ParisAgreement", which is both a username for the Paris Agreement process and a main hashtag for the event. It is worth taking a moment to compare the terms being used to search for data and to think about what it means for the query term. 
+In this search, I use the term "COP26", which is both a username in Twitter and a main hashtag for the event. It is worth taking a moment to compare the terms being used to search for data and to think about what it means for the query term. Does it change the results? How might time affect the search?
 ```{r tweets, eval=FALSE}
 #Save the options as variables
-#try #GlasgowPact
+#try GlasgowPact
 query = 'COP26'
 number_tweets = 1000
 
