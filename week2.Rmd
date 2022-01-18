@@ -122,7 +122,7 @@ Once the initial data has been found, we can use the data to identify potential 
 
 First we might want to read the column names to understand the format. You should reflect on how the metadata suggests the data format and how we might use it to reflect on what type of  
 ```{r, getColNames, eval=FALSE}
-colnames(reddit_data$threads)
+colnames(reddit_data$comments)
 ```
 We might want to inspect the first few rows of data. We can use R's head() function on the reddit dataframe to look at what the data might be. 
 ```{r inspectData, eval=FALSE}
@@ -133,6 +133,12 @@ head(merged_data)
 A simple search has been set up for you in the code examples. However, what happens when the sorting operation is changed? How might the timeliness of the query affect your search term?
 
 If you are searching for a particular term, how else might you do it? RedditextractoR provides a find_subbreddit() function to find the subreddits that contain a particular term. How might that be used? What code might you re-use to write the result out to CSV?
+```{r findSubbredt, eval=F}
+#query uses the find_subreddits function to get relevant subreddits
+# for a keyword. CUoud be used to identify relevant communities.
+subs = find_subreddits(query_term)
+write.csv(subs, "found_subreddits.csv")
+```
 
 This function could be used to compare query terms to find common subreddits. 
 
