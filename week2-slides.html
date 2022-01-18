@@ -6,7 +6,7 @@
     <meta name="author" content="Iain Emsley, Carlos Cámara-Menoyo" />
     <script src="week2-slides_files/header-attrs-2.11/header-attrs.js"></script>
     <link href="week2-slides_files/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link rel="stylesheet" href="week2-slides_files/sass79cede3d55bccceb8b0d80d88e875026/warwick.min.css" type="text/css" />
+    <link rel="stylesheet" href="week2-slides_files/sass3e10b5bab0686175076b2dcf3d3c9efa/warwick.min.css" type="text/css" />
     <link rel="stylesheet" href="week2-slides_files/sassc87f85860c3bf1f886619f4ace23e9bf/warwick-fonts.min.css" type="text/css" />
   </head>
   <body>
@@ -115,9 +115,9 @@ Using an SDK such as RedditExtractoR, we can retrieve the JSON representation fr
             "mod_reason_title": null,
             "gilded": 0,
             "clicked": false,
-            "title": "Design Last: Re-ordering the web design process around semantic HTML",
+*           "title": "Design Last: Re-ordering the web design process around semantic HTML",
             "link_flair_richtext": [],
-            "subreddit_name_prefixed": "r/web_design",
+*           "subreddit_name_prefixed": "r/web_design",
             "hidden": false,
             "pwls": 6,
             "link_flair_css_class": null,
@@ -138,7 +138,7 @@ Using an SDK such as RedditExtractoR, we can retrieve the JSON representation fr
             "thumbnail_width": 70,
             "author_flair_template_id": null,
             "is_original_content": false,
-            "author_fullname": "t2_53v1v",
+*           "author_fullname": "t2_53v1v",
             "secure_media": null,
             "is_reddit_media_domain": false,
             "is_meta": false,
@@ -178,7 +178,7 @@ Using an SDK such as RedditExtractoR, we can retrieve the JSON representation fr
             "is_crosspostable": false,
             "pinned": false,
             "over_18": false,
-            "preview": {
+*           "preview": {
               "images": [
                 {
                   "source": {
@@ -210,7 +210,7 @@ Using an SDK such as RedditExtractoR, we can retrieve the JSON representation fr
             "mod_reason_by": null,
             "removal_reason": null,
             "link_flair_background_color": "",
-            "id": "2wjswo",
+*           "id": "2wjswo",
             "is_robot_indexable": true,
             "num_duplicates": 0,
             "report_reasons": null,
@@ -243,22 +243,100 @@ Using an SDK such as RedditExtractoR, we can retrieve the JSON representation fr
 ---
 
 
----
-
 ## Affordances
 
-One of the challenges is to consider the affordances of an API. When using a search engine, the engine is part of the results that are given to you. The interfaces are part of the process of getting and providing information for you in a relatively similar way. It encourages play and use to get extra signals to personalise the data to the search. When using data APIs, you will be given data in the format that the API presents and it will return either data or error codes. APIs are permissioned interfaces into a site's data. They support machine queries, which we will use below, of parts of their database using certain URLs to denote what they provide. The response given will be in a machine readable format that will need to be converted to be read. However, they will not supply hints to you for the next term or commonly used queries so you will need to think carefully about your query design and be more iterative. You may need to repeat queries after you have interpreted the data.  
+.pull-left[
+**Search engines**
+* Human query
+* The engine is part of the results that are given to you:
+  * The interfaces are part of the proce ss of getting and providing information for you in a relatively similar way.
+  * It encourages play and use to get extra signals to personalise the data to the search.
+]
 
-The permissions may affect:
+???
+
+**One of the challenges is to consider the affordances of an API**. When using a search engine, the engine is part of the results that are given to you. The interfaces are part of the process of getting and providing information for you in a relatively similar way. It encourages play and use to get extra signals to personalise the data to the search. When using data APIs, you will be given data in the format that the API presents and it will return either data or error codes. APIs are permissioned interfaces into a site's data. They support machine queries, which we will use below, of parts of their database using certain URLs to denote what they provide. The response given will be in a machine readable format that will need to be converted to be read. However, they will not supply hints to you for the next term or commonly used queries so you will need to think carefully about your query design and be more iterative. You may need to repeat queries after you have interpreted the data.  
+
+
+--
+
+.pull-right[
+**APIs**
+* Machine query (`https://www.reddit.com/r/web_design/comments/2wjswo/design_last_reordering_the_web_design_process.json`) to an endpoint
+* Response in machine-readable format -&gt; Two possible outcomes when querying an API:
+  * Raw data in machine-readable format (`json`, `csv`...), depending on your permissions
+  * Error code
+* No hints of what to do next (common queries, next term)
+* The data is still selected and filtered but to provide items that match your query. 
+  * You need to work with the data to find relevance to your query
+]
+
+**Working with APIs can be viewed as an affordance that demands a certain approach** (Davis and Chouinard, 2017:3) to accessing the data: We make a .highlight[request] to the .highlight[correct endpoint] in the .highlight[correct format] using digital methods. 
+
+---
+layout: true
+
+
+### API's affordances
+
+---
+**Working with APIs can be viewed as an affordance that demands a certain approach** (Davis and Chouinard, 2017:3) to accessing the data: We make a .highlight[request] to the .highlight[correct endpoint] in the .highlight[correct format] using digital methods. 
+
+The APIs also refuse (Davis and Chouinard, 2017:4) in different ways. The APIs allow you to search the site but .highlight[only under certain conditions]. APIs are often governed by the Terms of Use that can be algorithmically enforced in APIs - for instance, blocking or timing out requests if too many are made within a period, .highlight[they may change with some, little or no notice], the data that is returned is selected by the company, and some require registration to get a key or token. 
+
+Results are limited by API's permissions, which may affect:
 
 * the number of queries that you can run in a given time, 
 * the amount of data that can be retrieved, or even 
 * the time ranges for the data. 
 
-Working with APIs can be viewed as an affordance that demands a certain approach (Davis and Chouinard, 2017:3) to accessing the data. We make a request to the correct endpoint in the correct format using digital methods. The Reddit and Twitter APIs require different types of method and take different parameters. The APIs also refuse (Davis and Chouinard, 2017:4) in different ways. Both will refuse to give data if the parameters or requests are incorrect or, with Twitter, you cannot log in to the site.  The APIs allow (Davis and Chouinard, 2017:5) you to search the site but only under certain conditions. APIs are often governed by the Terms of Use that can be algorithmically enforced in APIs - for instance, blocking or timing out requests if too many are made within a period, they may change with some, little or no notice, the data that is returned is selected by the company, and some require registration to get a key or token. The software that is used also contains affordances, based on the API, but also what it allows the user to achieve and its reliance on computational objects, such as types or data structures. It is helpful to apply this framework when working with APIs and the provided data.
 
-APIs provide a rawer set of data for you to process but that places the requirement for the user to make sense of it. The medium returns results from a database but it is not as involved in finding relevance in the data, like search engines. The data is still selected and filtered but to provide items that match your query. You need to work with the data to find relevance to your query. In this lab, we are using Software Development Kits (SDKs) in R that have been developed to interact with APIs. We should be mindful of what the software is allowing us to query on top of the query allowed by the API. 
+The software that is used also contains affordances, based on the API, but also what it allows the user to achieve and its reliance on computational objects, such as types or data structures. It is helpful to apply this framework when working with APIs and the provided data.
 
+
+
+
+???
+
+The Reddit and Twitter APIs require different types of method and take different parameters. The APIs also refuse (Davis and Chouinard, 2017:4) in different ways. Both will refuse to give data if the parameters or requests are incorrect or, with Twitter, you cannot log in to the site.  The APIs allow (Davis and Chouinard, 2017:5) you to search the site but only under certain conditions. APIs are often governed by the Terms of Use that can be algorithmically enforced in APIs - for instance, blocking or timing out requests if too many are made within a period, they may change with some, little or no notice, the data that is returned is selected by the company, and some require registration to get a key or token. 
+
+---
+
+
+* APIs provide a rawer set of data for you to process 
+  * that places the requirement for the user to make sense of it.
+* The medium returns results from a database but it is not as involved in finding relevance in the data, like search engines. 
+* The data is still selected and filtered but to provide items that match your query. 
+  * You need to work with the data to find relevance to your query. 
+  
+In this lab, we are using Software Development Kits (SDKs) in R that have been developed to interact with APIs. We should be mindful of what the software is allowing us to query on top of the query allowed by the API. 
+
+
+---
+
+layout: false
+
+### Software affordances
+
+.pull-left[
+**The software that is used also contains affordances**, based on the API, but also what it allows the user to achieve and its reliance on computational objects, such as .highlight[types or data structures, or implemented features]. It is helpful to apply this framework when working with APIs and the provided data.
+
+]
+
+.pull-right[
+![](figs/data-affordances/rtweet-affordances.png)
+
+Academic API was released in January 2021: `rtweet` vs `academictwitteR`
+]
+
+???
+
+For example, some features may not be implemented.
+
+Twitter API2.0 and academic twitter (released on January 2021) https://techcrunch.com/2021/01/26/twitters-new-api-platform-now-opened-to-academic-researchers/
+Academic Twitter vs rtweet
+
+academictwitteR: an R package to access the Twitter Academic Research Product Track v2 API endpoint
 
 ---
 
@@ -276,9 +354,11 @@ These considerations shed light on the platforms being used that go beyond the t
 
 ---
 
+class: slide-secondary
+
 ## Using Data APIs
 
-In this lab, we will use both Reddit and Twitter to search for a common theme, the Paris Agreement about climate change. Through this, you will gain experience of using an API to query data and an understanding of the formats that the data is presented. 
+In this lab, we will use both **Reddit** and **Twitter** to search for a common theme, the Paris Agreement about climate change. Through this, you will gain experience of using an API to query data and an understanding of the formats that the data is presented. 
 
 First of all, we need to install 2 R packages. Once these are installed once, they do not need to be re-installed. 
 
@@ -305,16 +385,25 @@ Both exercises will look for data relating to the COP26 event that was held in G
 
 ## ![Reddit](https://upload.wikimedia.org/wikipedia/en/thumb/5/58/Reddit_logo_new.svg/220px-Reddit_logo_new.svg.png)
 
+.pull-left[
+
 [Reddit](https://www.reddit.com/) is a popular site for commenting on the Web. The site allows users to create reddit, and subreddits, to share and comment on things. It is one of the rare sites that has an API that is relatively open. Many sites require types of login (such as Twitter) or have tightened their API access (such as Facebook). 
+
+]
+
+.pull-right[
+
+![Reddit Screenshot](figs/data-affordances/reddit-search-screenshot.png)
+]
 
 ---
 
+class: interaction
+
 ### Exercise
-In this first exercise, we will use Reddit to get the reddit comments for the query term. Is there anything that you notice about the query and how it is structured?
 
-In the first query, we search for all the threads that mention the query term and return a sorted list within the given time frame. 
+In this first exercise, we will use Reddit to get the reddit comments for the query term (`COP26`). 
 
-In the second term, we search for the content belonging to the thread url before merging the two pieces of data to create one spreadsheet. We will be re-using this spreadsheet in week 5 onwards. The data file should save the merged sheets but will take some time.  
 
 ```r
 #Save the options as variables
@@ -325,81 +414,2333 @@ query_term = "COP26"
 sub_reddit= NA
 
 sort_ops = "comments"
+
 #period can be changed. Type ?find_thread_urls into the terminal to get help. 
 time_period = "week"
 
 #Get the Reddit urls that match contain the keyword that we are looking for
-reddit_urls = find_thread_urls(keywords = query_term, subreddit= sub_reddit, sort_by = sort_ops, period = time_period)
+reddit_urls = find_thread_urls(keywords = query_term, subreddit= sub_reddit,
+                               sort_by = sort_ops, period = time_period)
 #now we get the associated content
 reddit_data = get_thread_content(reddit_urls$url)
 
+# Combine the two data frames.
 merged_data = merge(reddit_data$threads, reddit_data$comments, by="url")
-csvFileName = paste("reddit_",query_term, Sys.time(), '.csv',sep = '_')
-write.csv(merged_data, csvFileName)
+
+# Store the combined data frame into a file.
+csvFileName = paste0("reddit_",query_term,"_", Sys.Date(), '.csv')
+write.csv(merged_data, paste0("data/week2/", csvFileName))
 ```
+
+Is there anything that you notice about the query and how it is structured?
+
+???
+
+In the first query, we search for all the threads that mention the query term and return a sorted list within the given time frame. 
+
+In the second term, we search for the content belonging to the thread url before merging the two pieces of data to create one spreadsheet. We will be re-using this spreadsheet in week 5 onwards. The data file should save the merged sheets but will take some time.  
+
 Once the initial data has been found, we can use the data to identify potential subreddits to focus our query. We may also need to check our query terms to see what is returned by the query. This is part of the iterative nature of digital methods. We begin with general queries and then follow the signals in the data to test our hypotheses and to refine our query.  
 
-First we might want to read the column names to understand the format. You should reflect on how the metadata suggests the data format and how we might use it to reflect on what type of  
+---
+
+### What did just happened?!
+
+
+
+First we might want to **read the column names** to understand the format. You should reflect on how the metadata suggests the data format.
+
 
 ```r
 colnames(reddit_data$threads)
 ```
-We might want to inspect the first few rows of data. We can use R's head() function on the reddit dataframe to look at what the data might be. 
+
+```
+##  [1] "url"                   "author"                "date"                 
+##  [4] "title"                 "text"                  "subreddit"            
+##  [7] "score"                 "upvotes"               "downvotes"            
+## [10] "up_ratio"              "total_awards_received" "golds"                
+## [13] "cross_posts"           "comments"
+```
+We might want to **inspect the first few rows of data**. We can use R's `head()` function on the reddit dataframe to look at what the data might be. 
+
 
 ```r
 head(merged_data)
 ```
+
+```
+##                                                                                                  url
+## 1 https://www.reddit.com/r/ClassPoliticsTwitter/comments/s4zhdf/cop26_oil_imperialism_and_oligarchy/
+## 2        https://www.reddit.com/r/climate/comments/s1a20e/why_isnt_the_glasgow_pact_legally_binding/
+## 3        https://www.reddit.com/r/climate/comments/s1a20e/why_isnt_the_glasgow_pact_legally_binding/
+## 4        https://www.reddit.com/r/climate/comments/s1a20e/why_isnt_the_glasgow_pact_legally_binding/
+## 5        https://www.reddit.com/r/climate/comments/s1a20e/why_isnt_the_glasgow_pact_legally_binding/
+## 6        https://www.reddit.com/r/climate/comments/s1a20e/why_isnt_the_glasgow_pact_legally_binding/
+##               author.x     date.x                                        title
+## 1        miamivicemami 2022-01-16        COP26: Oil, Imperialism and Oligarchy
+## 2 Weary_Advertising_84 2022-01-11 Why isn't the Glasgow Pact legally binding ?
+## 3 Weary_Advertising_84 2022-01-11 Why isn't the Glasgow Pact legally binding ?
+## 4 Weary_Advertising_84 2022-01-11 Why isn't the Glasgow Pact legally binding ?
+## 5 Weary_Advertising_84 2022-01-11 Why isn't the Glasgow Pact legally binding ?
+## 6 Weary_Advertising_84 2022-01-11 Why isn't the Glasgow Pact legally binding ?
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  text
+## 1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+## 2 Basically, why aren't there more enforcement mechanisms in the agreement ? After following the COP26 with enthusiasm, I wasn't satisfied by the lethargic and underwhelming response by our world leaders, especially after the IPCC and UNEP Emission gap reports underscored the importance of drastic change. Also , I was not happy with last minute semantics of India and China and the Joe Manchin episode has me doubting USA's seriousness regarding climate policy.\n\nSo to ask the question again, why isn't the Glasgow Pact and other similar agreements voluntary and legally non-binding ? Why should we trust our leaders and corporations on their 'pledges' and vague promises which, they aren't going to keep given their track record with broken promises about climate policy ?\n\nNB : I apologize for any grammatical and spelling errors. English is not my first language.\n\nEdit: I read Daniel Bodansky's article on whether legal obligations matter that much and it has helped me gain insight on the matter. I am grateful to those who helped me further my knowledge since I am pretty much a novice when it comes to international law. Here is the link to the article\n\n[https://voxeu.org/sites/default/files/file/bodansky.pdf](https://voxeu.org/sites/default/files/file/bodansky.pdf)
+## 3 Basically, why aren't there more enforcement mechanisms in the agreement ? After following the COP26 with enthusiasm, I wasn't satisfied by the lethargic and underwhelming response by our world leaders, especially after the IPCC and UNEP Emission gap reports underscored the importance of drastic change. Also , I was not happy with last minute semantics of India and China and the Joe Manchin episode has me doubting USA's seriousness regarding climate policy.\n\nSo to ask the question again, why isn't the Glasgow Pact and other similar agreements voluntary and legally non-binding ? Why should we trust our leaders and corporations on their 'pledges' and vague promises which, they aren't going to keep given their track record with broken promises about climate policy ?\n\nNB : I apologize for any grammatical and spelling errors. English is not my first language.\n\nEdit: I read Daniel Bodansky's article on whether legal obligations matter that much and it has helped me gain insight on the matter. I am grateful to those who helped me further my knowledge since I am pretty much a novice when it comes to international law. Here is the link to the article\n\n[https://voxeu.org/sites/default/files/file/bodansky.pdf](https://voxeu.org/sites/default/files/file/bodansky.pdf)
+## 4 Basically, why aren't there more enforcement mechanisms in the agreement ? After following the COP26 with enthusiasm, I wasn't satisfied by the lethargic and underwhelming response by our world leaders, especially after the IPCC and UNEP Emission gap reports underscored the importance of drastic change. Also , I was not happy with last minute semantics of India and China and the Joe Manchin episode has me doubting USA's seriousness regarding climate policy.\n\nSo to ask the question again, why isn't the Glasgow Pact and other similar agreements voluntary and legally non-binding ? Why should we trust our leaders and corporations on their 'pledges' and vague promises which, they aren't going to keep given their track record with broken promises about climate policy ?\n\nNB : I apologize for any grammatical and spelling errors. English is not my first language.\n\nEdit: I read Daniel Bodansky's article on whether legal obligations matter that much and it has helped me gain insight on the matter. I am grateful to those who helped me further my knowledge since I am pretty much a novice when it comes to international law. Here is the link to the article\n\n[https://voxeu.org/sites/default/files/file/bodansky.pdf](https://voxeu.org/sites/default/files/file/bodansky.pdf)
+## 5 Basically, why aren't there more enforcement mechanisms in the agreement ? After following the COP26 with enthusiasm, I wasn't satisfied by the lethargic and underwhelming response by our world leaders, especially after the IPCC and UNEP Emission gap reports underscored the importance of drastic change. Also , I was not happy with last minute semantics of India and China and the Joe Manchin episode has me doubting USA's seriousness regarding climate policy.\n\nSo to ask the question again, why isn't the Glasgow Pact and other similar agreements voluntary and legally non-binding ? Why should we trust our leaders and corporations on their 'pledges' and vague promises which, they aren't going to keep given their track record with broken promises about climate policy ?\n\nNB : I apologize for any grammatical and spelling errors. English is not my first language.\n\nEdit: I read Daniel Bodansky's article on whether legal obligations matter that much and it has helped me gain insight on the matter. I am grateful to those who helped me further my knowledge since I am pretty much a novice when it comes to international law. Here is the link to the article\n\n[https://voxeu.org/sites/default/files/file/bodansky.pdf](https://voxeu.org/sites/default/files/file/bodansky.pdf)
+## 6 Basically, why aren't there more enforcement mechanisms in the agreement ? After following the COP26 with enthusiasm, I wasn't satisfied by the lethargic and underwhelming response by our world leaders, especially after the IPCC and UNEP Emission gap reports underscored the importance of drastic change. Also , I was not happy with last minute semantics of India and China and the Joe Manchin episode has me doubting USA's seriousness regarding climate policy.\n\nSo to ask the question again, why isn't the Glasgow Pact and other similar agreements voluntary and legally non-binding ? Why should we trust our leaders and corporations on their 'pledges' and vague promises which, they aren't going to keep given their track record with broken promises about climate policy ?\n\nNB : I apologize for any grammatical and spelling errors. English is not my first language.\n\nEdit: I read Daniel Bodansky's article on whether legal obligations matter that much and it has helped me gain insight on the matter. I am grateful to those who helped me further my knowledge since I am pretty much a novice when it comes to international law. Here is the link to the article\n\n[https://voxeu.org/sites/default/files/file/bodansky.pdf](https://voxeu.org/sites/default/files/file/bodansky.pdf)
+##              subreddit score.x upvotes.x downvotes.x up_ratio
+## 1 ClassPoliticsTwitter       2         2           0     1.00
+## 2              climate      66        66           0     0.98
+## 3              climate      66        66           0     0.98
+## 4              climate      66        66           0     0.98
+## 5              climate      66        66           0     0.98
+## 6              climate      66        66           0     0.98
+##   total_awards_received golds.x cross_posts comments             author.y
+## 1                     0       0           0        1        AutoModerator
+## 2                     0       0           0       62             xanas263
+## 3                     0       0           0       62     Vivid-Spring3436
+## 4                     0       0           0       62 Weary_Advertising_84
+## 5                     0       0           0       62     Vivid-Spring3436
+## 6                     0       0           0       62 Weary_Advertising_84
+##       date.y score.y upvotes.y downvotes.y golds.y
+## 1 2022-01-16       1         1           0       0
+## 2 2022-01-11      22        22           0       0
+## 3 2022-01-11       5         5           0       0
+## 4 2022-01-11       1         1           0       0
+## 5 2022-01-12       1         1           0       0
+## 6 2022-01-12       1         1           0       0
+##                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  comment
+## 1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       \n**Subscribe to /r/DebtStrike**, a coalition of working class people across the political spectrum who have put their disagreements on other issues aside in order to collectively force (through mass strikes) the President of the United States to cancel all student debt by executive order.\n\n---\n\n\n*I am a bot, and this action was performed automatically. Please [contact the moderators of this subreddit](/message/compose/?to=/r/ClassPoliticsTwitter) if you have any questions or concerns.*
+## 2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        &amp;gt;why isn't the Glasgow Pact and other similar agreements voluntary and legally non-binding ?\n\nBecause there is no legal entity that sits above the State level to do the enforcement and any such entity would mean the loss of sovereignty no State would willingly allow. \n\nUntil you have some form of global government none of these things can be legally binding.
+## 3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       This. International law, even enforcement mechanisms like the world court, is largely voluntary.
+## 4                                                                                                                                                                                                                             I agree that it is voluntary to a degree, but isn't it better ? I am not saying that the whole pact should be legal, rather some important aspects of it to be held legally applicable. Look up Milieudefensie vs Royal Dutch Shell in Netherlands. Wouldn't it be better to have corporations and governments to pay for their slip-ups ? Legally binding it removes certain legal hurdles faced by climate lawsuits today. That is the crux of my argument. If our governments don't act, the people should have at least some power. Also, legally binding treaties are made voluntarily. That is why I think the U.N. and climate activists should pressure the political representatives to sign such documents. History has shown that in the context of climate change pressure is one the catalysts to get action done. I think it is time the leaders start taking action and not just make unrealistic promises.
+## 5 Ok. I wasn\031t making an argument about what\031s right and wrong in this case, just noting the structure and mechanism of international law and its enforcement. The issue is that unless a nation state passes laws to enforce or make enforceable international treaties, signatories nor their citizens don\031t need to abide by them. International laws won\031t affect people or corporations unless they are subject to the jurisdiction of a state who has ratified the law. Lots of treaties are signed but not ratified, and in the US, the president will often say what the US will and will not do with respect to the law. This comes up as states do not like to give up sovereignty. For the US this comes up as international criminal court could try to bring US soldiers to trial for international crimes, but the US would never allow that, even if it otherwise cooperated with the court. In your example, it\031s the state of the Netherlands jurisdiction, under laws it adopted from the Paris accord that control. Because Shell is domiciled in the Netherlands, it was subject to the laws the Netherlands adopted.
+## 6                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Duly noted. Well wouldn't it make sense for state courts to adopt laws that make climate treaties enforceable ? In rich countries and countries that have the capability financially to meet their goals, is it possible to insist the judiciary to ratify international accords ? Or is it wishful thinking ?
+##   comment_id
+## 1          1
+## 2          1
+## 3        1_1
+## 4      1_1_1
+## 5    1_1_1_1
+## 6  1_1_1_1_1
+```
+
+---
+
+class: interaction
+
+### Questions:
+
+A simple search has been set up for you in the code examples. Let's discuss what would happend if we made the following changes:
+
+* If you are searching for a particular term, how else might you do it? 
+* What happens when the sorting operation is changed? 
+* How might the timeliness of the query affect your search term?
+* `RedditextractoR` provides a `find_subbreddit()` function to find the subreddits that contain a particular term. How might that be used? What code might you re-use to write the result out to CSV?
+
+This function could be used to compare query terms to find common subreddits. 
+
+
+
+---
+
+class: interaction
+
 ### Reddit API Affordances Lab Exercise
 
-In this exercise, I want you to look the documentation for one of the software packages that we are using and to reflect on the changes between them. The RedditextractoR library changed to echo changes in the Reddit API. By reading and comparing the documentation, we can start to explore the changing affordances and to apply the Davis and Chouinard framework. 
+The `RedditextractoR` library changed to echo changes in the Reddit API. By reading and comparing the documentation, we can start to explore the changing affordances and to apply the Davis and Chouinard framework. 
 
 What are the changes between software versions? Hint: compare the functions and read what they do.
+
+.pull-left[
+**v.2.1.5**
+
+![](figs/data-affordances/redditextractoR-doc-2.1.5.png)
+
+[Source](https://www.rdocumentation.org/packages/RedditExtractoR/versions/2.1.5)
+
+]
+
+.pull-right[
+**v.3.0.5**
+
+
+![](figs/data-affordances/redditextractoR-doc-3.0.5.png)
+
+[Source](https://www.rdocumentation.org/packages/RedditExtractoR/versions/3.0.5)
+]
+
+???
+
+In this exercise, I want you to look the documentation for one of the software packages that we are using and to reflect on the changes between them. 
+
+...
 
 How has the API changed? How does this explain its slowness to respond to the query? The FAQ may help here. 
 
 What does it also say about the R language version as well?
 
-Two useful links. 
-
-2.1.5: https://www.rdocumentation.org/packages/RedditExtractoR/versions/2.1.5
-
-3.0.5: https://www.rdocumentation.org/packages/RedditExtractoR/versions/3.0.5
-
 In this exercise, you glimpse the changing affordances of the API and the software through reading its documentation. Such readings provide ways of us questioning the affordances and who suggests or controls these changes. 
 
-## Twitter
-Twitter is a commonly used site for exploring social media. However, it has evolved into having a different purpose in social media than Reddit. Reddit is based on boards and commenting on posts where Twitter has become a perpetual, real-time feed. 
+---
 
-We can use Rtweet's search_tweets to get the tweets data for 6 to 9 days using the Twitter API. By default, we are collecting 1000 tweets but the maximum is 18000. We remove the retweets but change it to true to get them. If we include retweets, then they will be returned in the data and the query will get fewer original tweets. If you are looking at media affects in Twitter, then you might want to use the retweets to examine both how and how a tweet is retweeted in the data set. If you are looking at the information from a term, then you might want to ignore retweets to get more original information. 
+## ![Twitter](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Twitter-logo.svg/100px-Twitter-logo.svg.png) Twitter 
+
+.pull-left[
+Twitter is a commonly used site for exploring social media. However, it has evolved into having a different purpose in social media than Reddit. Reddit is based on boards and commenting on posts where .highlight[Twitter has become a perpetual, real-time feed]. 
+
+
+
+]
+
+.pull-right[
+![](figs/data-affordances/twitter-screenshot.png)
+]
+---
+
+### Rtweet
+.pull-left[
+We can use [`Rtweet`](https://docs.ropensci.org/rtweet/)'s `search_tweets()` to get the tweets data for 6 to 9 days using the Twitter API. By default, we are collecting 1000 tweets but the maximum is 18000. We remove the retweets but change it to true to get them. If we include retweets, then they will be returned in the data and the query will get fewer original tweets. If you are looking at media affects in Twitter, then you might want to use the retweets to examine both how and how a tweet is retweeted in the data set. If you are looking at the information from a term, then you might want to ignore retweets to get more original information. 
+
+]
+
+.pull-right[
+
+![](figs/data-affordances/rtweet.png)
+]
+
+---
 
 ### Authentication
-To use rtweet, you will have to sign into Twitter with your own account. The API will open up a browser on the first search. Sign in and close the window. After you have searched once, and while the cookie is active, you should be authenticated automatically. 
+
+To use `rtweet`, you will have to sign into Twitter with your own account. The API will open up a browser on the first search. Sign in and close the window. After you have searched once, and while the cookie is active, you should be authenticated automatically. 
+
+---
 
 ### Exercise
-In this search, I use the term "ParisAgreement", which is both a username for the Paris Agreement process and a main hashtag for the event. It is worth taking a moment to compare the terms being used to search for data and to think about what it means for the query term. 
+
+In this search, I use the term `COP26`, which is both a username in Twitter and a main hashtag for the event. 
+
 
 ```r
 #Save the options as variables
-query = 'COP26'
+query = 'COP26' #try with GlasgowPact, too
 number_tweets = 1000
 
 #Get the Twitter data. Retweets are excluded.
 tweets &lt;- search_tweets(query, n=number_tweets, include_rts = FALSE)
 
 #Create the CSV name with the source, query and time and write it to local folder
-csvFileName = paste("twitter",query, Sys.time(), '.csv',sep = '_')
-rtweet::write_as_csv(tweets, csvFileName)
+csvFileName = paste0("twitter", "_", query, "_", Sys.Date(), '.csv')
+rtweet::write_as_csv(tweets, paste0("data/week2/",csvFileName))
 ```
 
-We can use head() to see the type of data before we open the file. 
+--
+
+It is worth taking a moment to compare the terms being used to search for data and to think about what it means for the query term. Does it change the results? How might time affect the search?
+
+---
+
+### What did just happened?!
+
+
+
+---
+
+We can use `colnames()` to see the the names of the attributes/colum names before we open the file. 
+
 
 ```r
 colnames(tweets)
 ```
 
+```
+##  [1] "user_id"                 "status_id"              
+##  [3] "created_at"              "screen_name"            
+##  [5] "text"                    "source"                 
+##  [7] "display_text_width"      "reply_to_status_id"     
+##  [9] "reply_to_user_id"        "reply_to_screen_name"   
+## [11] "is_quote"                "is_retweet"             
+## [13] "favorite_count"          "retweet_count"          
+## [15] "quote_count"             "reply_count"            
+## [17] "hashtags"                "symbols"                
+## [19] "urls_url"                "urls_t.co"              
+## [21] "urls_expanded_url"       "media_url"              
+## [23] "media_t.co"              "media_expanded_url"     
+## [25] "media_type"              "ext_media_url"          
+## [27] "ext_media_t.co"          "ext_media_expanded_url" 
+## [29] "ext_media_type"          "mentions_user_id"       
+## [31] "mentions_screen_name"    "lang"                   
+## [33] "quoted_status_id"        "quoted_text"            
+## [35] "quoted_created_at"       "quoted_source"          
+## [37] "quoted_favorite_count"   "quoted_retweet_count"   
+## [39] "quoted_user_id"          "quoted_screen_name"     
+## [41] "quoted_name"             "quoted_followers_count" 
+## [43] "quoted_friends_count"    "quoted_statuses_count"  
+## [45] "quoted_location"         "quoted_description"     
+## [47] "quoted_verified"         "retweet_status_id"      
+## [49] "retweet_text"            "retweet_created_at"     
+## [51] "retweet_source"          "retweet_favorite_count" 
+## [53] "retweet_retweet_count"   "retweet_user_id"        
+## [55] "retweet_screen_name"     "retweet_name"           
+## [57] "retweet_followers_count" "retweet_friends_count"  
+## [59] "retweet_statuses_count"  "retweet_location"       
+## [61] "retweet_description"     "retweet_verified"       
+## [63] "place_url"               "place_name"             
+## [65] "place_full_name"         "place_type"             
+## [67] "country"                 "country_code"           
+## [69] "geo_coords"              "coords_coords"          
+## [71] "bbox_coords"             "status_url"             
+## [73] "name"                    "location"               
+## [75] "description"             "url"                    
+## [77] "protected"               "followers_count"        
+## [79] "friends_count"           "listed_count"           
+## [81] "statuses_count"          "favourites_count"       
+## [83] "account_created_at"      "verified"               
+## [85] "profile_url"             "profile_expanded_url"   
+## [87] "account_lang"            "profile_banner_url"     
+## [89] "profile_background_url"  "profile_image_url"
+```
+
+---
+
+...or `str()` to see the column's names and types
+
+
+```r
+str(tweets)
+```
+
+```
+## Classes 'tbl_df', 'tbl' and 'data.frame':	979 obs. of  90 variables:
+##  $ user_id                : chr  "1151154718447669250" "1151154718447669250" "1151154718447669250" "1151154718447669250" ...
+##  $ status_id              : chr  "1483454378434600968" "1483336086994759680" "1483424169316569091" "1483393969405018115" ...
+##  $ created_at             : POSIXct, format: "2022-01-18 15:00:59" "2022-01-18 07:10:56" ...
+##  $ screen_name            : chr  "thecurrency" "thecurrency" "thecurrency" "thecurrency" ...
+##  $ text                   : chr  "The transition to zero CO2 is on the march. “Scotland is leaving no stone unturned in an effort to become a glo"| __truncated__ "New Year, new climate – Part 2: Irish innovators raring to go in a post-COP26 world https://t.co/nmOfOzOXOp" "\"This is the biggest economic opportunity of this generation. But sometimes officials seem to have a mindset w"| __truncated__ "Ten business leaders at the forefront of the transformation to a low-carbon future share their hopes and fears "| __truncated__ ...
+##  $ source                 : chr  "Nelio Content" "Nelio Content" "Nelio Content" "Nelio Content" ...
+##  $ display_text_width     : num  265 107 278 187 275 195 260 278 276 271 ...
+##  $ reply_to_status_id     : chr  NA NA NA NA ...
+##  $ reply_to_user_id       : chr  NA NA NA NA ...
+##  $ reply_to_screen_name   : chr  NA NA NA NA ...
+##  $ is_quote               : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
+##  $ is_retweet             : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
+##  $ favorite_count         : int  0 0 0 0 2 0 1 0 3 0 ...
+##  $ retweet_count          : int  0 1 2 0 1 0 1 0 2 0 ...
+##  $ quote_count            : int  NA NA NA NA NA NA NA NA NA NA ...
+##  $ reply_count            : int  NA NA NA NA NA NA NA NA NA NA ...
+##  $ hashtags               :List of 979
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr  "COP26" "ClimateAction"
+##   ..$ : chr  "globalinnovation" "COP26" "climatechange"
+##   ..$ : chr "COP26"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "BLM"
+##   ..$ : chr NA
+##   ..$ : chr  "socialmurder" "environmentalracism"
+##   ..$ : chr  "G20" "SDGs" "SDG20" "ItalyExpo2020" ...
+##   ..$ : chr  "justinflation" "oil"
+##   ..$ : chr "DesdePuebla"
+##   ..$ : chr "DesdePuebla"
+##   ..$ : chr  "Suzano" "Brasil" "NOmonoculture" "StopGeTrees"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr  "Chinese" "coal"
+##   ..$ : chr "2022時事問題"
+##   ..$ : chr NA
+##   ..$ : chr "energy"
+##   ..$ : chr  "COP26" "ClimateJustice"
+##   ..$ : chr NA
+##   ..$ : chr  "CamilaJaberLara" "Mexican" "CreateCOP26" "Glasgow" ...
+##   ..$ : chr NA
+##   ..$ : chr  "Karma" "COP26" "omicron" "oott" ...
+##   ..$ : chr NA
+##   ..$ : chr "COP26"
+##   ..$ : chr  "U3O8" "Nuclear" "Uranium" "COP26" ...
+##   ..$ : chr  "U3O8" "Nuclear" "Uranium" "COP26"
+##   ..$ : chr  "U3O8" "Nuclear" "Uranium" "COP26"
+##   ..$ : chr  "U3O8" "Nuclear" "Uranium" "COP26" ...
+##   ..$ : chr  "U3O8" "Nuclear" "Uranium" "COP26"
+##   ..$ : chr  "U3O8" "Nuclear" "Uranium" "COP26" ...
+##   ..$ : chr  "U3O8" "Nuclear" "Uranium" "COP26" ...
+##   ..$ : chr  "COP26" "sustainability" "climatechange" "SDGs" ...
+##   ..$ : chr "energy"
+##   ..$ : chr  "COP26" "sustainable" "volunteermanagement"
+##   ..$ : chr "COP26"
+##   ..$ : chr NA
+##   ..$ : chr "Japalpilpa"
+##   ..$ : chr "Japalpilpa"
+##   ..$ : chr "COP26"
+##   ..$ : chr  "CCUS" "COP26" "Article6"
+##   ..$ : chr  "COP27" "CCUS" "NetZero" "COP26"
+##   ..$ : chr  "COP26" "CCUS"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr  "COP26" "Glasgow"
+##   ..$ : chr  "CCS" "ClimateAction" "COP26" "COP27" ...
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr  "Veganuary" "plantbased" "Sustainability" "ClimateCrisis" ...
+##   ..$ : chr NA
+##   ..$ : chr  "COP26" "GlobalGoals" "Expo2020Dubai"
+##   ..$ : chr "COP26"
+##   ..$ : chr NA
+##   ..$ : chr  "ClimateChange" "ClimateActionNaija" "ClimateAction"
+##   ..$ : chr NA
+##   ..$ : chr "COP26"
+##   ..$ : chr  "cdnpoli" "canpoli" "cdnmedia" "ClimateChange" ...
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "COP26"
+##   ..$ : chr "ClimateAction"
+##   ..$ : chr  "Climate" "CreativeSociety" "Greenwashing" "pollution" ...
+##   ..$ : chr NA
+##   ..$ : chr  "COP26" "SDG14"
+##   ..$ : chr  "SDGs" "Expo2020Dubai" "inequalitykills" "climatejustice" ...
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr  "BDvS5" "BottomLine" "EOchat" "COP26" ...
+##   ..$ : chr  "tomorrowspaperstoday" "cop26"
+##   ..$ : chr "COP26"
+##   ..$ : chr  "COP26" "indígenas" "Mujeres" "climáticas" ...
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr  "COP28" "ParisAgreement"
+##   ..$ : chr "Ecuador"
+##   ..$ : chr "COP26"
+##   ..$ : chr  "COP26" "ScotlandIsNow"
+##   ..$ : chr "COP26"
+##   ..$ : chr "ClimateCrisis"
+##   ..$ : chr  "solar" "Uyghurforcedlabor" "cleanenergy" "forcedlabor" ...
+##   ..$ : chr  "SIC836" "SICDigital" "PublicacionesGumilla"
+##   ..$ : chr  "CyclingCities" "COP26" "cycle" "cycling" ...
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr  "Arab" "UAE" "ESCWA" "UN" ...
+##   ..$ : chr  "دبي" "المناخ" "الإمارات" "الإسكوا" ...
+##   ..$ : chr  "COP26" "ClimateAction" "coal"
+##   .. [list output truncated]
+##  $ symbols                :List of 979
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr  "URA" "URNM" "NXE" "CCO" ...
+##   ..$ : chr  "URA" "URNM" "NXE" "CCO" ...
+##   ..$ : chr  "URA" "URNM" "NXE" "CCO" ...
+##   ..$ : chr  "URA" "URNM" "NXE" "CCO" ...
+##   ..$ : chr  "URA" "URNM" "NXE" "CCO" ...
+##   ..$ : chr  "URA" "URNM" "NXE" "CCO" ...
+##   ..$ : chr  "URA" "URNM" "NXE" "CCO" ...
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   .. [list output truncated]
+##  $ urls_url               :List of 979
+##   ..$ : chr "thecurrency.news/articles/70952…"
+##   ..$ : chr "thecurrency.news/articles/70952…"
+##   ..$ : chr "thecurrency.news/articles/70952…"
+##   ..$ : chr "thecurrency.news/articles/70952…"
+##   ..$ : chr "thecurrency.news"
+##   ..$ : chr "bit.ly/3q9L6Lh"
+##   ..$ : chr "itif.org/publications/2…"
+##   ..$ : chr "twitter.com/ukinmorocco/st…"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "twitter.com/Cop26_Enf_Har/…"
+##   ..$ : chr "twitter.com/georgiaes/stat…"
+##   ..$ : chr "bit.ly/3tHnobf"
+##   ..$ : chr "google.com/amp/s/www.cbc.…"
+##   ..$ : chr "desdepuebla.com/2022/01/15/ecu…"
+##   ..$ : chr "desdepuebla.com/2022/01/15/ecu…"
+##   ..$ : chr "wrm.org.uy/?p=23619"
+##   ..$ : chr "youtube.com/watch?v=ZQelgN…"
+##   ..$ : chr "youtube.com/watch?v=ZQelgN…"
+##   ..$ : chr "youtube.com/watch?v=ZQelgN…"
+##   ..$ : chr "youtube.com/watch?v=ZQelgN…"
+##   ..$ : chr "theguardian.com/environment/20…"
+##   ..$ : chr  "amzn.to/3FG6qMq" "amzn.to/3qChSo8"
+##   ..$ : chr "climatechangenews.com/2021/12/27/202…"
+##   ..$ : chr "sap.to/6016KBkUp"
+##   ..$ : chr "twitter.com/CANIntl/status…"
+##   ..$ : chr  "bit.ly/33JLjf0" "peaceoneday.org"
+##   ..$ : chr  "artpartner.com/createcop26" "twitter.com/carely11/statu…"
+##   ..$ : chr  "bit.ly/33JLjf0" "peaceoneday.org"
+##   ..$ : chr NA
+##   ..$ : chr  "bit.ly/33JLjf0" "peaceoneday.org"
+##   ..$ : chr NA
+##   ..$ : chr "twitter.com/numerco/status…"
+##   ..$ : chr "wsj.com/articles/nucle…"
+##   ..$ : chr "washingtonpost.com/opinions/2022/…"
+##   ..$ : chr "bloomberg.com/news/articles/…"
+##   ..$ : chr "theguardian.com/environment/20…"
+##   ..$ : chr "twitter.com/numerco/status…"
+##   ..$ : chr "marketscreener.com/quote/stock/JS…"
+##   ..$ : chr "buff.ly/3qAlUxe"
+##   ..$ : chr "sap.to/6016KBkUp"
+##   ..$ : chr "makeyourmark.scot/green-voluntee…"
+##   ..$ : chr "ow.ly/wSLN50Hw1Hz"
+##   ..$ : chr "bit.ly/34OOsea"
+##   ..$ : chr "japalpilpa.com/los-juguetitos…"
+##   ..$ : chr "japalpilpa.com/los-juguetitos…"
+##   ..$ : chr "bit.ly/3qyUqYP"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "twitter.com/EcoEye/status/…"
+##   ..$ : chr "twitter.com/The_CCSA/statu…"
+##   ..$ : chr NA
+##   ..$ : chr  "youtu.be/zDkSQrnp7gQ" "uk.whales.org/green-whale/"
+##   ..$ : chr NA
+##   ..$ : chr "mck.co/3tn4xSC"
+##   ..$ : chr NA
+##   ..$ : chr "bit.ly/3fzbN5O"
+##   ..$ : chr NA
+##   ..$ : chr "youtu.be/_PGob2HgD1g"
+##   ..$ : chr "weforum.org/agenda/2022/01…"
+##   ..$ : chr "youtu.be/S986vRV3I7A?li…"
+##   ..$ : chr NA
+##   ..$ : chr "bit.ly/3GFhqex"
+##   ..$ : chr "twitter.com/TiffanySadlerU…"
+##   ..$ : chr NA
+##   ..$ : chr "news.sky.com/story/climate-…"
+##   ..$ : chr "twitter.com/_GlobalCrisis_…"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "derbyfoe.com/co2-from-plast…"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "ow.ly/o3su50HwLwS"
+##   ..$ : chr "automatic-door-hub.co.uk"
+##   ..$ : chr "spoti.fi/3Kw5IW3"
+##   ..$ : chr "spoti.fi/3fxtUc8"
+##   ..$ : chr "action4equalityscotland.blogspot.com/2022/01/saving…"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "action4equalityscotland.blogspot.com/2022/01/saving…"
+##   ..$ : chr NA
+##   ..$ : chr "desdepuebla.com/2022/01/15/ecu…"
+##   ..$ : chr NA
+##   ..$ : chr "ow.ly/ksZP50HwF0L"
+##   ..$ : chr "twitter.com/actbr/status/1…"
+##   ..$ : chr "news.sky.com/story/amp/clim…"
+##   ..$ : chr "freedomunited.org/advocate/free-…"
+##   ..$ : chr "ow.ly/uYGr50HtSIM"
+##   ..$ : chr "bit.ly/3qtrbql"
+##   ..$ : chr "news.sky.com/story/climate-…"
+##   ..$ : chr "buff.ly/3oTqTqG"
+##   ..$ : chr "ed.gr/duwvx"
+##   ..$ : chr "bit.ly/3riYkEw"
+##   ..$ : chr "bit.ly/3riYkEw"
+##   ..$ : chr "bit.ly/3nzKiNL"
+##   .. [list output truncated]
+##  $ urls_t.co              :List of 979
+##   ..$ : chr "https://t.co/nmOfOzOXOp"
+##   ..$ : chr "https://t.co/nmOfOzOXOp"
+##   ..$ : chr "https://t.co/nmOfOzOXOp"
+##   ..$ : chr "https://t.co/nmOfOzOXOp"
+##   ..$ : chr "https://t.co/E7PkoRxjK2"
+##   ..$ : chr "https://t.co/GMBVZqUt1l"
+##   ..$ : chr "https://t.co/xMuIqd1GNL"
+##   ..$ : chr "https://t.co/iFhXGrERQ2"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/FwoefjciiS"
+##   ..$ : chr "https://t.co/RVhmXMDp3K"
+##   ..$ : chr "https://t.co/iEiUsYlZHj"
+##   ..$ : chr "https://t.co/2W6597aToU"
+##   ..$ : chr "https://t.co/8KwCPRCzmc"
+##   ..$ : chr "https://t.co/YKGp8J4sjM"
+##   ..$ : chr "https://t.co/gFEPjwQvLP"
+##   ..$ : chr "https://t.co/P08nqZkY47"
+##   ..$ : chr "https://t.co/BwVw1Fykd5"
+##   ..$ : chr "https://t.co/BwVw1Fykd5"
+##   ..$ : chr "https://t.co/BwVw1Fykd5"
+##   ..$ : chr "https://t.co/xZaoUMhFRG"
+##   ..$ : chr  "https://t.co/o63cSQp8fu" "https://t.co/WjtQqF3VVZ"
+##   ..$ : chr "https://t.co/BgaK8G96gn"
+##   ..$ : chr "https://t.co/iwWB7ZL8IZ"
+##   ..$ : chr "https://t.co/jPIqoXMdOT"
+##   ..$ : chr  "https://t.co/78Sy3kg8Iq" "https://t.co/j4siSyFAsm"
+##   ..$ : chr  "https://t.co/9osooXtBiR" "https://t.co/dcUHus1e7T"
+##   ..$ : chr  "https://t.co/m0Gr4LrsDz" "https://t.co/lhq7TbeL5S"
+##   ..$ : chr NA
+##   ..$ : chr  "https://t.co/Q1G9S4Q4YU" "https://t.co/oX70UgnacL"
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/qCcORqLCmM"
+##   ..$ : chr "https://t.co/NWr4pix5XI"
+##   ..$ : chr "https://t.co/iwlMLFS6If"
+##   ..$ : chr "https://t.co/CRVFiAToow"
+##   ..$ : chr "https://t.co/axp6HHbwVR"
+##   ..$ : chr "https://t.co/IIRNZCiBEA"
+##   ..$ : chr "https://t.co/MAzjcS78in"
+##   ..$ : chr "https://t.co/vWhFrGmKEd"
+##   ..$ : chr "https://t.co/svTwuVAjHX"
+##   ..$ : chr "https://t.co/7yKlFfCkls"
+##   ..$ : chr "https://t.co/ZgkT3Ai3iZ"
+##   ..$ : chr "https://t.co/Tm36aa0wTJ"
+##   ..$ : chr "https://t.co/u8OTbV7pAQ"
+##   ..$ : chr "https://t.co/u8OTbVp0so"
+##   ..$ : chr "https://t.co/wBUfuVf8Kc"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/GCZ7F5PdS8"
+##   ..$ : chr "https://t.co/w2zf9fE1xf"
+##   ..$ : chr NA
+##   ..$ : chr  "https://t.co/MC2T4z8wIl" "https://t.co/cbxK8sntyO"
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/eqTBgKeqab"
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/r3wBIi1O8P"
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/HtePVCVmui"
+##   ..$ : chr "https://t.co/fmo6DPGv7Q"
+##   ..$ : chr "https://t.co/dBZKQQ83r9"
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/lFjSO3IxpP"
+##   ..$ : chr "https://t.co/4wLRCDkizW"
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/P0Q2F6jCgB"
+##   ..$ : chr "https://t.co/1uW2yyINPJ"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/GhMQZM5X6j"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/LUkWrdsQnt"
+##   ..$ : chr "https://t.co/jT6TKHuiov"
+##   ..$ : chr "https://t.co/XYcbBATnkV"
+##   ..$ : chr "https://t.co/FnLfYkjWNj"
+##   ..$ : chr "https://t.co/O3jvwj14Q2"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/O3jvwj14Q2"
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/Eb5wYJmdtw"
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/Q0ew87ngct"
+##   ..$ : chr "https://t.co/Zh2lSlZpF5"
+##   ..$ : chr "https://t.co/KsAvgye4f7"
+##   ..$ : chr "https://t.co/CRhUV2pZlH"
+##   ..$ : chr "https://t.co/pbqnVfkoH1"
+##   ..$ : chr "https://t.co/rLxazlpdhV"
+##   ..$ : chr "https://t.co/gujsiPIVBk"
+##   ..$ : chr "https://t.co/8BkseDZywm"
+##   ..$ : chr "https://t.co/tyYcjLbpLV"
+##   ..$ : chr "https://t.co/WUaU8Blgvt"
+##   ..$ : chr "https://t.co/WUaU8Blgvt"
+##   ..$ : chr "https://t.co/HnudzSxcNO"
+##   .. [list output truncated]
+##  $ urls_expanded_url      :List of 979
+##   ..$ : chr "https://thecurrency.news/articles/70952/new-year-new-climate-part-2-irish-innovators-raring-to-go-in-a-post-cop26-world/"
+##   ..$ : chr "https://thecurrency.news/articles/70952/new-year-new-climate-part-2-irish-innovators-raring-to-go-in-a-post-cop26-world/"
+##   ..$ : chr "https://thecurrency.news/articles/70952/new-year-new-climate-part-2-irish-innovators-raring-to-go-in-a-post-cop26-world/"
+##   ..$ : chr "https://thecurrency.news/articles/70952/new-year-new-climate-part-2-irish-innovators-raring-to-go-in-a-post-cop26-world/"
+##   ..$ : chr "https://thecurrency.news/"
+##   ..$ : chr "https://bit.ly/3q9L6Lh"
+##   ..$ : chr "https://itif.org/publications/2022/01/13/stark-choice-rejuvenate-global-energy-innovation-or-fail-meet-climate-goals"
+##   ..$ : chr "https://twitter.com/ukinmorocco/status/1483423937367187457"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/Cop26_Enf_Har/status/1483098274101972999"
+##   ..$ : chr "https://twitter.com/georgiaes/status/1483346522364329988"
+##   ..$ : chr "http://bit.ly/3tHnobf"
+##   ..$ : chr "https://www.google.com/amp/s/www.cbc.ca/amp/1.6236636"
+##   ..$ : chr "https://desdepuebla.com/2022/01/15/ecuador-oficializo-la-creacion-de-la-nueva-reserva-marina-de-galapagos-anunc"| __truncated__
+##   ..$ : chr "https://desdepuebla.com/2022/01/15/ecuador-oficializo-la-creacion-de-la-nueva-reserva-marina-de-galapagos-anunc"| __truncated__
+##   ..$ : chr "https://wrm.org.uy/?p=23619"
+##   ..$ : chr "https://www.youtube.com/watch?v=ZQelgNzyZ7c"
+##   ..$ : chr "http://youtube.com/watch?v=ZQelgNzyZ7c"
+##   ..$ : chr "http://youtube.com/watch?v=ZQelgNzyZ7c"
+##   ..$ : chr "http://youtube.com/watch?v=ZQelgNzyZ7c"
+##   ..$ : chr "https://www.theguardian.com/environment/2022/jan/17/chinas-coal-production-hit-record-levels-in-2021"
+##   ..$ : chr  "https://amzn.to/3FG6qMq" "https://amzn.to/3qChSo8"
+##   ..$ : chr "https://www.climatechangenews.com/2021/12/27/2021-in-coal-chinas-dirty-recovery-mars-international-finance-crackdown/"
+##   ..$ : chr "http://sap.to/6016KBkUp"
+##   ..$ : chr "https://twitter.com/CANIntl/status/1483406059666812931"
+##   ..$ : chr  "https://bit.ly/33JLjf0" "http://peaceoneday.org"
+##   ..$ : chr  "https://www.artpartner.com/createcop26" "https://twitter.com/carely11/status/1483430949975171077"
+##   ..$ : chr  "https://bit.ly/33JLjf0" "http://peaceoneday.org"
+##   ..$ : chr NA
+##   ..$ : chr  "https://bit.ly/33JLjf0" "http://peaceoneday.org"
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/numerco/status/1483409068282810368"
+##   ..$ : chr "https://www.wsj.com/articles/nuclear-power-plant-electricity-cost-carbon-emissions-global-warming-11642109928"
+##   ..$ : chr "https://www.washingtonpost.com/opinions/2022/01/17/threat-nuclear-conflict-is-high-we-need-new-commitment-de-escalation/"
+##   ..$ : chr "https://www.bloomberg.com/news/articles/2022-01-17/sweden-probes-suspect-drone-flights-over-nuclear-plants"
+##   ..$ : chr "https://www.theguardian.com/environment/2022/jan/17/chinas-coal-production-hit-record-levels-in-2021"
+##   ..$ : chr "https://twitter.com/numerco/status/1483439270165729280"
+##   ..$ : chr "https://marketscreener.com/quote/stock/JSC-NATIONAL-ATOMIC-COMPA-105526310/news/JSC-National-Atomic-Kazatomprom"| __truncated__
+##   ..$ : chr "https://buff.ly/3qAlUxe"
+##   ..$ : chr "http://sap.to/6016KBkUp"
+##   ..$ : chr "https://makeyourmark.scot/green-volunteering/"
+##   ..$ : chr "http://ow.ly/wSLN50Hw1Hz"
+##   ..$ : chr "https://bit.ly/34OOsea"
+##   ..$ : chr "https://japalpilpa.com/los-juguetitos-de-los-politicos-globalistas-cop26/"
+##   ..$ : chr "https://japalpilpa.com/los-juguetitos-de-los-politicos-globalistas-cop26/"
+##   ..$ : chr "https://bit.ly/3qyUqYP"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/EcoEye/status/1483423931746951171"
+##   ..$ : chr "https://twitter.com/The_CCSA/status/1483446240864047114"
+##   ..$ : chr NA
+##   ..$ : chr  "http://youtu.be/zDkSQrnp7gQ" "http://uk.whales.org/green-whale/"
+##   ..$ : chr NA
+##   ..$ : chr "https://mck.co/3tn4xSC"
+##   ..$ : chr NA
+##   ..$ : chr "https://bit.ly/3fzbN5O"
+##   ..$ : chr NA
+##   ..$ : chr "https://youtu.be/_PGob2HgD1g"
+##   ..$ : chr "https://www.weforum.org/agenda/2022/01/net-zero-industrial-transition-climate-action"
+##   ..$ : chr "https://youtu.be/S986vRV3I7A?list=TLGGvQhi6ZcYd6MxNzAxMjAyMg"
+##   ..$ : chr NA
+##   ..$ : chr "https://bit.ly/3GFhqex"
+##   ..$ : chr "https://twitter.com/TiffanySadlerUK/status/1483341408304087040"
+##   ..$ : chr NA
+##   ..$ : chr "https://news.sky.com/story/climate-change-global-warming-could-reach-4c-by-end-of-this-century-after-cop26-fell"| __truncated__
+##   ..$ : chr "https://twitter.com/_GlobalCrisis_/status/1483169545560932360"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://derbyfoe.com/co2-from-plastics-biomass-incineration-wid-definition/#Expo2020"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://ow.ly/o3su50HwLwS"
+##   ..$ : chr "http://automatic-door-hub.co.uk/"
+##   ..$ : chr "https://spoti.fi/3Kw5IW3"
+##   ..$ : chr "https://spoti.fi/3fxtUc8"
+##   ..$ : chr "https://action4equalityscotland.blogspot.com/2022/01/saving-planet-climate-change-and-rest.html"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://action4equalityscotland.blogspot.com/2022/01/saving-planet-climate-change-and-rest.html"
+##   ..$ : chr NA
+##   ..$ : chr "https://desdepuebla.com/2022/01/15/ecuador-oficializo-la-creacion-de-la-nueva-reserva-marina-de-galapagos-anunc"| __truncated__
+##   ..$ : chr NA
+##   ..$ : chr "http://ow.ly/ksZP50HwF0L"
+##   ..$ : chr "https://twitter.com/actbr/status/1482096567372943360"
+##   ..$ : chr "https://news.sky.com/story/amp/climate-change-global-warming-could-reach-4c-by-end-of-this-century-after-cop26-"| __truncated__
+##   ..$ : chr "https://www.freedomunited.org/advocate/free-uyghurs-solar/"
+##   ..$ : chr "http://ow.ly/uYGr50HtSIM"
+##   ..$ : chr "https://bit.ly/3qtrbql"
+##   ..$ : chr "https://news.sky.com/story/climate-change-global-warming-could-reach-4c-by-end-of-this-century-after-cop26-fell"| __truncated__
+##   ..$ : chr "https://buff.ly/3oTqTqG"
+##   ..$ : chr "https://ed.gr/duwvx"
+##   ..$ : chr "http://bit.ly/3riYkEw"
+##   ..$ : chr "http://bit.ly/3riYkEw"
+##   ..$ : chr "http://bit.ly/3nzKiNL"
+##   .. [list output truncated]
+##  $ media_url              :List of 979
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJZJ5CfWYAkthk6.jpg"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJZCRnaXIAMPM9X.png"
+##   ..$ : chr "http://pbs.twimg.com/media/FJZG0VBWUAQhWTC.png"
+##   ..$ : chr "http://pbs.twimg.com/media/FJZFeTkXwAIvgBM.jpg"
+##   ..$ : chr "http://pbs.twimg.com/media/FJU92X5XMAUvHQa.jpg"
+##   ..$ : chr "http://pbs.twimg.com/media/FJYxhW8XMAQx2Y3.jpg"
+##   ..$ : chr "http://pbs.twimg.com/media/FJZJQ6QWQAQ87hQ.jpg"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJZFcYWXMAQI51f.jpg"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJZHfY7XMAkx0se.jpg"
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJZHSfoXsAAV1jj.jpg"
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJZHGbIXEAMIidy.jpg"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJYhk39VgAEmisP.png"
+##   ..$ : chr "http://pbs.twimg.com/media/FJZGeewWQAwqQfK.jpg"
+##   ..$ : chr "http://pbs.twimg.com/media/FJZGeDKX0AYV3_-.jpg"
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJZGPvOX0AYR3q_.jpg"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJZFGiLXMAg11dd.jpg"
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJZCN7NXwAUFgXE.png"
+##   ..$ : chr "http://pbs.twimg.com/media/FJZE_QTXIAYE0pE.png"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJZEKLjWUAIDrdR.jpg"
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJY2Wa-WUAAzJYM.jpg"
+##   ..$ : chr "http://pbs.twimg.com/media/FJZEFTsWQAYstYX.jpg"
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJZDUZkWQAod-1n.jpg"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/ext_tw_video_thumb/1483446882747703300/pu/img/cVeZjgod7_VF8yog.jpg"
+##   ..$ : chr "http://pbs.twimg.com/media/FJZAP1IX0AsNmyI.png"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJZBT8rXsAQp2lW.jpg"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/ext_tw_video_thumb/1483202200830627843/pu/img/yjMOMvjfsupvvbdg.jpg"
+##   ..$ : chr "http://pbs.twimg.com/ext_tw_video_thumb/1483442162029244420/pu/img/D2LDpNW8SfdcQNEh.jpg"
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJX_gxrXMAYSu55.jpg"
+##   ..$ : chr "http://pbs.twimg.com/media/FJY-bLzX0AM09l0.jpg"
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJY9jk4agAEC2Hj.jpg"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJY8eozWUAsk2u9.jpg"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJY8Eq_XEAIAb7z.jpg"
+##   ..$ : chr "http://pbs.twimg.com/media/FJY8CPwWYAkIOBU.jpg"
+##   ..$ : chr "http://pbs.twimg.com/media/FJYsq4YXEAM6mAG.jpg"
+##   ..$ : chr "http://pbs.twimg.com/media/FJY1fi3WUAEQhvU.jpg"
+##   ..$ : chr NA
+##   .. [list output truncated]
+##  $ media_t.co             :List of 979
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/knfIlwnPP9"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/N9GNEXWD5P"
+##   ..$ : chr "https://t.co/E7nN2XY7qg"
+##   ..$ : chr "https://t.co/wscCxxjqOY"
+##   ..$ : chr "https://t.co/tuANYjgfpJ"
+##   ..$ : chr "https://t.co/nfQJ9tAlBG"
+##   ..$ : chr "https://t.co/K0NEIUszdq"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/B9MuDHePx5"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/JCPtox5Ut7"
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/dJSGkj4NuY"
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/jw00jZbAJm"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/sKRBz6xmuP"
+##   ..$ : chr "https://t.co/C6lZF5x8R0"
+##   ..$ : chr "https://t.co/h8JiWVNwJh"
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/ENi3hinlE6"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/C8HYYsfgwF"
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/cEeohYkCk5"
+##   ..$ : chr "https://t.co/O0dLBEAaaD"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/VrTOPusxEc"
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/7xXP4QgRiR"
+##   ..$ : chr "https://t.co/6zz2rhN9iJ"
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/xocUaW5gUS"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/dqpL5ejQX1"
+##   ..$ : chr "https://t.co/iZPsPZDwzA"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/kDWqmDwESJ"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/Uzu44jDWoy"
+##   ..$ : chr "https://t.co/kFJnQeMPv3"
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/qN5pFRI38M"
+##   ..$ : chr "https://t.co/QcanlT6XrD"
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/uSLiA7Wy6W"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/ZpGt4ILiE9"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/EgntwNC1PJ"
+##   ..$ : chr "https://t.co/8s1qxmF5NF"
+##   ..$ : chr "https://t.co/mq4SrgPPZj"
+##   ..$ : chr "https://t.co/PVoXfVfwpm"
+##   ..$ : chr NA
+##   .. [list output truncated]
+##  $ media_expanded_url     :List of 979
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/FAOAfrica/status/1483454374504550408/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/Cop26_Enf_Har/status/1483446020361138183/photo/1"
+##   ..$ : chr "https://twitter.com/Cop26_Enf_Har/status/1483453811532476420/photo/1"
+##   ..$ : chr "https://twitter.com/Cop26_Enf_Har/status/1483450704610082822/photo/1"
+##   ..$ : chr "https://twitter.com/Cop26_Enf_Har/status/1483159689315733506/photo/1"
+##   ..$ : chr "https://twitter.com/Cop26_Enf_Har/status/1483430132207570946/photo/1"
+##   ..$ : chr "https://twitter.com/ItalyUN_NY/status/1483453686009507842/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/WorldRainforest/status/1483452960168415239/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/JeremyGilley/status/1483451819816804360/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/PeaceOneDay/status/1483451593202802693/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/PeaceDay/status/1483451438600790019/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/calgaryrover/status/1483410063343587329/photo/1"
+##   ..$ : chr "https://twitter.com/RIGreenbuilding/status/1483450620204003330/photo/1"
+##   ..$ : chr "https://twitter.com/SAPIndustries/status/1483450614269030408/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/OUFreeLearning/status/1483450365408423937/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/UoN_Propulsion/status/1483449112771108868/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/The_CCSA/status/1483446240864047114/photo/1"
+##   ..$ : chr "https://twitter.com/The_CCSA/status/1483448992256172044/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/ClaudeLorea/status/1483448071933632519/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/mikecoulson48/status/1483432890889388034/photo/1"
+##   ..$ : chr "https://twitter.com/sjn4000/status/1483447988928266244/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/globalcompact/status/1483447606802063371/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/nighealthwatch/status/1483447126554296327/video/1"
+##   ..$ : chr "https://twitter.com/arhobley/status/1483447064486887436/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/AllanMargolin/status/1483445394621276161/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/TransformaGlob/status/1483203430277697538/video/1"
+##   ..$ : chr "https://twitter.com/TransformaGlob/status/1483442210058211329/video/1"
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/Mark1957/status/1483372714916257793/photo/1"
+##   ..$ : chr "https://twitter.com/Mark1957/status/1483441839403417606/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/uaeclimateenvoy/status/1483440811505340416/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/freedomunitedHQ/status/1483439626962493440/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/TheBFPG/status/1483439181347098633/photo/1"
+##   ..$ : chr "https://twitter.com/Lancashare1/status/1483439141140508677/photo/1"
+##   ..$ : chr "https://twitter.com/UNESCWA/status/1483431667368869892/photo/1"
+##   ..$ : chr "https://twitter.com/UNESCWA/status/1483439119606894594/photo/1"
+##   ..$ : chr NA
+##   .. [list output truncated]
+##  $ media_type             :List of 979
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "photo"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "photo"
+##   ..$ : chr "photo"
+##   ..$ : chr "photo"
+##   ..$ : chr "photo"
+##   ..$ : chr "photo"
+##   ..$ : chr "photo"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "photo"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "photo"
+##   ..$ : chr NA
+##   ..$ : chr "photo"
+##   ..$ : chr NA
+##   ..$ : chr "photo"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "photo"
+##   ..$ : chr "photo"
+##   ..$ : chr "photo"
+##   ..$ : chr NA
+##   ..$ : chr "photo"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "photo"
+##   ..$ : chr NA
+##   ..$ : chr "photo"
+##   ..$ : chr "photo"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "photo"
+##   ..$ : chr NA
+##   ..$ : chr "photo"
+##   ..$ : chr "photo"
+##   ..$ : chr NA
+##   ..$ : chr "photo"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "photo"
+##   ..$ : chr "photo"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "photo"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "photo"
+##   ..$ : chr "photo"
+##   ..$ : chr NA
+##   ..$ : chr "photo"
+##   ..$ : chr "photo"
+##   ..$ : chr NA
+##   ..$ : chr "photo"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "photo"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "photo"
+##   ..$ : chr "photo"
+##   ..$ : chr "photo"
+##   ..$ : chr "photo"
+##   ..$ : chr NA
+##   .. [list output truncated]
+##  $ ext_media_url          :List of 979
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJZJ5CfWYAkthk6.jpg"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJZCRnaXIAMPM9X.png"
+##   ..$ : chr "http://pbs.twimg.com/media/FJZG0VBWUAQhWTC.png"
+##   ..$ : chr "http://pbs.twimg.com/media/FJZFeTkXwAIvgBM.jpg"
+##   ..$ : chr "http://pbs.twimg.com/media/FJU92X5XMAUvHQa.jpg"
+##   ..$ : chr "http://pbs.twimg.com/media/FJYxhW8XMAQx2Y3.jpg"
+##   ..$ : chr "http://pbs.twimg.com/media/FJZJQ6QWQAQ87hQ.jpg"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJZFcYWXMAQI51f.jpg"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJZHfY7XMAkx0se.jpg"
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJZHSfoXsAAV1jj.jpg"
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJZHGbIXEAMIidy.jpg"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJYhk39VgAEmisP.png"
+##   ..$ : chr "http://pbs.twimg.com/media/FJZGeewWQAwqQfK.jpg"
+##   ..$ : chr "http://pbs.twimg.com/media/FJZGeDKX0AYV3_-.jpg"
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJZGPvOX0AYR3q_.jpg"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJZFGiLXMAg11dd.jpg"
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJZCN7NXwAUFgXE.png"
+##   ..$ : chr "http://pbs.twimg.com/media/FJZE_QTXIAYE0pE.png"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJZEKLjWUAIDrdR.jpg"
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJY2Wa-WUAAzJYM.jpg"
+##   ..$ : chr "http://pbs.twimg.com/media/FJZEFTsWQAYstYX.jpg"
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJZDUZkWQAod-1n.jpg"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/ext_tw_video_thumb/1483446882747703300/pu/img/cVeZjgod7_VF8yog.jpg"
+##   ..$ : chr "http://pbs.twimg.com/media/FJZAP1IX0AsNmyI.png"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJZBT8rXsAQp2lW.jpg"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/ext_tw_video_thumb/1483202200830627843/pu/img/yjMOMvjfsupvvbdg.jpg"
+##   ..$ : chr "http://pbs.twimg.com/ext_tw_video_thumb/1483442162029244420/pu/img/D2LDpNW8SfdcQNEh.jpg"
+##   ..$ : chr NA
+##   ..$ : chr  "http://pbs.twimg.com/media/FJX_gxrXMAYSu55.jpg" "http://pbs.twimg.com/media/FJX_jocXwAQbuVg.jpg" "http://pbs.twimg.com/media/FJX_mKCXsAIncKG.jpg"
+##   ..$ : chr  "http://pbs.twimg.com/media/FJY-bLzX0AM09l0.jpg" "http://pbs.twimg.com/media/FJY-emKWUAUWZ7C.jpg"
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJY9jk4agAEC2Hj.jpg"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJY8eozWUAsk2u9.jpg"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "http://pbs.twimg.com/media/FJY8Eq_XEAIAb7z.jpg"
+##   ..$ : chr "http://pbs.twimg.com/media/FJY8CPwWYAkIOBU.jpg"
+##   ..$ : chr "http://pbs.twimg.com/media/FJYsq4YXEAM6mAG.jpg"
+##   ..$ : chr "http://pbs.twimg.com/media/FJY1fi3WUAEQhvU.jpg"
+##   ..$ : chr NA
+##   .. [list output truncated]
+##  $ ext_media_t.co         :List of 979
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/knfIlwnPP9"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/N9GNEXWD5P"
+##   ..$ : chr "https://t.co/E7nN2XY7qg"
+##   ..$ : chr "https://t.co/wscCxxjqOY"
+##   ..$ : chr "https://t.co/tuANYjgfpJ"
+##   ..$ : chr "https://t.co/nfQJ9tAlBG"
+##   ..$ : chr "https://t.co/K0NEIUszdq"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/B9MuDHePx5"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/JCPtox5Ut7"
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/dJSGkj4NuY"
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/jw00jZbAJm"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/sKRBz6xmuP"
+##   ..$ : chr "https://t.co/C6lZF5x8R0"
+##   ..$ : chr "https://t.co/h8JiWVNwJh"
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/ENi3hinlE6"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/C8HYYsfgwF"
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/cEeohYkCk5"
+##   ..$ : chr "https://t.co/O0dLBEAaaD"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/VrTOPusxEc"
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/7xXP4QgRiR"
+##   ..$ : chr "https://t.co/6zz2rhN9iJ"
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/xocUaW5gUS"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/dqpL5ejQX1"
+##   ..$ : chr "https://t.co/iZPsPZDwzA"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/kDWqmDwESJ"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/Uzu44jDWoy"
+##   ..$ : chr "https://t.co/kFJnQeMPv3"
+##   ..$ : chr NA
+##   ..$ : chr  "https://t.co/qN5pFRI38M" "https://t.co/qN5pFRI38M" "https://t.co/qN5pFRI38M"
+##   ..$ : chr  "https://t.co/QcanlT6XrD" "https://t.co/QcanlT6XrD"
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/uSLiA7Wy6W"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/ZpGt4ILiE9"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://t.co/EgntwNC1PJ"
+##   ..$ : chr "https://t.co/8s1qxmF5NF"
+##   ..$ : chr "https://t.co/mq4SrgPPZj"
+##   ..$ : chr "https://t.co/PVoXfVfwpm"
+##   ..$ : chr NA
+##   .. [list output truncated]
+##  $ ext_media_expanded_url :List of 979
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/FAOAfrica/status/1483454374504550408/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/Cop26_Enf_Har/status/1483446020361138183/photo/1"
+##   ..$ : chr "https://twitter.com/Cop26_Enf_Har/status/1483453811532476420/photo/1"
+##   ..$ : chr "https://twitter.com/Cop26_Enf_Har/status/1483450704610082822/photo/1"
+##   ..$ : chr "https://twitter.com/Cop26_Enf_Har/status/1483159689315733506/photo/1"
+##   ..$ : chr "https://twitter.com/Cop26_Enf_Har/status/1483430132207570946/photo/1"
+##   ..$ : chr "https://twitter.com/ItalyUN_NY/status/1483453686009507842/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/WorldRainforest/status/1483452960168415239/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/JeremyGilley/status/1483451819816804360/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/PeaceOneDay/status/1483451593202802693/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/PeaceDay/status/1483451438600790019/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/calgaryrover/status/1483410063343587329/photo/1"
+##   ..$ : chr "https://twitter.com/RIGreenbuilding/status/1483450620204003330/photo/1"
+##   ..$ : chr "https://twitter.com/SAPIndustries/status/1483450614269030408/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/OUFreeLearning/status/1483450365408423937/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/UoN_Propulsion/status/1483449112771108868/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/The_CCSA/status/1483446240864047114/photo/1"
+##   ..$ : chr "https://twitter.com/The_CCSA/status/1483448992256172044/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/ClaudeLorea/status/1483448071933632519/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/mikecoulson48/status/1483432890889388034/photo/1"
+##   ..$ : chr "https://twitter.com/sjn4000/status/1483447988928266244/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/globalcompact/status/1483447606802063371/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/nighealthwatch/status/1483447126554296327/video/1"
+##   ..$ : chr "https://twitter.com/arhobley/status/1483447064486887436/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/AllanMargolin/status/1483445394621276161/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/TransformaGlob/status/1483203430277697538/video/1"
+##   ..$ : chr "https://twitter.com/TransformaGlob/status/1483442210058211329/video/1"
+##   ..$ : chr NA
+##   ..$ : chr  "https://twitter.com/Mark1957/status/1483372714916257793/photo/1" "https://twitter.com/Mark1957/status/1483372714916257793/photo/1" "https://twitter.com/Mark1957/status/1483372714916257793/photo/1"
+##   ..$ : chr  "https://twitter.com/Mark1957/status/1483441839403417606/photo/1" "https://twitter.com/Mark1957/status/1483441839403417606/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/uaeclimateenvoy/status/1483440811505340416/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/freedomunitedHQ/status/1483439626962493440/photo/1"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "https://twitter.com/TheBFPG/status/1483439181347098633/photo/1"
+##   ..$ : chr "https://twitter.com/Lancashare1/status/1483439141140508677/photo/1"
+##   ..$ : chr "https://twitter.com/UNESCWA/status/1483431667368869892/photo/1"
+##   ..$ : chr "https://twitter.com/UNESCWA/status/1483439119606894594/photo/1"
+##   ..$ : chr NA
+##   .. [list output truncated]
+##  $ ext_media_type         : chr  NA NA NA NA ...
+##  $ mentions_user_id       :List of 979
+##   ..$ : chr "933645506986864640"
+##   ..$ : chr NA
+##   ..$ : chr  "1268989522492227585" "191296729"
+##   ..$ : chr NA
+##   ..$ : chr "24078019"
+##   ..$ : chr  "412101247" "1446435553"
+##   ..$ : chr "1454083154562723843"
+##   ..$ : chr  "1731554581" "1444392011159810050"
+##   ..$ : chr  "730837520" "1108007262004625409"
+##   ..$ : chr  "730837520" "1108007262004625409"
+##   ..$ : chr  "730837520" "1108007262004625409"
+##   ..$ : chr NA
+##   ..$ : chr  "1108007262004625409" "477547182" "2521689324" "35764366" ...
+##   ..$ : chr  "709065502023409664" "925441731331543040" "1195025771368239106" "17463923" ...
+##   ..$ : chr  "68678029" "242827267"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr  "785833176" "128372940" "68313718" "138492825" ...
+##   ..$ : chr  "14594698" "2823869072" "128372940" "3539063777" ...
+##   ..$ : chr  "16334137" "4236147694" "11160692" "138492825" ...
+##   ..$ : chr  "133435134" "16334137" "11160692" "138492825" ...
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "214837213"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr  "252835096" "1195025771368239106" "1054231573191479296" "20646711"
+##   ..$ : chr NA
+##   ..$ : chr  "14260960" "276713213" "212621119"
+##   ..$ : chr NA
+##   ..$ : chr  "1299330439065276417" "19404869"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr  "81490671" "17463923"
+##   ..$ : chr "214837213"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr  "946416220659732481" "570684824" "1490654582"
+##   ..$ : chr  "1454109071972478980" "4296973517" "197430637"
+##   ..$ : chr  "4296973517" "192942213"
+##   ..$ : chr  "1185076284" "208149728"
+##   ..$ : chr  "761068046" "1070589727" "57577031" "2711618768" ...
+##   ..$ : chr "16933019"
+##   ..$ : chr  "87940943" "406900550"
+##   ..$ : chr "1420759979934437386"
+##   ..$ : chr "962255435766968322"
+##   ..$ : chr "10228272"
+##   ..$ : chr NA
+##   ..$ : chr "34042766"
+##   ..$ : chr  "3028252336" "38704343"
+##   ..$ : chr "43311062"
+##   ..$ : chr  "742988562652663809" "92239108" "1273850774380883975" "1195025771368239106" ...
+##   ..$ : chr  "1195025771368239106" "17463923" "16544818" "44330473"
+##   ..$ : chr  "1134059457191776257" "1195025771368239106"
+##   ..$ : chr "413148416"
+##   ..$ : chr  "14260960" "276713213" "2579359027" "613556386" ...
+##   ..$ : chr NA
+##   ..$ : chr  "1195025771368239106" "3356613700" "14732889" "1238183795272101892"
+##   ..$ : chr  "748929444027523073" "1281751635132395521" "747843127474544640"
+##   ..$ : chr  "101081754" "357661916" "1035895180849766400" "526871737" ...
+##   ..$ : chr NA
+##   ..$ : chr "351531111"
+##   ..$ : chr  "313280143" "380801406" "1133278791898476544" "174185083" ...
+##   ..$ : chr NA
+##   ..$ : chr "1260542560646430720"
+##   ..$ : chr  "1405642312986861569" "163565583" "910828123272437760"
+##   ..$ : chr "949313390542864385"
+##   ..$ : chr "368240745"
+##   ..$ : chr "187861316"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "1731554581"
+##   ..$ : chr NA
+##   ..$ : chr "462083773"
+##   ..$ : chr NA
+##   ..$ : chr "107201470"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr  "581885870" "44128516" "1063477381430693891" "185043343" ...
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr  "415873121" "717440732731162624"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr  "205193523" "17463923"
+##   .. [list output truncated]
+##  $ mentions_screen_name   :List of 979
+##   ..$ : chr "MikeHayes_KPMG"
+##   ..$ : chr NA
+##   ..$ : chr  "vcummins24" "JohnReynlds"
+##   ..$ : chr NA
+##   ..$ : chr "edbrophy"
+##   ..$ : chr  "FAOAfrica" "ARCapacity"
+##   ..$ : chr "HoyuChong"
+##   ..$ : chr  "AlokSharma_RDG" "COP27Africa"
+##   ..$ : chr  "connectNLWA" "StopTheRebuild"
+##   ..$ : chr  "connectNLWA" "StopTheRebuild"
+##   ..$ : chr  "connectNLWA" "StopTheRebuild"
+##   ..$ : chr NA
+##   ..$ : chr  "StopTheRebuild" "DeliaMattis" "Rajiski" "EnfieldCouncil" ...
+##   ..$ : chr  "ASviSItalia" "g20org" "COP26" "UNFCCC" ...
+##   ..$ : chr  "B_rian_B" "PierrePoilievre"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr  "CBNoficial" "jairbolsonaro" "STF_oficial" "proindio" ...
+##   ..$ : chr  "UOLNoticias" "mqueiroga2" "jairbolsonaro" "FFAABrasil" ...
+##   ..$ : chr  "GreenpeaceBR" "WWF_LAC" "wwfbrasil" "proindio" ...
+##   ..$ : chr  "UOLPolitica" "GreenpeaceBR" "wwfbrasil" "proindio" ...
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "magyarj"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr  "CamJaber" "COP26" "artpartners_" "UNESCO"
+##   ..$ : chr NA
+##   ..$ : chr  "JustinTrudeau" "s_guilbeault" "gmbutts"
+##   ..$ : chr NA
+##   ..$ : chr  "TheSMI" "AECOM"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr  "PhilGiudice" "UNFCCC"
+##   ..$ : chr "magyarj"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr  "AirRaceE" "UoNresearch" "UoNAerospace"
+##   ..$ : chr  "RuthHerb2021" "TDixonGHG" "IEAGHG"
+##   ..$ : chr  "TDixonGHG" "IPCC_CH"
+##   ..$ : chr  "guloren_turan" "GlobalCCS"
+##   ..$ : chr  "autocarpro" "Hero_Electric" "nmunjal" "TheSMEV" ...
+##   ..$ : chr "AukeHoekstra"
+##   ..$ : chr  "EcoEye" "RTEOne"
+##   ..$ : chr "ndcaspects"
+##   ..$ : chr "chiefstonefox"
+##   ..$ : chr "YouTube"
+##   ..$ : chr NA
+##   ..$ : chr "McKinsey"
+##   ..$ : chr  "PaulPolman" "globalcompact"
+##   ..$ : chr "SECGlasgow"
+##   ..$ : chr  "BBU_BLACKPINK" "Ecosia" "BLACKPINK" "COP26" ...
+##   ..$ : chr  "COP26" "UNFCCC" "WBG_Climate" "VIhekweazu"
+##   ..$ : chr  "vanessa_vash" "COP26"
+##   ..$ : chr "ERSScotland"
+##   ..$ : chr  "JustinTrudeau" "s_guilbeault" "JonathanWNV" "SpencerFernando" ...
+##   ..$ : chr NA
+##   ..$ : chr  "COP26" "UKSINet" "BritishCouncil" "ircai_unesco"
+##   ..$ : chr  "missstewartb" "FreyaMariaO" "Team_English1"
+##   ..$ : chr  "richardabetts" "SimonLLewis" "JoeriRogelj" "DrSimEvans" ...
+##   ..$ : chr NA
+##   ..$ : chr "MartinBell6"
+##   ..$ : chr  "stateofgreendk" "Maersk" "DanishShipping" "IMOHQ" ...
+##   ..$ : chr NA
+##   ..$ : chr "T0nicTh3S3shH0g"
+##   ..$ : chr  "gaycatdad11" "tiffy201" "ElphinstoneJack"
+##   ..$ : chr "NSRMurugan"
+##   ..$ : chr "DeborahMeaden"
+##   ..$ : chr "GianniSantiago"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr "AlokSharma_RDG"
+##   ..$ : chr NA
+##   ..$ : chr "GerHerbert1"
+##   ..$ : chr NA
+##   ..$ : chr "actbr"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr  "SLOCATOfficial" "UNHABITAT" "NUMOalliance" "c40cities" ...
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr  "LisaEdge1" "gldtechconsult"
+##   ..$ : chr NA
+##   ..$ : chr NA
+##   ..$ : chr  "e3g" "UNFCCC"
+##   .. [list output truncated]
+##  $ lang                   : chr  "en" "en" "en" "en" ...
+##  $ quoted_status_id       : chr  NA NA NA NA ...
+##  $ quoted_text            : chr  NA NA NA NA ...
+##  $ quoted_created_at      : POSIXct, format: NA NA ...
+##  $ quoted_source          : chr  NA NA NA NA ...
+##  $ quoted_favorite_count  : int  NA NA NA NA NA NA NA 1 NA NA ...
+##  $ quoted_retweet_count   : int  NA NA NA NA NA NA NA 0 NA NA ...
+##  $ quoted_user_id         : chr  NA NA NA NA ...
+##  $ quoted_screen_name     : chr  NA NA NA NA ...
+##  $ quoted_name            : chr  NA NA NA NA ...
+##  $ quoted_followers_count : int  NA NA NA NA NA NA NA 25439 NA NA ...
+##  $ quoted_friends_count   : int  NA NA NA NA NA NA NA 240 NA NA ...
+##  $ quoted_statuses_count  : int  NA NA NA NA NA NA NA 7160 NA NA ...
+##  $ quoted_location        : chr  NA NA NA NA ...
+##  $ quoted_description     : chr  NA NA NA NA ...
+##  $ quoted_verified        : logi  NA NA NA NA NA NA ...
+##  $ retweet_status_id      : chr  NA NA NA NA ...
+##  $ retweet_text           : chr  NA NA NA NA ...
+##  $ retweet_created_at     : POSIXct, format: NA NA ...
+##  $ retweet_source         : chr  NA NA NA NA ...
+##  $ retweet_favorite_count : int  NA NA NA NA NA NA NA NA NA NA ...
+##  $ retweet_retweet_count  : int  NA NA NA NA NA NA NA NA NA NA ...
+##  $ retweet_user_id        : chr  NA NA NA NA ...
+##  $ retweet_screen_name    : chr  NA NA NA NA ...
+##  $ retweet_name           : chr  NA NA NA NA ...
+##  $ retweet_followers_count: int  NA NA NA NA NA NA NA NA NA NA ...
+##  $ retweet_friends_count  : int  NA NA NA NA NA NA NA NA NA NA ...
+##  $ retweet_statuses_count : int  NA NA NA NA NA NA NA NA NA NA ...
+##  $ retweet_location       : chr  NA NA NA NA ...
+##  $ retweet_description    : chr  NA NA NA NA ...
+##  $ retweet_verified       : logi  NA NA NA NA NA NA ...
+##  $ place_url              : chr  NA NA NA NA ...
+##  $ place_name             : chr  NA NA NA NA ...
+##  $ place_full_name        : chr  NA NA NA NA ...
+##  $ place_type             : chr  NA NA NA NA ...
+##  $ country                : chr  NA NA NA NA ...
+##  $ country_code           : chr  NA NA NA NA ...
+##  $ geo_coords             :List of 979
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   .. [list output truncated]
+##  $ coords_coords          :List of 979
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   ..$ : num  NA NA
+##   .. [list output truncated]
+##  $ bbox_coords            :List of 979
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  -5.72 -5.62 -5.62 -5.72 54.62 ...
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  -1.37 -1.31 -1.31 -1.37 52.03 ...
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   ..$ : num  NA NA NA NA NA NA NA NA
+##   .. [list output truncated]
+##  $ status_url             : chr  "https://twitter.com/thecurrency/status/1483454378434600968" "https://twitter.com/thecurrency/status/1483336086994759680" "https://twitter.com/thecurrency/status/1483424169316569091" "https://twitter.com/thecurrency/status/1483393969405018115" ...
+##  $ name                   : chr  "The Currency" "The Currency" "The Currency" "The Currency" ...
+##  $ location               : chr  "Dublin, Ireland" "Dublin, Ireland" "Dublin, Ireland" "Dublin, Ireland" ...
+##  $ description            : chr  "The Currency is an online publisher offering insightful, dynamic and brave stories, commentary and investigatio"| __truncated__ "The Currency is an online publisher offering insightful, dynamic and brave stories, commentary and investigatio"| __truncated__ "The Currency is an online publisher offering insightful, dynamic and brave stories, commentary and investigatio"| __truncated__ "The Currency is an online publisher offering insightful, dynamic and brave stories, commentary and investigatio"| __truncated__ ...
+##  $ url                    : chr  "https://t.co/rjkZmmxyJo" "https://t.co/rjkZmmxyJo" "https://t.co/rjkZmmxyJo" "https://t.co/rjkZmmxyJo" ...
+##  $ protected              : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
+##  $ followers_count        : int  26392 26392 26392 26392 26392 42886 21047 4647 15 15 ...
+##  $ friends_count          : int  104 104 104 104 104 900 2707 91 54 54 ...
+##  $ listed_count           : int  83 83 83 83 83 434 649 13 0 0 ...
+##  $ statuses_count         : int  12192 12192 12192 12192 12192 20002 30850 288 13 13 ...
+##  $ favourites_count       : int  246 246 246 246 246 13963 1025 158 7 7 ...
+##  $ account_created_at     : POSIXct, format: "2019-07-16 15:40:47" "2019-07-16 15:40:47" ...
+##  $ verified               : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
+##  $ profile_url            : chr  "https://t.co/rjkZmmxyJo" "https://t.co/rjkZmmxyJo" "https://t.co/rjkZmmxyJo" "https://t.co/rjkZmmxyJo" ...
+##  $ profile_expanded_url   : chr  "http://www.thecurrency.news" "http://www.thecurrency.news" "http://www.thecurrency.news" "http://www.thecurrency.news" ...
+##  $ account_lang           : logi  NA NA NA NA NA NA ...
+##  $ profile_banner_url     : chr  "https://pbs.twimg.com/profile_banners/1151154718447669250/1584263321" "https://pbs.twimg.com/profile_banners/1151154718447669250/1584263321" "https://pbs.twimg.com/profile_banners/1151154718447669250/1584263321" "https://pbs.twimg.com/profile_banners/1151154718447669250/1584263321" ...
+##  $ profile_background_url : chr  NA NA NA NA ...
+##  $ profile_image_url      : chr  "http://pbs.twimg.com/profile_images/1166712348306038786/I3RVRMVW_normal.jpg" "http://pbs.twimg.com/profile_images/1166712348306038786/I3RVRMVW_normal.jpg" "http://pbs.twimg.com/profile_images/1166712348306038786/I3RVRMVW_normal.jpg" "http://pbs.twimg.com/profile_images/1166712348306038786/I3RVRMVW_normal.jpg" ...
+```
+
+---
+
+...or we can use `head()` to see the type of data before we open the file. 
+
+
 ```r
 head(tweets)
 ```
+
+```
+##               user_id           status_id          created_at screen_name
+## 1 1151154718447669250 1483454378434600968 2022-01-18 15:00:59 thecurrency
+## 2 1151154718447669250 1483336086994759680 2022-01-18 07:10:56 thecurrency
+## 3 1151154718447669250 1483424169316569091 2022-01-18 13:00:57 thecurrency
+## 4 1151154718447669250 1483393969405018115 2022-01-18 11:00:57 thecurrency
+## 5 1151154718447669250 1483333334000357379 2022-01-18 07:00:00 thecurrency
+## 6           412101247 1483454374504550408 2022-01-18 15:00:58   FAOAfrica
+##                                                                                                                                                                                                                                                                                     text
+## 1              The transition to zero CO2 is on the march. “Scotland is leaving no stone unturned in an effort to become a global leader in it. Ireland has to be careful not to be left behind. This is a once-in-a-lifetime opportunity," says @MikeHayes_KPMG https://t.co/nmOfOzOXOp
+## 2                                                                                                                                                                            New Year, new climate – Part 2: Irish innovators raring to go in a post-COP26 world https://t.co/nmOfOzOXOp
+## 3 "This is the biggest economic opportunity of this generation. But sometimes officials seem to have a mindset where floating offshore wind power is beyond their imagination and horizon.” @vcummins24 – one of 10 business leaders interviewed by @JohnReynlds https://t.co/nmOfOzOXOp
+## 4                                                                                            Ten business leaders at the forefront of the transformation to a low-carbon future share their hopes and fears as Ireland gets to grips with global climate change. https://t.co/nmOfOzOXOp
+## 5 ▶️ Irish energy innovators are raring to go in a post-COP26 world\n\n▶️ Airlines are ready to bounce when restrictions lift – and Irish aircraft lessors are benefiting\n\n▶️ Sinn Féin wants to reform a "constipated" civil service. @edbrophy suggests how \n\nhttps://t.co/E7PkoRxjK2
+## 6                                                     👉A new publication calls for greater women’s leadership in climate action in Africa.\n\nDownload the new report from @FAOAfrica &amp;amp; @ARCapacity  👉 https://t.co/GMBVZqUt1l\n\n#COP26  \n#ClimateAction https://t.co/knfIlwnPP9
+##          source display_text_width reply_to_status_id reply_to_user_id
+## 1 Nelio Content                265               &lt;NA&gt;             &lt;NA&gt;
+## 2 Nelio Content                107               &lt;NA&gt;             &lt;NA&gt;
+## 3 Nelio Content                278               &lt;NA&gt;             &lt;NA&gt;
+## 4 Nelio Content                187               &lt;NA&gt;             &lt;NA&gt;
+## 5     TweetDeck                275               &lt;NA&gt;             &lt;NA&gt;
+## 6        Buffer                195               &lt;NA&gt;             &lt;NA&gt;
+##   reply_to_screen_name is_quote is_retweet favorite_count retweet_count
+## 1                 &lt;NA&gt;    FALSE      FALSE              0             0
+## 2                 &lt;NA&gt;    FALSE      FALSE              0             1
+## 3                 &lt;NA&gt;    FALSE      FALSE              0             2
+## 4                 &lt;NA&gt;    FALSE      FALSE              0             0
+## 5                 &lt;NA&gt;    FALSE      FALSE              2             1
+## 6                 &lt;NA&gt;    FALSE      FALSE              0             0
+##   quote_count reply_count             hashtags symbols
+## 1          NA          NA                   NA      NA
+## 2          NA          NA                   NA      NA
+## 3          NA          NA                   NA      NA
+## 4          NA          NA                   NA      NA
+## 5          NA          NA                   NA      NA
+## 6          NA          NA COP26, ClimateAction      NA
+##                           urls_url               urls_t.co
+## 1 thecurrency.news/articles/70952… https://t.co/nmOfOzOXOp
+## 2 thecurrency.news/articles/70952… https://t.co/nmOfOzOXOp
+## 3 thecurrency.news/articles/70952… https://t.co/nmOfOzOXOp
+## 4 thecurrency.news/articles/70952… https://t.co/nmOfOzOXOp
+## 5                 thecurrency.news https://t.co/E7PkoRxjK2
+## 6                   bit.ly/3q9L6Lh https://t.co/GMBVZqUt1l
+##                                                                                                          urls_expanded_url
+## 1 https://thecurrency.news/articles/70952/new-year-new-climate-part-2-irish-innovators-raring-to-go-in-a-post-cop26-world/
+## 2 https://thecurrency.news/articles/70952/new-year-new-climate-part-2-irish-innovators-raring-to-go-in-a-post-cop26-world/
+## 3 https://thecurrency.news/articles/70952/new-year-new-climate-part-2-irish-innovators-raring-to-go-in-a-post-cop26-world/
+## 4 https://thecurrency.news/articles/70952/new-year-new-climate-part-2-irish-innovators-raring-to-go-in-a-post-cop26-world/
+## 5                                                                                                https://thecurrency.news/
+## 6                                                                                                   https://bit.ly/3q9L6Lh
+##                                        media_url              media_t.co
+## 1                                             NA                      NA
+## 2                                             NA                      NA
+## 3                                             NA                      NA
+## 4                                             NA                      NA
+## 5                                             NA                      NA
+## 6 http://pbs.twimg.com/media/FJZJ5CfWYAkthk6.jpg https://t.co/knfIlwnPP9
+##                                                 media_expanded_url media_type
+## 1                                                               NA         NA
+## 2                                                               NA         NA
+## 3                                                               NA         NA
+## 4                                                               NA         NA
+## 5                                                               NA         NA
+## 6 https://twitter.com/FAOAfrica/status/1483454374504550408/photo/1      photo
+##                                    ext_media_url          ext_media_t.co
+## 1                                             NA                      NA
+## 2                                             NA                      NA
+## 3                                             NA                      NA
+## 4                                             NA                      NA
+## 5                                             NA                      NA
+## 6 http://pbs.twimg.com/media/FJZJ5CfWYAkthk6.jpg https://t.co/knfIlwnPP9
+##                                             ext_media_expanded_url
+## 1                                                               NA
+## 2                                                               NA
+## 3                                                               NA
+## 4                                                               NA
+## 5                                                               NA
+## 6 https://twitter.com/FAOAfrica/status/1483454374504550408/photo/1
+##   ext_media_type               mentions_user_id    mentions_screen_name lang
+## 1           &lt;NA&gt;             933645506986864640          MikeHayes_KPMG   en
+## 2           &lt;NA&gt;                             NA                      NA   en
+## 3           &lt;NA&gt; 1268989522492227585, 191296729 vcummins24, JohnReynlds   en
+## 4           &lt;NA&gt;                             NA                      NA   en
+## 5           &lt;NA&gt;                       24078019                edbrophy   en
+## 6           &lt;NA&gt;          412101247, 1446435553   FAOAfrica, ARCapacity   en
+##   quoted_status_id quoted_text quoted_created_at quoted_source
+## 1             &lt;NA&gt;        &lt;NA&gt;              &lt;NA&gt;          &lt;NA&gt;
+## 2             &lt;NA&gt;        &lt;NA&gt;              &lt;NA&gt;          &lt;NA&gt;
+## 3             &lt;NA&gt;        &lt;NA&gt;              &lt;NA&gt;          &lt;NA&gt;
+## 4             &lt;NA&gt;        &lt;NA&gt;              &lt;NA&gt;          &lt;NA&gt;
+## 5             &lt;NA&gt;        &lt;NA&gt;              &lt;NA&gt;          &lt;NA&gt;
+## 6             &lt;NA&gt;        &lt;NA&gt;              &lt;NA&gt;          &lt;NA&gt;
+##   quoted_favorite_count quoted_retweet_count quoted_user_id quoted_screen_name
+## 1                    NA                   NA           &lt;NA&gt;               &lt;NA&gt;
+## 2                    NA                   NA           &lt;NA&gt;               &lt;NA&gt;
+## 3                    NA                   NA           &lt;NA&gt;               &lt;NA&gt;
+## 4                    NA                   NA           &lt;NA&gt;               &lt;NA&gt;
+## 5                    NA                   NA           &lt;NA&gt;               &lt;NA&gt;
+## 6                    NA                   NA           &lt;NA&gt;               &lt;NA&gt;
+##   quoted_name quoted_followers_count quoted_friends_count quoted_statuses_count
+## 1        &lt;NA&gt;                     NA                   NA                    NA
+## 2        &lt;NA&gt;                     NA                   NA                    NA
+## 3        &lt;NA&gt;                     NA                   NA                    NA
+## 4        &lt;NA&gt;                     NA                   NA                    NA
+## 5        &lt;NA&gt;                     NA                   NA                    NA
+## 6        &lt;NA&gt;                     NA                   NA                    NA
+##   quoted_location quoted_description quoted_verified retweet_status_id
+## 1            &lt;NA&gt;               &lt;NA&gt;              NA              &lt;NA&gt;
+## 2            &lt;NA&gt;               &lt;NA&gt;              NA              &lt;NA&gt;
+## 3            &lt;NA&gt;               &lt;NA&gt;              NA              &lt;NA&gt;
+## 4            &lt;NA&gt;               &lt;NA&gt;              NA              &lt;NA&gt;
+## 5            &lt;NA&gt;               &lt;NA&gt;              NA              &lt;NA&gt;
+## 6            &lt;NA&gt;               &lt;NA&gt;              NA              &lt;NA&gt;
+##   retweet_text retweet_created_at retweet_source retweet_favorite_count
+## 1         &lt;NA&gt;               &lt;NA&gt;           &lt;NA&gt;                     NA
+## 2         &lt;NA&gt;               &lt;NA&gt;           &lt;NA&gt;                     NA
+## 3         &lt;NA&gt;               &lt;NA&gt;           &lt;NA&gt;                     NA
+## 4         &lt;NA&gt;               &lt;NA&gt;           &lt;NA&gt;                     NA
+## 5         &lt;NA&gt;               &lt;NA&gt;           &lt;NA&gt;                     NA
+## 6         &lt;NA&gt;               &lt;NA&gt;           &lt;NA&gt;                     NA
+##   retweet_retweet_count retweet_user_id retweet_screen_name retweet_name
+## 1                    NA            &lt;NA&gt;                &lt;NA&gt;         &lt;NA&gt;
+## 2                    NA            &lt;NA&gt;                &lt;NA&gt;         &lt;NA&gt;
+## 3                    NA            &lt;NA&gt;                &lt;NA&gt;         &lt;NA&gt;
+## 4                    NA            &lt;NA&gt;                &lt;NA&gt;         &lt;NA&gt;
+## 5                    NA            &lt;NA&gt;                &lt;NA&gt;         &lt;NA&gt;
+## 6                    NA            &lt;NA&gt;                &lt;NA&gt;         &lt;NA&gt;
+##   retweet_followers_count retweet_friends_count retweet_statuses_count
+## 1                      NA                    NA                     NA
+## 2                      NA                    NA                     NA
+## 3                      NA                    NA                     NA
+## 4                      NA                    NA                     NA
+## 5                      NA                    NA                     NA
+## 6                      NA                    NA                     NA
+##   retweet_location retweet_description retweet_verified place_url place_name
+## 1             &lt;NA&gt;                &lt;NA&gt;               NA      &lt;NA&gt;       &lt;NA&gt;
+## 2             &lt;NA&gt;                &lt;NA&gt;               NA      &lt;NA&gt;       &lt;NA&gt;
+## 3             &lt;NA&gt;                &lt;NA&gt;               NA      &lt;NA&gt;       &lt;NA&gt;
+## 4             &lt;NA&gt;                &lt;NA&gt;               NA      &lt;NA&gt;       &lt;NA&gt;
+## 5             &lt;NA&gt;                &lt;NA&gt;               NA      &lt;NA&gt;       &lt;NA&gt;
+## 6             &lt;NA&gt;                &lt;NA&gt;               NA      &lt;NA&gt;       &lt;NA&gt;
+##   place_full_name place_type country country_code geo_coords coords_coords
+## 1            &lt;NA&gt;       &lt;NA&gt;    &lt;NA&gt;         &lt;NA&gt;     NA, NA        NA, NA
+## 2            &lt;NA&gt;       &lt;NA&gt;    &lt;NA&gt;         &lt;NA&gt;     NA, NA        NA, NA
+## 3            &lt;NA&gt;       &lt;NA&gt;    &lt;NA&gt;         &lt;NA&gt;     NA, NA        NA, NA
+## 4            &lt;NA&gt;       &lt;NA&gt;    &lt;NA&gt;         &lt;NA&gt;     NA, NA        NA, NA
+## 5            &lt;NA&gt;       &lt;NA&gt;    &lt;NA&gt;         &lt;NA&gt;     NA, NA        NA, NA
+## 6            &lt;NA&gt;       &lt;NA&gt;    &lt;NA&gt;         &lt;NA&gt;     NA, NA        NA, NA
+##                      bbox_coords
+## 1 NA, NA, NA, NA, NA, NA, NA, NA
+## 2 NA, NA, NA, NA, NA, NA, NA, NA
+## 3 NA, NA, NA, NA, NA, NA, NA, NA
+## 4 NA, NA, NA, NA, NA, NA, NA, NA
+## 5 NA, NA, NA, NA, NA, NA, NA, NA
+## 6 NA, NA, NA, NA, NA, NA, NA, NA
+##                                                   status_url          name
+## 1 https://twitter.com/thecurrency/status/1483454378434600968  The Currency
+## 2 https://twitter.com/thecurrency/status/1483336086994759680  The Currency
+## 3 https://twitter.com/thecurrency/status/1483424169316569091  The Currency
+## 4 https://twitter.com/thecurrency/status/1483393969405018115  The Currency
+## 5 https://twitter.com/thecurrency/status/1483333334000357379  The Currency
+## 6   https://twitter.com/FAOAfrica/status/1483454374504550408 FAO in Africa
+##          location
+## 1 Dublin, Ireland
+## 2 Dublin, Ireland
+## 3 Dublin, Ireland
+## 4 Dublin, Ireland
+## 5 Dublin, Ireland
+## 6    Accra, Ghana
+##                                                                                                                                                   description
+## 1 The Currency is an online publisher offering insightful, dynamic and brave stories, commentary and investigations. We give our members an edge in business.
+## 2 The Currency is an online publisher offering insightful, dynamic and brave stories, commentary and investigations. We give our members an edge in business.
+## 3 The Currency is an online publisher offering insightful, dynamic and brave stories, commentary and investigations. We give our members an edge in business.
+## 4 The Currency is an online publisher offering insightful, dynamic and brave stories, commentary and investigations. We give our members an edge in business.
+## 5 The Currency is an online publisher offering insightful, dynamic and brave stories, commentary and investigations. We give our members an edge in business.
+## 6                        News &amp; updates from the Food and Agriculture Organization of the United Nations, @FAO Regional Office for Africa. #SDGs, #Agenda2030
+##                       url protected followers_count friends_count listed_count
+## 1 https://t.co/rjkZmmxyJo     FALSE           26392           104           83
+## 2 https://t.co/rjkZmmxyJo     FALSE           26392           104           83
+## 3 https://t.co/rjkZmmxyJo     FALSE           26392           104           83
+## 4 https://t.co/rjkZmmxyJo     FALSE           26392           104           83
+## 5 https://t.co/rjkZmmxyJo     FALSE           26392           104           83
+## 6 https://t.co/qfVATLM2fc     FALSE           42886           900          434
+##   statuses_count favourites_count  account_created_at verified
+## 1          12192              246 2019-07-16 15:40:47     TRUE
+## 2          12192              246 2019-07-16 15:40:47     TRUE
+## 3          12192              246 2019-07-16 15:40:47     TRUE
+## 4          12192              246 2019-07-16 15:40:47     TRUE
+## 5          12192              246 2019-07-16 15:40:47     TRUE
+## 6          20002            13963 2011-11-14 08:15:27     TRUE
+##               profile_url        profile_expanded_url account_lang
+## 1 https://t.co/rjkZmmxyJo http://www.thecurrency.news           NA
+## 2 https://t.co/rjkZmmxyJo http://www.thecurrency.news           NA
+## 3 https://t.co/rjkZmmxyJo http://www.thecurrency.news           NA
+## 4 https://t.co/rjkZmmxyJo http://www.thecurrency.news           NA
+## 5 https://t.co/rjkZmmxyJo http://www.thecurrency.news           NA
+## 6 https://t.co/qfVATLM2fc   http://www.fao.org/africa           NA
+##                                                     profile_banner_url
+## 1 https://pbs.twimg.com/profile_banners/1151154718447669250/1584263321
+## 2 https://pbs.twimg.com/profile_banners/1151154718447669250/1584263321
+## 3 https://pbs.twimg.com/profile_banners/1151154718447669250/1584263321
+## 4 https://pbs.twimg.com/profile_banners/1151154718447669250/1584263321
+## 5 https://pbs.twimg.com/profile_banners/1151154718447669250/1584263321
+## 6           https://pbs.twimg.com/profile_banners/412101247/1640196751
+##                             profile_background_url
+## 1                                             &lt;NA&gt;
+## 2                                             &lt;NA&gt;
+## 3                                             &lt;NA&gt;
+## 4                                             &lt;NA&gt;
+## 5                                             &lt;NA&gt;
+## 6 http://abs.twimg.com/images/themes/theme1/bg.png
+##                                                             profile_image_url
+## 1 http://pbs.twimg.com/profile_images/1166712348306038786/I3RVRMVW_normal.jpg
+## 2 http://pbs.twimg.com/profile_images/1166712348306038786/I3RVRMVW_normal.jpg
+## 3 http://pbs.twimg.com/profile_images/1166712348306038786/I3RVRMVW_normal.jpg
+## 4 http://pbs.twimg.com/profile_images/1166712348306038786/I3RVRMVW_normal.jpg
+## 5 http://pbs.twimg.com/profile_images/1166712348306038786/I3RVRMVW_normal.jpg
+## 6  http://pbs.twimg.com/profile_images/878196689122754560/jZREG2_C_normal.jpg
+```
+
+
+---
+
+class: interaction
 
 ### Format and Data Lab Exercise
 
@@ -407,10 +2748,15 @@ In your groups, look at the data that you have from both queries. What does the 
 
 You might want to consider the metadata and what that says about the underlying infrastructure. If you compare the files, what differences do you see? 
 
+---
+
+class: slide-primary
 
 ## Conclusion
 
 In this lab, we look at the same issue but using two different data sources. These can be used to consider the affordances of APIs against the search in session. When we query the data, the format affects how the data is presented but also gives a space for consideration of the medium. 
+
+---
 
 ## Bibliography
 
@@ -425,7 +2771,8 @@ Sterne, J. 2012. "Format Theory" in MP3: The Meaning of a Format. Duke Universit
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-"ratio": "16:9"
+"ratio": "16:9",
+"highlightLines": true
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
@@ -491,7 +2838,24 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
       links[i].target = '_blank';
     }
   }
-})();</script>
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 slideshow._releaseMath = function(el) {

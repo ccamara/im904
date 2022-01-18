@@ -11,12 +11,14 @@ output:
     seal: true #Set false to remove default title slide.
     nature:
       ratio: '16:9'
+      # highlightStyle: github
+      highlightLines: true
       # titleSlideClass: ["right", "top", "my-title"]
     yolo: false
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
 
@@ -110,9 +112,9 @@ Using an SDK such as RedditExtractoR, we can retrieve the JSON representation fr
             "mod_reason_title": null,
             "gilded": 0,
             "clicked": false,
-            "title": "Design Last: Re-ordering the web design process around semantic HTML",
+            "title": "Design Last: Re-ordering the web design process around semantic HTML", #<<
             "link_flair_richtext": [],
-            "subreddit_name_prefixed": "r/web_design",
+            "subreddit_name_prefixed": "r/web_design",#<<
             "hidden": false,
             "pwls": 6,
             "link_flair_css_class": null,
@@ -133,7 +135,7 @@ Using an SDK such as RedditExtractoR, we can retrieve the JSON representation fr
             "thumbnail_width": 70,
             "author_flair_template_id": null,
             "is_original_content": false,
-            "author_fullname": "t2_53v1v",
+            "author_fullname": "t2_53v1v",#<<
             "secure_media": null,
             "is_reddit_media_domain": false,
             "is_meta": false,
@@ -173,7 +175,7 @@ Using an SDK such as RedditExtractoR, we can retrieve the JSON representation fr
             "is_crosspostable": false,
             "pinned": false,
             "over_18": false,
-            "preview": {
+            "preview": { #<<
               "images": [
                 {
                   "source": {
@@ -205,7 +207,7 @@ Using an SDK such as RedditExtractoR, we can retrieve the JSON representation fr
             "mod_reason_by": null,
             "removal_reason": null,
             "link_flair_background_color": "",
-            "id": "2wjswo",
+            "id": "2wjswo", #<<
             "is_robot_indexable": true,
             "num_duplicates": 0,
             "report_reasons": null,
@@ -238,22 +240,100 @@ Using an SDK such as RedditExtractoR, we can retrieve the JSON representation fr
 ---
 
 
----
-
 ## Affordances
 
-One of the challenges is to consider the affordances of an API. When using a search engine, the engine is part of the results that are given to you. The interfaces are part of the process of getting and providing information for you in a relatively similar way. It encourages play and use to get extra signals to personalise the data to the search. When using data APIs, you will be given data in the format that the API presents and it will return either data or error codes. APIs are permissioned interfaces into a site's data. They support machine queries, which we will use below, of parts of their database using certain URLs to denote what they provide. The response given will be in a machine readable format that will need to be converted to be read. However, they will not supply hints to you for the next term or commonly used queries so you will need to think carefully about your query design and be more iterative. You may need to repeat queries after you have interpreted the data.  
+.pull-left[
+**Search engines**
+* Human query
+* The engine is part of the results that are given to you:
+  * The interfaces are part of the proce ss of getting and providing information for you in a relatively similar way.
+  * It encourages play and use to get extra signals to personalise the data to the search.
+]
 
-The permissions may affect:
+???
+
+**One of the challenges is to consider the affordances of an API**. When using a search engine, the engine is part of the results that are given to you. The interfaces are part of the process of getting and providing information for you in a relatively similar way. It encourages play and use to get extra signals to personalise the data to the search. When using data APIs, you will be given data in the format that the API presents and it will return either data or error codes. APIs are permissioned interfaces into a site's data. They support machine queries, which we will use below, of parts of their database using certain URLs to denote what they provide. The response given will be in a machine readable format that will need to be converted to be read. However, they will not supply hints to you for the next term or commonly used queries so you will need to think carefully about your query design and be more iterative. You may need to repeat queries after you have interpreted the data.  
+
+
+--
+
+.pull-right[
+**APIs**
+* Machine query (`https://www.reddit.com/r/web_design/comments/2wjswo/design_last_reordering_the_web_design_process.json`) to an endpoint
+* Response in machine-readable format -> Two possible outcomes when querying an API:
+  * Raw data in machine-readable format (`json`, `csv`...), depending on your permissions
+  * Error code
+* No hints of what to do next (common queries, next term)
+* The data is still selected and filtered but to provide items that match your query. 
+  * You need to work with the data to find relevance to your query
+]
+
+**Working with APIs can be viewed as an affordance that demands a certain approach** (Davis and Chouinard, 2017:3) to accessing the data: We make a .highlight[request] to the .highlight[correct endpoint] in the .highlight[correct format] using digital methods. 
+
+---
+layout: true
+
+
+### API's affordances
+
+---
+**Working with APIs can be viewed as an affordance that demands a certain approach** (Davis and Chouinard, 2017:3) to accessing the data: We make a .highlight[request] to the .highlight[correct endpoint] in the .highlight[correct format] using digital methods. 
+
+The APIs also refuse (Davis and Chouinard, 2017:4) in different ways. The APIs allow you to search the site but .highlight[only under certain conditions]. APIs are often governed by the Terms of Use that can be algorithmically enforced in APIs - for instance, blocking or timing out requests if too many are made within a period, .highlight[they may change with some, little or no notice], the data that is returned is selected by the company, and some require registration to get a key or token. 
+
+Results are limited by API's permissions, which may affect:
 
 * the number of queries that you can run in a given time, 
 * the amount of data that can be retrieved, or even 
 * the time ranges for the data. 
 
-Working with APIs can be viewed as an affordance that demands a certain approach (Davis and Chouinard, 2017:3) to accessing the data. We make a request to the correct endpoint in the correct format using digital methods. The Reddit and Twitter APIs require different types of method and take different parameters. The APIs also refuse (Davis and Chouinard, 2017:4) in different ways. Both will refuse to give data if the parameters or requests are incorrect or, with Twitter, you cannot log in to the site.  The APIs allow (Davis and Chouinard, 2017:5) you to search the site but only under certain conditions. APIs are often governed by the Terms of Use that can be algorithmically enforced in APIs - for instance, blocking or timing out requests if too many are made within a period, they may change with some, little or no notice, the data that is returned is selected by the company, and some require registration to get a key or token. The software that is used also contains affordances, based on the API, but also what it allows the user to achieve and its reliance on computational objects, such as types or data structures. It is helpful to apply this framework when working with APIs and the provided data.
 
-APIs provide a rawer set of data for you to process but that places the requirement for the user to make sense of it. The medium returns results from a database but it is not as involved in finding relevance in the data, like search engines. The data is still selected and filtered but to provide items that match your query. You need to work with the data to find relevance to your query. In this lab, we are using Software Development Kits (SDKs) in R that have been developed to interact with APIs. We should be mindful of what the software is allowing us to query on top of the query allowed by the API. 
+The software that is used also contains affordances, based on the API, but also what it allows the user to achieve and its reliance on computational objects, such as types or data structures. It is helpful to apply this framework when working with APIs and the provided data.
 
+
+
+
+???
+
+The Reddit and Twitter APIs require different types of method and take different parameters. The APIs also refuse (Davis and Chouinard, 2017:4) in different ways. Both will refuse to give data if the parameters or requests are incorrect or, with Twitter, you cannot log in to the site.  The APIs allow (Davis and Chouinard, 2017:5) you to search the site but only under certain conditions. APIs are often governed by the Terms of Use that can be algorithmically enforced in APIs - for instance, blocking or timing out requests if too many are made within a period, they may change with some, little or no notice, the data that is returned is selected by the company, and some require registration to get a key or token. 
+
+---
+
+
+* APIs provide a rawer set of data for you to process 
+  * that places the requirement for the user to make sense of it.
+* The medium returns results from a database but it is not as involved in finding relevance in the data, like search engines. 
+* The data is still selected and filtered but to provide items that match your query. 
+  * You need to work with the data to find relevance to your query. 
+  
+In this lab, we are using Software Development Kits (SDKs) in R that have been developed to interact with APIs. We should be mindful of what the software is allowing us to query on top of the query allowed by the API. 
+
+
+---
+
+layout: false
+
+### Software affordances
+
+.pull-left[
+**The software that is used also contains affordances**, based on the API, but also what it allows the user to achieve and its reliance on computational objects, such as .highlight[types or data structures, or implemented features]. It is helpful to apply this framework when working with APIs and the provided data.
+
+]
+
+.pull-right[
+![](figs/data-affordances/rtweet-affordances.png)
+
+Academic API was released in January 2021: `rtweet` vs `academictwitteR`
+]
+
+???
+
+For example, some features may not be implemented.
+
+Twitter API2.0 and academic twitter (released on January 2021) https://techcrunch.com/2021/01/26/twitters-new-api-platform-now-opened-to-academic-researchers/
+Academic Twitter vs rtweet
+
+academictwitteR: an R package to access the Twitter Academic Research Product Track v2 API endpoint
 
 ---
 
@@ -271,9 +351,11 @@ These considerations shed light on the platforms being used that go beyond the t
 
 ---
 
+class: slide-secondary
+
 ## Using Data APIs
 
-In this lab, we will use both Reddit and Twitter to search for a common theme, the Paris Agreement about climate change. Through this, you will gain experience of using an API to query data and an understanding of the formats that the data is presented. 
+In this lab, we will use both **Reddit** and **Twitter** to search for a common theme, the Paris Agreement about climate change. Through this, you will gain experience of using an API to query data and an understanding of the formats that the data is presented. 
 
 First of all, we need to install 2 R packages. Once these are installed once, they do not need to be re-installed. 
 ```{r installation, eval=FALSE}
@@ -281,7 +363,7 @@ install.packages('RedditExtractoR')
 install.packages('rtweet')
 ```
 Now that we have installed the packages, we need to include them in the script to give us access to their methods. You will need to include these files each time
-```{r pressure, eval=FALSE}
+```{r dependencies}
 library('rtweet')
 library('RedditExtractoR')
 ```
@@ -298,17 +380,26 @@ Both exercises will look for data relating to the COP26 event that was held in G
 
 ## ![Reddit](https://upload.wikimedia.org/wikipedia/en/thumb/5/58/Reddit_logo_new.svg/220px-Reddit_logo_new.svg.png)
 
+.pull-left[
+
 [Reddit](https://www.reddit.com/) is a popular site for commenting on the Web. The site allows users to create reddit, and subreddits, to share and comment on things. It is one of the rare sites that has an API that is relatively open. Many sites require types of login (such as Twitter) or have tightened their API access (such as Facebook). 
+
+]
+
+.pull-right[
+
+![Reddit Screenshot](figs/data-affordances/reddit-search-screenshot.png)
+]
 
 ---
 
+class: interaction
+
 ### Exercise
-In this first exercise, we will use Reddit to get the reddit comments for the query term. Is there anything that you notice about the query and how it is structured?
 
-In the first query, we search for all the threads that mention the query term and return a sorted list within the given time frame. 
+In this first exercise, we will use Reddit to get the reddit comments for the query term (`COP26`). 
 
-In the second term, we search for the content belonging to the thread url before merging the two pieces of data to create one spreadsheet. We will be re-using this spreadsheet in week 5 onwards. The data file should save the merged sheets but will take some time.  
-```{r redditComments, eval=FALSE}
+```{r redditComments, ttr.output = ".numberLines"}
 #Save the options as variables
 #try Glasgow+Pact
 query_term = "COP26"
@@ -317,76 +408,204 @@ query_term = "COP26"
 sub_reddit= NA
 
 sort_ops = "comments"
+
 #period can be changed. Type ?find_thread_urls into the terminal to get help. 
 time_period = "week"
 
 #Get the Reddit urls that match contain the keyword that we are looking for
-reddit_urls = find_thread_urls(keywords = query_term, subreddit= sub_reddit, sort_by = sort_ops, period = time_period)
+reddit_urls = find_thread_urls(keywords = query_term, subreddit= sub_reddit,
+                               sort_by = sort_ops, period = time_period)
 #now we get the associated content
 reddit_data = get_thread_content(reddit_urls$url)
 
+# Combine the two data frames.
 merged_data = merge(reddit_data$threads, reddit_data$comments, by="url")
-csvFileName = paste("reddit_",query_term, Sys.time(), '.csv',sep = '_')
-write.csv(merged_data, csvFileName)
+
+# Store the combined data frame into a file.
+csvFileName = paste0("reddit_",query_term,"_", Sys.Date(), '.csv')
+write.csv(merged_data, paste0("data/week2/", csvFileName))
 ```
+
+Is there anything that you notice about the query and how it is structured?
+
+???
+
+In the first query, we search for all the threads that mention the query term and return a sorted list within the given time frame. 
+
+In the second term, we search for the content belonging to the thread url before merging the two pieces of data to create one spreadsheet. We will be re-using this spreadsheet in week 5 onwards. The data file should save the merged sheets but will take some time.  
+
 Once the initial data has been found, we can use the data to identify potential subreddits to focus our query. We may also need to check our query terms to see what is returned by the query. This is part of the iterative nature of digital methods. We begin with general queries and then follow the signals in the data to test our hypotheses and to refine our query.  
 
-First we might want to read the column names to understand the format. You should reflect on how the metadata suggests the data format and how we might use it to reflect on what type of  
-```{r, getColNames, eval=FALSE}
+---
+
+### What did just happened?!
+
+```{r include=FALSE, eval=TRUE}
+# To load the data again. This is t save time and not running the reddit query.
+load("data/week2/reddit-data.RData")
+```
+
+First we might want to **read the column names** to understand the format. You should reflect on how the metadata suggests the data format.
+
+```{r, getColNames, eval=TRUE}
 colnames(reddit_data$threads)
 ```
-We might want to inspect the first few rows of data. We can use R's head() function on the reddit dataframe to look at what the data might be. 
-```{r inspectData, eval=FALSE}
+We might want to **inspect the first few rows of data**. We can use R's `head()` function on the reddit dataframe to look at what the data might be. 
+
+```{r inspectData, eval=TRUE}
 head(merged_data)
 ```
+
+---
+
+class: interaction
+
+### Questions:
+
+A simple search has been set up for you in the code examples. Let's discuss what would happend if we made the following changes:
+
+* If you are searching for a particular term, how else might you do it? 
+* What happens when the sorting operation is changed? 
+* How might the timeliness of the query affect your search term?
+* `RedditextractoR` provides a `find_subbreddit()` function to find the subreddits that contain a particular term. How might that be used? What code might you re-use to write the result out to CSV?
+
+This function could be used to compare query terms to find common subreddits. 
+
+
+
+---
+
+class: interaction
+
 ### Reddit API Affordances Lab Exercise
 
-In this exercise, I want you to look the documentation for one of the software packages that we are using and to reflect on the changes between them. The RedditextractoR library changed to echo changes in the Reddit API. By reading and comparing the documentation, we can start to explore the changing affordances and to apply the Davis and Chouinard framework. 
+The `RedditextractoR` library changed to echo changes in the Reddit API. By reading and comparing the documentation, we can start to explore the changing affordances and to apply the Davis and Chouinard framework. 
 
 What are the changes between software versions? Hint: compare the functions and read what they do.
+
+.pull-left[
+**v.2.1.5**
+
+![](figs/data-affordances/redditextractoR-doc-2.1.5.png)
+
+[Source](https://www.rdocumentation.org/packages/RedditExtractoR/versions/2.1.5)
+
+]
+
+.pull-right[
+**v.3.0.5**
+
+
+![](figs/data-affordances/redditextractoR-doc-3.0.5.png)
+
+[Source](https://www.rdocumentation.org/packages/RedditExtractoR/versions/3.0.5)
+]
+
+???
+
+In this exercise, I want you to look the documentation for one of the software packages that we are using and to reflect on the changes between them. 
+
+...
 
 How has the API changed? How does this explain its slowness to respond to the query? The FAQ may help here. 
 
 What does it also say about the R language version as well?
 
-Two useful links. 
-
-2.1.5: https://www.rdocumentation.org/packages/RedditExtractoR/versions/2.1.5
-
-3.0.5: https://www.rdocumentation.org/packages/RedditExtractoR/versions/3.0.5
-
 In this exercise, you glimpse the changing affordances of the API and the software through reading its documentation. Such readings provide ways of us questioning the affordances and who suggests or controls these changes. 
 
-## Twitter
-Twitter is a commonly used site for exploring social media. However, it has evolved into having a different purpose in social media than Reddit. Reddit is based on boards and commenting on posts where Twitter has become a perpetual, real-time feed. 
+---
 
-We can use Rtweet's search_tweets to get the tweets data for 6 to 9 days using the Twitter API. By default, we are collecting 1000 tweets but the maximum is 18000. We remove the retweets but change it to true to get them. If we include retweets, then they will be returned in the data and the query will get fewer original tweets. If you are looking at media affects in Twitter, then you might want to use the retweets to examine both how and how a tweet is retweeted in the data set. If you are looking at the information from a term, then you might want to ignore retweets to get more original information. 
+## ![Twitter](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Twitter-logo.svg/100px-Twitter-logo.svg.png) Twitter 
+
+.pull-left[
+Twitter is a commonly used site for exploring social media. However, it has evolved into having a different purpose in social media than Reddit. Reddit is based on boards and commenting on posts where .highlight[Twitter has become a perpetual, real-time feed]. 
+
+
+
+]
+
+.pull-right[
+![](figs/data-affordances/twitter-screenshot.png)
+]
+---
+
+### Rtweet
+.pull-left[
+We can use [`Rtweet`](https://docs.ropensci.org/rtweet/)'s `search_tweets()` to get the tweets data for 6 to 9 days using the Twitter API. By default, we are collecting 1000 tweets but the maximum is 18000. We remove the retweets but change it to true to get them. If we include retweets, then they will be returned in the data and the query will get fewer original tweets. If you are looking at media affects in Twitter, then you might want to use the retweets to examine both how and how a tweet is retweeted in the data set. If you are looking at the information from a term, then you might want to ignore retweets to get more original information. 
+
+]
+
+.pull-right[
+
+![](figs/data-affordances/rtweet.png)
+]
+
+---
 
 ### Authentication
-To use rtweet, you will have to sign into Twitter with your own account. The API will open up a browser on the first search. Sign in and close the window. After you have searched once, and while the cookie is active, you should be authenticated automatically. 
+
+To use `rtweet`, you will have to sign into Twitter with your own account. The API will open up a browser on the first search. Sign in and close the window. After you have searched once, and while the cookie is active, you should be authenticated automatically. 
+
+---
 
 ### Exercise
-In this search, I use the term "ParisAgreement", which is both a username for the Paris Agreement process and a main hashtag for the event. It is worth taking a moment to compare the terms being used to search for data and to think about what it means for the query term. 
-```{r tweets, eval=FALSE}
+
+In this search, I use the term `COP26`, which is both a username in Twitter and a main hashtag for the event. 
+
+```{r tweets, ttr.output = ".numberLines"}
 #Save the options as variables
-query = 'COP26'
+query = 'COP26' #try with GlasgowPact, too
 number_tweets = 1000
 
 #Get the Twitter data. Retweets are excluded.
 tweets <- search_tweets(query, n=number_tweets, include_rts = FALSE)
 
 #Create the CSV name with the source, query and time and write it to local folder
-csvFileName = paste("twitter",query, Sys.time(), '.csv',sep = '_')
-rtweet::write_as_csv(tweets, csvFileName)
+csvFileName = paste0("twitter", "_", query, "_", Sys.Date(), '.csv')
+rtweet::write_as_csv(tweets, paste0("data/week2/",csvFileName))
 ```
 
-We can use head() to see the type of data before we open the file. 
-```{r, eval=FALSE}
+--
+
+It is worth taking a moment to compare the terms being used to search for data and to think about what it means for the query term. Does it change the results? How might time affect the search?
+
+---
+
+### What did just happened?!
+
+```{r include=FALSE, eval=TRUE}
+# To load the data again. This is t save time and not running the reddit query.
+load("data/week2/twitter-data.RData")
+```
+
+---
+
+We can use `colnames()` to see the the names of the attributes/colum names before we open the file. 
+
+```{r, eval=TRUE}
 colnames(tweets)
 ```
-```{r inspectTwitter, eval=F}
+
+---
+
+...or `str()` to see the column's names and types
+
+```{r, eval=TRUE}
+str(tweets)
+```
+
+---
+
+...or we can use `head()` to see the type of data before we open the file. 
+
+```{r inspectTwitter, eval=T}
 head(tweets)
 ```
+
+
+---
+
+class: interaction
 
 ### Format and Data Lab Exercise
 
@@ -394,10 +613,15 @@ In your groups, look at the data that you have from both queries. What does the 
 
 You might want to consider the metadata and what that says about the underlying infrastructure. If you compare the files, what differences do you see? 
 
+---
+
+class: slide-primary
 
 ## Conclusion
 
 In this lab, we look at the same issue but using two different data sources. These can be used to consider the affordances of APIs against the search in session. When we query the data, the format affects how the data is presented but also gives a space for consideration of the medium. 
+
+---
 
 ## Bibliography
 
