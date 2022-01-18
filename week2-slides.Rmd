@@ -17,8 +17,15 @@ output:
     yolo: false
 ---
 
-```{r setup, include=FALSE}
+```{r setup, echo=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+
+# Xaringan Extra configuration. +info: https://pkg.garrickadenbuie.com/xaringanExtra
+xaringanExtra::use_tile_view()
+xaringanExtra::use_broadcast()
+# xaringanExtra::use_scribble()
+xaringanExtra::use_progress_bar(color = "#552D62", location = "bottom")
+
 ```
 
 
@@ -437,8 +444,9 @@ In the second term, we search for the content belonging to the thread url before
 Once the initial data has been found, we can use the data to identify potential subreddits to focus our query. We may also need to check our query terms to see what is returned by the query. This is part of the iterative nature of digital methods. We begin with general queries and then follow the signals in the data to test our hypotheses and to refine our query.  
 
 ---
+layout:true
 
-### What did just happened?!
+### What did just happen?!
 
 ```{r include=FALSE, eval=TRUE}
 # To load the data again. This is t save time and not running the reddit query.
@@ -450,6 +458,9 @@ First we might want to **read the column names** to understand the format. You s
 ```{r, getColNames, eval=TRUE}
 colnames(reddit_data$threads)
 ```
+
+---
+
 We might want to **inspect the first few rows of data**. We can use R's `head()` function on the reddit dataframe to look at what the data might be. 
 
 ```{r inspectData, eval=TRUE}
@@ -458,6 +469,7 @@ head(merged_data)
 
 ---
 
+layout: false
 class: interaction
 
 ### Questions:
@@ -470,8 +482,6 @@ A simple search has been set up for you in the code examples. Let's discuss what
 * `RedditextractoR` provides a `find_subbreddit()` function to find the subreddits that contain a particular term. How might that be used? What code might you re-use to write the result out to CSV?
 
 This function could be used to compare query terms to find common subreddits. 
-
-
 
 ---
 
@@ -530,6 +540,7 @@ Twitter is a commonly used site for exploring social media. However, it has evol
 ---
 
 ### Rtweet
+
 .pull-left[
 We can use [`Rtweet`](https://docs.ropensci.org/rtweet/)'s `search_tweets()` to get the tweets data for 6 to 9 days using the Twitter API. By default, we are collecting 1000 tweets but the maximum is 18000. We remove the retweets but change it to true to get them. If we include retweets, then they will be returned in the data and the query will get fewer original tweets. If you are looking at media affects in Twitter, then you might want to use the retweets to examine both how and how a tweet is retweeted in the data set. If you are looking at the information from a term, then you might want to ignore retweets to get more original information. 
 
@@ -571,7 +582,9 @@ It is worth taking a moment to compare the terms being used to search for data a
 
 ---
 
-### What did just happened?!
+layout: true
+
+### What did just happen?!
 
 ```{r include=FALSE, eval=TRUE}
 # To load the data again. This is t save time and not running the reddit query.
@@ -605,6 +618,7 @@ head(tweets)
 
 ---
 
+layout: false
 class: interaction
 
 ### Format and Data Lab Exercise

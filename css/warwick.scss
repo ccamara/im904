@@ -64,6 +64,14 @@ a {
   //background-color: rgba($w_grey,.5);
   background-color: #9B9C9C;
   color: white;
+  
+  a {
+    color: white !important;
+    &:hover {
+      background-color: white;
+      color: $color-primary !important;
+    }
+  }
 }
 
 /* Title slide */
