@@ -5,7 +5,13 @@
   GithubSHA1: cea0773a8cfd5e593e4985e87665f513a7fe2d3f
 - Package: remotes
   Repository: CRAN
-  Version: 2.4.1
+  Version: 2.4.2
 - Package: knitr
   Repository: CRAN
   Version: '1.37'
+- Package: rtweet
+  Repository: CRAN
+  Version: 0.7.0
+- Package: RedditExtractoR
+  Repository: CRAN
+  Version: 3.0.5
