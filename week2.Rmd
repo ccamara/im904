@@ -115,7 +115,7 @@ reddit_urls = find_thread_urls(keywords = query_term, subreddit= sub_reddit, sor
 reddit_data = get_thread_content(reddit_urls$url)
 
 merged_data = merge(reddit_data$threads, reddit_data$comments, by="url")
-csvFileName = paste("reddit_",query_term, Sys.time(), '.csv',sep = '_')
+csvFileName = paste("reddit_",query_term, '.csv',sep = '_')
 write.csv(merged_data, csvFileName)
 ```
 Once the initial data has been found, we can use the data to identify potential subreddits to focus our query. We may also need to check our query terms to see what is returned by the query. This is part of the iterative nature of digital methods. We begin with general queries and then follow the signals in the data to test our hypotheses and to refine our query.  
@@ -132,10 +132,32 @@ head(merged_data)
 
 A simple search has been set up for you in the code examples. However, what happens when the sorting operation is changed? How might the timeliness of the query affect your search term?
 
+```{r redditCommentsNew, eval=FALSE}
+#Save the options as variables
+#try Glasgow+Pact
+query_term = "Biden"
+
+#we might want to filter our search to a particular subreddit
+sub_reddit= "conspiracy"
+
+sort_ops = "hot"
+#period can be changed. Type ?find_thread_urls into the terminal to get help. 
+time_period = "week"
+
+#Get the Reddit urls that match contain the keyword that we are looking for
+reddit_urls = find_thread_urls(keywords = query_term, subreddit= sub_reddit, sort_by = sort_ops, period = time_period)
+#now we get the associated content
+reddit_data = get_thread_content(reddit_urls$url)
+
+merged_data = merge(reddit_data$threads, reddit_data$comments, by="url")
+csvFileName = paste("reddit_",query_term, '.csv',sep = '_')
+write.csv(merged_data, csvFileName)
+```
+
 If you are searching for a particular term, how else might you do it? RedditextractoR provides a find_subbreddit() function to find the subreddits that contain a particular term. How might that be used? What code might you re-use to write the result out to CSV?
 ```{r findSubbredt, eval=F}
 #query uses the find_subreddits function to get relevant subreddits
-# for a keyword. CUoud be used to identify relevant communities.
+# for a keyword. Could be used to identify relevant communities.
 subs = find_subreddits(query_term)
 write.csv(subs, "found_subreddits.csv")
 ```
@@ -172,7 +194,7 @@ To use rtweet, you will have to sign into Twitter with your own account. The API
 In this search, I use the term "COP26", which is both a username in Twitter and a main hashtag for the event. It is worth taking a moment to compare the terms being used to search for data and to think about what it means for the query term. Does it change the results? How might time affect the search?
 ```{r tweets, eval=FALSE}
 #Save the options as variables
-#try GlasgowPact
+#try #GlasgowPact
 query = 'COP26'
 number_tweets = 1000
 
@@ -197,7 +219,6 @@ head(tweets)
 In your groups, look at the data that you have from both queries. What does the metadata tell you about the data and the platform? What kind of data might you get from these platforms? You should be considering the affordances of the platform and the data as well as its format. 
 
 You might want to consider the metadata and what that says about the underlying infrastructure. If you compare the files, what differences do you see? 
-
 
 ## Conclusion
 
