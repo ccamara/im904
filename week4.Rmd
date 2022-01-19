@@ -67,12 +67,28 @@ In the first part of the lab, we will introduce you to graphs and networks throu
 
 Who mentions whom? It might be useful to know which accounts refer to other accounts, which can be used to begin to determine where links might exist. By linking actors and users together, we create a graph object of a series of relationships between them. We can use code to create representations that suggest where we might look to interpret the data.
 
+In the code below, an example of creating a link between posters and commenters from the Reddit data is shown. We use R to extract the author names from the posts (author.x) and the commenters (author.y) in the dataset to create a simple, directed, unweighted graph as an example of how to use igraph to create your own graphs. 
+
+The code takes twoq columns from the dataframe. The columns should represent something that can be linked, which might be people, hashtags, topics, or collocations. This may involve other processing steps to prepare the data. Once the graph is in an R dataframe, we convert it using the igraph functions and export it in the same way as we do with the Twitter example. 
+```{r redditUser, eval=F}
+redditFname = "reddit__COP26_2022-01-18 13:42:06_.csv"
+reddit_data = read.csv(redditFname, stringsAsFactors = F)
+#let's link the post authors to the commenters as a basic network. 
+#first, create a new dataframe with the right columns. 
+reddit_mentions_df = data.frame(from=reddit_data$author.x, to=reddit_data$author.y)
+#convert the data frame to a graph.
+# use ?graph.data.frame to get more detail in the parameters
+reddit_network <- igraph::graph.data.frame(reddit_mentions_df)
+#now write it out. 
+igraph::write.graph(reddit_network, 'reddit_mention.graphml', format = 'graphml')
+```
+
 Let us consider some data using week 2's Twitter data set. 
 
 ```{r getGraph, eval=F}
 # We'll use the last week's data to re-use our existing data.
 #You can comment this with a # and uncomment the above code to get the data from Reddit
-twitterFname = "twitter_COP26_2021-11-22 12:20:53_.csv"
+twitterFname = "twitter_COP26_2022-01-18 14:21:20_.csv"
 twitter_data = read.csv(twitterFname, stringsAsFactors = F)
 #we'll take a small set of the data
 mentions_df = twitter_data[1:250, ]
@@ -86,7 +102,7 @@ Now that we have a structure, we can can write it out to a GraphML.
 ```{r inspectR, eval=F}
 # Remove the text from the title as it causes some random issues. 
 #x <- set_edge_attr(network_list$igraph, 'title', value = '')
-igraph::write.graph(network_list, '~/Desktop/twitter_mention.graphml', format = 'graphml')
+igraph::write.graph(network_list, 'twitter_mention.graphml', format = 'graphml')
 ```
 
 We are going to use Gephi to look at the directed network of the changes and who made them. Please note that the visualisation that you have may be different.  
