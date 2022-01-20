@@ -43,6 +43,13 @@ Before you start this lab, you must have:
 *	A Twitter account;
 *	Installed R, RStudio, and the `knitr` package
 
+
+```r
+install.packages('knitr')
+install.packages('RedditExtractoR')
+install.packages('rtweet')
+```
+
 ---
 
 ## Learning Objectives
@@ -63,7 +70,22 @@ After this lesson, you should be able to:
 
 ## APIs and Software Development Kits
 
-We will be using community created Software Development Kits (SDK) to read the APIs to get data. Sometimes API developers will provide an SDK to help access the data and build in the allowed methods. In these cases, we are using tools that developers who like R have built for use. We need to be aware of their limitations in terms of methods provided. These tools are useful to them and they have given it back to the R community. 
+We will be using 
+* **Application programming interface (API)** : 
+  > a connection between computers or between computer programs. It is a type of software interface, offering a service to other pieces of software.[1] A document or standard that describes how to build or use such a connection or interface is called an API specification. A computer system that meets this standard is said to implement or expose an API. The term API may refer either to the specification or to the implementation. 
+
+* Community created **Software Development Kits (SDK)** to read the APIs to get data. Sometimes API developers will provide an SDK to help access the data and build in the allowed methods. In these cases, we are using tools that developers who like R have built for use. We need to be aware of their limitations in terms of methods provided. These tools are useful to them and they have given it back to the R community. 
+
+  * RedditExtractoR: https://github.com/ivan-rivera/RedditExtractoR
+  * rtweet: https://docs.ropensci.org/rtweet/
+
+Enable the libraries:
+
+```{r}
+library(RedditExtractoR)
+library(rtweet)
+```
+
 
 ---
 
@@ -407,6 +429,8 @@ class: interaction
 In this first exercise, we will use Reddit to get the reddit comments for the query term (`COP26`). 
 
 ```{r redditComments, ttr.output = ".numberLines"}
+library(RedditExtractoR)
+
 #Save the options as variables
 #try Glasgow+Pact
 query_term = "COP26"
@@ -564,8 +588,10 @@ To use `rtweet`, you will have to sign into Twitter with your own account. The A
 In this search, I use the term `COP26`, which is both a username in Twitter and a main hashtag for the event. 
 
 ```{r tweets, ttr.output = ".numberLines"}
+library(rtweet)
+
 #Save the options as variables
-query = 'COP26' #try with GlasgowPact, too
+query_term = "COP26" #try with GlasgowPact, too
 number_tweets = 1000
 
 #Get the Twitter data. Retweets are excluded.
@@ -629,11 +655,26 @@ You might want to consider the metadata and what that says about the underlying 
 
 ---
 
+class: interaction
+
+## Other APIs
+
+* Do you know of other APIs?
+
+--
+
+  * Wikidata: https://query.wikidata.org/
+  * OpenStreetMap's Overpass: http://overpass-turbo.eu/
+
+---
+
 class: slide-primary
 
 ## Conclusion
 
-In this lab, we look at the same issue but using two different data sources. These can be used to consider the affordances of APIs against the search in session. When we query the data, the format affects how the data is presented but also gives a space for consideration of the medium. 
+In this lab, we look at the same issue but using two different data sources. These can be used to consider the affordances of APIs against the search in session.
+
+When we query the data, the format affects how the data is presented but also gives a space for consideration of the medium. 
 
 ---
 
