@@ -23,6 +23,24 @@ https://www.downthemall.org
 
 It might help if you have many images that you want to collect. 
 
+### Recipe for Batch Downloading innDownThemAll
+
+This example uses the Twitter sheet from week 2. This assumes that you have already installed downthemall as an extension. 
+
+*  Select URLs from the media_url column. You can select all if you wish, or just a few. 
+
+*  Open a new text file or spreadsheet and paste the values into it. Save it. 
+
+*  Click on the extension icon and select "Manager"
+
+*  Right click in the main white box and select import from file. 
+
+*  Select images in the options and the images will become green. 
+
+*  Make any other changes to the options and thn select Download. 
+
+The images should save your Download folder. 
+
 ## Learning Objectives
 After this lesson, you should be able to:
 
