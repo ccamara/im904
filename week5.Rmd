@@ -244,3 +244,5 @@ Silge, J and Robinson, D. 2013. Text Mining with R. O'Reilly, Sebastopol.
 Rieder, B., Abdulla, R., Poell, T., Woltering, R., Zack, L., 2015. Data critique and analytical opportunities for very large Facebook Pages: Lessons learned from exploring “We are all Khaled Said.” Big Data & Society 2, 205395171561498. https://doi.org/10.1177/2053951715614980
 
 Thelwall, M. 2018. 'Social Media Analytics for YouTube Comments: Potential and Limitations'. International Journal of Social Research Methodology 21:3, pp 303–16. 
+
+https://datajournalism.com/read/handbook/two/working-with-data/text-as-data-finding-stories-in-corpora
