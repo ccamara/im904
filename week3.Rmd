@@ -52,7 +52,7 @@ Social media relies on various types of networks to link information and people 
 
 This sort of analysis treats images as data. We are not thinking about its content but its metadata. Phototrails (Hochman and Manovich, 2013; Manovich, Hochman, and Chow, 2013) uses a tool to organise images from particular locations to discover patterns. Lev Manovich has also created visualisations from image collections (Manovich, 2020: 176-180) to represent them in other ways, such as creating arranging the images by date in a histogram. While we are not using such software, these techniques can be partially repurposed to interrogate them. 
 
-In this first exercise, we will look at the networks that can be found within networks using a close reading. Social media posts may contain images that we can further read to get other information from them.
+In this first exercise, we will look at the images that can be found within networks using a close reading. Social media posts may contain images that we can further read to get other information from them.
 
 We might now only follow the hashtags or mentions to discover other images? We should also look at how the hashtag is used and whether it is linked to a person or a phrase?
 
