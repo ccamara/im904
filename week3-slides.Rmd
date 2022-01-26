@@ -401,9 +401,9 @@ images are ordered by a particular theme, such as a location or feature. These m
 ]
 
 .pull-right[
-<!-- ![](figs/images/colomobo_cluster.png) -->
+![](figs/images/colomobo_cluster.png)
 
-![](figs/images/images_cluster.png)
+<!-- ![](figs/images/images_cluster.png) -->
 ]
 ---
 
