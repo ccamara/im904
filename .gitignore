@@ -1,6 +1,8 @@
 *.csv
 *.docx
 .Rproj.user
+figs/*/downloads
+
 
 # Ignore OS specific files 
 .DS_Store
