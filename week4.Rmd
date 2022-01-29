@@ -85,7 +85,7 @@ igraph::write.graph(reddit_network, 'reddit_mention.graphml', format = 'graphml'
 
 Let us consider some data using week 2's Twitter data set. 
 
-```{r getGraph, eval=F}
+```{r getTwitterData, eval=F}
 # We'll use the last week's data to re-use our existing data.
 #You can comment this with a # and uncomment the above code to get the data from Reddit
 twitterFname = "twitter_COP26_2022-01-18 14:21:20_.csv"
@@ -94,12 +94,12 @@ twitter_data = read.csv(twitterFname, stringsAsFactors = F)
 mentions_df = twitter_data[1:250, ]
 ```
 We'll use the network_graph function from rtweet to put into the form that the igraph package expects. We will focus on the mentions in Twitter to the 
-```{r networkeddit, eval=F}
+```{r networkTwitter, eval=F}
 #other options -> retweet, reply, quote
 network_list <- rtweet:: network_graph(mentions_df, .e = "mention")
 ```
 Now that we have a structure, we can can write it out to a GraphML. 
-```{r inspectR, eval=F}
+```{r networkTwitterExport, eval=F}
 # Remove the text from the title as it causes some random issues. 
 #x <- set_edge_attr(network_list$igraph, 'title', value = '')
 igraph::write.graph(network_list, 'twitter_mention.graphml', format = 'graphml')
