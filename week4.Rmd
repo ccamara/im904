@@ -144,15 +144,21 @@ In-degree: here we are looking at the way that the number of degrees (or links) 
 
 Out-degree: here we look at the number of links that nodes are generating. These show us what is being actively linked from by a particular entity. 
 
+#### Recipe: visualising degrees
+
 First all of all, we need to make sure that the graph is loaded to review the degrees. 
 
-*  Go to the appearance tab. 
+* Go to the appearance tab. 
 
-*  Select nodes from it. 
+* Select `nodes` from it. 
 
-*  Select in-degrees from the drop down menu. If you do not see this option, make sure that you have clicked on nodes. 
+* Click con `Color` icon
+  
+* Click on `Ranking`
 
-*  Then click on Apply.
+* Select `in-degrees` from the drop down menu. If you do not see this option, make sure that you have clicked on nodes. 
+
+* Then click on `Apply`.
 
 
 ![](figs/networks/in-degrees.png)
