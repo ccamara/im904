@@ -94,7 +94,7 @@ twitter_data = read.csv(twitterFname, stringsAsFactors = F)
 mentions_df = twitter_data[1:250, ]
 ```
 We'll use the network_graph function from rtweet to put into the form that the igraph package expects. We will focus on the mentions in Twitter to the 
-```{r networkReddit, eval=F}
+```{r networkeddit, eval=F}
 #other options -> retweet, reply, quote
 network_list <- rtweet:: network_graph(mentions_df, .e = "mention")
 ```
@@ -289,18 +289,6 @@ The networks presented in this session are not complete but will give you a hand
 Gephi is a very powerful tool for network analysis. The Gephi website contains a web page dedicated to learning materials - the page is [https://gephi.org/users/](https://gephi.org/users/). In particular, the learning materials for visualisation ([https://gephi.org/users/tutorial-visualization/](https://gephi.org/users/tutorial-visualization/)) and layouts,  ([https://gephi.org/users/tutorial-layouts/](https://gephi.org/users/tutorial-layouts/)) are useful. It should be understood as an exploratory tool as well as a way of creating visualisations. The algorithms and statistics provide a useful way of exploring the network object. 
 
 You should now understand the idea of the network as both computational and visual representation.
-
-## Appendix 1
-If you are interested in using this with Twitter, some sample code is below:
-
-```{r, twitterNetowrk, eval=F}
-library(rtweet)
-rstats <- search_tweets("#rstats", n = 200)
-## create from-to data frame representing retweet/mention/reply connections
-rstats_net <- network_data(rstats, "retweet,mention,reply")
-x <- set_edge_attr(network_list$igraph, 'title', value = '')
-igraph::write.graph(x, '~/Desktop/twitter_mention.graphml', format = 'graphml')
-```
 
 
 ## Bibliography
