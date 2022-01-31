@@ -23,7 +23,7 @@ https://www.downthemall.org
 
 It might help if you have many images that you want to collect. 
 
-### Recipe for Batch Downloading innDownThemAll
+### Recipe for Batch Downloading in DownThemAll
 
 This example uses the Twitter sheet from week 2. This assumes that you have already installed downthemall as an extension. 
 
