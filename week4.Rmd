@@ -152,7 +152,7 @@ First all of all, we need to make sure that the graph is loaded to review the de
 
 * Select `nodes` from it. 
 
-* Click con `Color` icon
+* Click on `Color` icon
   
 * Click on `Ranking`
 
