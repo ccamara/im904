@@ -93,7 +93,7 @@ twitter_data = read.csv(twitterFname, stringsAsFactors = F)
 #we'll take a small set of the data
 mentions_df = twitter_data[1:250, ]
 ```
-We'll use the network_graph function from rtweet to put into the form that the igraph package expects. We will focus on the mentions in Twitter to the 
+We'll use the network_graph function from rtweet to put into the form that the igraph package expects. We will focus on the mentions in Twitter, but we can look at retweets, replies or quotes. 
 ```{r networkTwitter, eval=F}
 #other options -> retweet, reply, quote
 network_list <- rtweet:: network_graph(mentions_df, .e = "mention")
