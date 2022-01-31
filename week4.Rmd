@@ -61,7 +61,49 @@ library('rtweet')
 ## Basic Graphs and Networks
 Today we are introducing Gephi and network analysis. You may want to review the below resources to better orientate yourself when using the Gephi program and looking at network output from Wikipedia.
 
-In the first part of the lab, we will introduce you to graphs and networks through two fictional examples. In the second part, we will use R to create an edit network: a network of people who changed pages on Wikipedia. 
+In the first part of the lab, we will introduce you to graphs and networks through two fictional examples. 
+
+Where each node (vertex, circle) is a hashtag and each edge (line between the nodes) has a weight (the number of co-occurences). 
+
+Imagine we have collected the following tweets:
+
+| Tweet                                           |
+|-------------------------------------------------|
+| I think we have a great president #trump #great |
+| Music makes everything better #musicphile       |
+| My goodness #awful #trump                       |
+| Let's keep #trump #awful or #great again?       |
+
+In our network, each node will be a hashtag.
+
+```{r hashtag_nodes, echo=FALSE, fig.height = 6, fig.width = 9}
+x <- make_empty_graph(directed = FALSE) %>%
+  add_vertices(1, label = 'trump', name = 'trump') %>%
+  add_vertices(1, label = 'great', name = 'great') %>%
+  add_vertices(1, label = 'musicphile', name = 'musicphile') %>%
+  add_vertices(1, label = 'awful', name = 'awful')
+
+plot(x, vertex.size = 100)
+```
+
+Some of the hashtags occur in same tweet. If we were to create a table of the cooccurences we would have
+
+| Hashtag1 | Hashtag2 | Co-occcurence| 
+|----------|----------|--------------|
+| trump    | great    | 2            |
+| trump    | awful    | 2            |
+
+in a co-occurence network, hashtags which co-occur have a line drawn between them like so
+
+```{r hashtag_edges, echo=FALSE, fig.height = 6, fig.width = 9}
+x <- x %>%
+  add_edges(c('trump', 'awful'), weight = 2) %>%
+  add_edges(c('trump', 'great'), weight = 2)
+
+plot(x, layout = layout_as_star, vertex.size = 100)
+```
+
+Analysing tweets in this way allows one to identify clusters of tweets which occur together. How might this help you to understand your data better?
 
 ### Mention Network
 
@@ -125,7 +167,7 @@ The mention graph shows who mentions whom within the data. It is worth reading t
 
 In doing this, you have seen what a graph object is and how to create a user network using the Twitter functions. Using the GraphML export, you have glimpsed the Gephi tool and we will be turning to it for the remainder of the lab. Although Gephi is powerful way of creating visualisations, it is also a useful way to explore the network as an object.
 
-Now that the basic concepts have been introduced, one question that you might want to answer is what type of graph is being presented? We will be using a mentions network where the people being linked have been mentioned in a comment or appear on the same thread. You might also see citation networks where articles are being linked or editorial networks, for instance in Wikipedia, where the editors of articles are networked to see what else they edited. 
+Now that the basic concepts have been introduced, one question that you might want to answer is what type of graph is being presented? We will be using a mentions network where the people being linked have been mentioned in a comment or appear on the same thread.
 
 Now that we have the data inside Gephi, we are going to go through some exercises to understand how to read the networks. We are going to use methods presented in some of the seminar reading to read the Reddit data. 
 
