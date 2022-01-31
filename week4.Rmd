@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Introduction
 
-In this session, we will be looking at the use of networks and the graphing tools. We will begin with a brief introduction to graphs before looking at building our own small dataset of changes in Wikipedia using an R package. We will then look at using the Gephi tool to further query the data and to explore it. In the first section, we will look at the idea of a graph as an object. 
+In this session, we will be looking at the use of networks and the graphing tools. We will begin with a brief introduction to graphs before looking at building our own graph. We will then look at using the Gephi tool to further query the data and to explore it. In the first section, we will look at the idea of a graph as an object. 
 
 When we are looking at networks, we should be aware of the affordances of the platform or data source. Let's think about friends. What would these mean on the Facebook? Would Twitter or Reddit agree? Why or why not? How are these modelled by the platforms?
 
