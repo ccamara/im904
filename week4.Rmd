@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 In this session, we will be looking at the use of networks and the graphing tools. We will begin with a brief introduction to graphs before looking at building our own small dataset of changes in Wikipedia using an R package. We will then look at using the Gephi tool to further query the data and to explore it. In the first section, we will look at the idea of a graph as an object. 
 
-When we are looking at networks, we should be aware of the affordances of the platform or data source. Let's thin about friends. What would these mean on the Facebook? Would Twitter or Reddit agree? Why or why not? How are these modelled by the platforms?
+When we are looking at networks, we should be aware of the affordances of the platform or data source. Let's think about friends. What would these mean on the Facebook? Would Twitter or Reddit agree? Why or why not? How are these modelled by the platforms?
 
 ### Learning Objectives
 By the end of this lesson, you will:
@@ -69,7 +69,7 @@ Who mentions whom? It might be useful to know which accounts refer to other acco
 
 In the code below, an example of creating a link between posters and commenters from the Reddit data is shown. We use R to extract the author names from the posts (author.x) and the commenters (author.y) in the dataset to create a simple, directed, unweighted graph as an example of how to use igraph to create your own graphs. 
 
-The code takes twoq columns from the dataframe. The columns should represent something that can be linked, which might be people, hashtags, topics, or collocations. This may involve other processing steps to prepare the data. Once the graph is in an R dataframe, we convert it using the igraph functions and export it in the same way as we do with the Twitter example. 
+The code takes two columns from the dataframe. The columns should represent something that can be linked, which might be people, hashtags, topics, or collocations. This may involve other processing steps to prepare the data. Once the graph is in an R dataframe, we convert it using the igraph functions and export it in the same way as we do with the Twitter example. 
 ```{r redditUser, eval=F}
 redditFname = "reddit__COP26_2022-01-18 13:42:06_.csv"
 reddit_data = read.csv(redditFname, stringsAsFactors = F)
@@ -179,7 +179,7 @@ In this exercise,I have used the Force Atlas 2 layout that is in Gephi to identi
 
 You may begin to see the clusters form but it can be very spread out. If you alter the scaling options in the "Tuning" section to 20.0 and gravity to 10.0, and re-run it, you may get a closer set of clusters. Changing these options allows you to partially interact with the graph and to make it more readable. Your image may look different and this is to be expected; the algorithm creates new representations each time. 
 
-We can read the layout to begin to see the overall set of communities. In the image that I have, there are four main clusters. The largest, on the right, has a very weak link that cannot really be seen between it and its smaller elements. Such a reading of the clusters at this level is useful as it provides a shape to question: why are the smaller elements there? What,or who, is in the larger cluster? There is a reason why the outliers exist: what was your original query? Do they speak to that query in a different way? 
+We can read the layout to begin to see the overall set of communities. In the image that I have, there are four main clusters. The largest, on the right, has a very weak link that cannot really be seen between it and its smaller elements. Such a reading of the clusters at this level is useful as it provides a shape to question: why are the smaller elements there? What, or who, is in the larger cluster? There is a reason why the outliers exist: what was your original query? Do they speak to that query in a different way? 
 
 We should interact with the clusters to begin to see how they are created. These larger patterns are often networks of networks, so we should begin to break these down. Itai Himelbaum and others have created a useful set of classifications for types of communities that we might find in our explorations (Himelbaum et al. 2017).
 
