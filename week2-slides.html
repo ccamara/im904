@@ -6,7 +6,6 @@
     <meta name="author" content="Iain Emsley, Carlos Cámara-Menoyo" />
     <script src="week2-slides_files/header-attrs-2.11/header-attrs.js"></script>
     <link href="week2-slides_files/remark-css-0.0.1/default.css" rel="stylesheet" />
-<<<<<<< HEAD
     <link href="week2-slides_files/tile-view-0.2.6/tile-view.css" rel="stylesheet" />
     <script src="week2-slides_files/tile-view-0.2.6/tile-view.js"></script>
     <script src="week2-slides_files/js-cookie-3.0.0/js.cookie.js"></script>
@@ -15,11 +14,8 @@
     <link href="week2-slides_files/xaringanExtra-broadcast-0.2.6/broadcast.css" rel="stylesheet" />
     <script src="week2-slides_files/xaringanExtra-broadcast-0.2.6/broadcast.js"></script>
     <script src="week2-slides_files/xaringanExtra-progressBar-0.0.1/progress-bar.js"></script>
-    <link rel="stylesheet" href="week2-slides_files/sass75641530e21bdeef74341035d8072c12/warwick.min.css" type="text/css" />
-=======
-    <link rel="stylesheet" href="week2-slides_files/sass79cede3d55bccceb8b0d80d88e875026/warwick.min.css" type="text/css" />
->>>>>>> d55731d (Adds slides' draft.)
-    <link rel="stylesheet" href="week2-slides_files/sassc87f85860c3bf1f886619f4ace23e9bf/warwick-fonts.min.css" type="text/css" />
+    <link rel="stylesheet" href="week2-slides_files/sass5da3691707b7c6f13685fdf276a48fe1/warwick.min.css" type="text/css" />
+    <link rel="stylesheet" href="week2-slides_files/sass3273d0e383f1ce432e8e6e82308d0fbd/warwick-fonts.min.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -33,7 +29,6 @@ class: center, middle, inverse, title-slide
 ---
 
 
-<<<<<<< HEAD
 <style>.xe__progress-bar__container {
   bottom:0;
   opacity: 1;
@@ -54,9 +49,6 @@ class: center, middle, inverse, title-slide
   0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
   100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
 }</style>
-=======
-
->>>>>>> d55731d (Adds slides' draft.)
 
 
 ## Introduction
@@ -73,7 +65,6 @@ Before you start this lab, you must have:
 *	A Twitter account;
 *	Installed R, RStudio, and the `knitr` package
 
-<<<<<<< HEAD
 
 ```r
 install.packages('knitr')
@@ -81,8 +72,6 @@ install.packages('RedditExtractoR')
 install.packages('rtweet')
 ```
 
-=======
->>>>>>> d55731d (Adds slides' draft.)
 ---
 
 ## Learning Objectives
@@ -103,7 +92,6 @@ After this lesson, you should be able to:
 
 ## APIs and Software Development Kits
 
-<<<<<<< HEAD
 We will be using 
 * **Application programming interface (API)** : 
   &gt; a connection between computers or between computer programs. It is a type of software interface, offering a service to other pieces of software.[1] A document or standard that describes how to build or use such a connection or interface is called an API specification. A computer system that meets this standard is said to implement or expose an API. The term API may refer either to the specification or to the implementation. 
@@ -121,9 +109,6 @@ library(RedditExtractoR)
 library(rtweet)
 ```
 
-=======
-We will be using community created Software Development Kits (SDK) to read the APIs to get data. Sometimes API developers will provide an SDK to help access the data and build in the allowed methods. In these cases, we are using tools that developers who like R have built for use. We need to be aware of their limitations in terms of methods provided. These tools are useful to them and they have given it back to the R community. 
->>>>>>> d55731d (Adds slides' draft.)
 
 ---
 
@@ -180,15 +165,9 @@ Using an SDK such as RedditExtractoR, we can retrieve the JSON representation fr
             "mod_reason_title": null,
             "gilded": 0,
             "clicked": false,
-<<<<<<< HEAD
 *           "title": "Design Last: Re-ordering the web design process around semantic HTML",
             "link_flair_richtext": [],
 *           "subreddit_name_prefixed": "r/web_design",
-=======
-            "title": "Design Last: Re-ordering the web design process around semantic HTML",
-            "link_flair_richtext": [],
-            "subreddit_name_prefixed": "r/web_design",
->>>>>>> d55731d (Adds slides' draft.)
             "hidden": false,
             "pwls": 6,
             "link_flair_css_class": null,
@@ -209,11 +188,7 @@ Using an SDK such as RedditExtractoR, we can retrieve the JSON representation fr
             "thumbnail_width": 70,
             "author_flair_template_id": null,
             "is_original_content": false,
-<<<<<<< HEAD
 *           "author_fullname": "t2_53v1v",
-=======
-            "author_fullname": "t2_53v1v",
->>>>>>> d55731d (Adds slides' draft.)
             "secure_media": null,
             "is_reddit_media_domain": false,
             "is_meta": false,
@@ -253,11 +228,7 @@ Using an SDK such as RedditExtractoR, we can retrieve the JSON representation fr
             "is_crosspostable": false,
             "pinned": false,
             "over_18": false,
-<<<<<<< HEAD
 *           "preview": {
-=======
-            "preview": {
->>>>>>> d55731d (Adds slides' draft.)
               "images": [
                 {
                   "source": {
@@ -289,11 +260,7 @@ Using an SDK such as RedditExtractoR, we can retrieve the JSON representation fr
             "mod_reason_by": null,
             "removal_reason": null,
             "link_flair_background_color": "",
-<<<<<<< HEAD
 *           "id": "2wjswo",
-=======
-            "id": "2wjswo",
->>>>>>> d55731d (Adds slides' draft.)
             "is_robot_indexable": true,
             "num_duplicates": 0,
             "report_reasons": null,
@@ -326,7 +293,6 @@ Using an SDK such as RedditExtractoR, we can retrieve the JSON representation fr
 ---
 
 
-<<<<<<< HEAD
 ## Affordances
 
 .pull-left[
@@ -369,21 +335,11 @@ layout: true
 The APIs also refuse (Davis and Chouinard, 2017:4) in different ways. The APIs allow you to search the site but .highlight[only under certain conditions]. APIs are often governed by the Terms of Use that can be algorithmically enforced in APIs - for instance, blocking or timing out requests if too many are made within a period, .highlight[they may change with some, little or no notice], the data that is returned is selected by the company, and some require registration to get a key or token. 
 
 Results are limited by API's permissions, which may affect:
-=======
----
-
-## Affordances
-
-One of the challenges is to consider the affordances of an API. When using a search engine, the engine is part of the results that are given to you. The interfaces are part of the process of getting and providing information for you in a relatively similar way. It encourages play and use to get extra signals to personalise the data to the search. When using data APIs, you will be given data in the format that the API presents and it will return either data or error codes. APIs are permissioned interfaces into a site's data. They support machine queries, which we will use below, of parts of their database using certain URLs to denote what they provide. The response given will be in a machine readable format that will need to be converted to be read. However, they will not supply hints to you for the next term or commonly used queries so you will need to think carefully about your query design and be more iterative. You may need to repeat queries after you have interpreted the data.  
-
-The permissions may affect:
->>>>>>> d55731d (Adds slides' draft.)
 
 * the number of queries that you can run in a given time, 
 * the amount of data that can be retrieved, or even 
 * the time ranges for the data. 
 
-<<<<<<< HEAD
 
 The software that is used also contains affordances, based on the API, but also what it allows the user to achieve and its reliance on computational objects, such as types or data structures. It is helpful to apply this framework when working with APIs and the provided data.
 
@@ -432,13 +388,6 @@ Academic Twitter vs rtweet
 
 academictwitteR: an R package to access the Twitter Academic Research Product Track v2 API endpoint
 
-=======
-Working with APIs can be viewed as an affordance that demands a certain approach (Davis and Chouinard, 2017:3) to accessing the data. We make a request to the correct endpoint in the correct format using digital methods. The Reddit and Twitter APIs require different types of method and take different parameters. The APIs also refuse (Davis and Chouinard, 2017:4) in different ways. Both will refuse to give data if the parameters or requests are incorrect or, with Twitter, you cannot log in to the site.  The APIs allow (Davis and Chouinard, 2017:5) you to search the site but only under certain conditions. APIs are often governed by the Terms of Use that can be algorithmically enforced in APIs - for instance, blocking or timing out requests if too many are made within a period, they may change with some, little or no notice, the data that is returned is selected by the company, and some require registration to get a key or token. The software that is used also contains affordances, based on the API, but also what it allows the user to achieve and its reliance on computational objects, such as types or data structures. It is helpful to apply this framework when working with APIs and the provided data.
-
-APIs provide a rawer set of data for you to process but that places the requirement for the user to make sense of it. The medium returns results from a database but it is not as involved in finding relevance in the data, like search engines. The data is still selected and filtered but to provide items that match your query. You need to work with the data to find relevance to your query. In this lab, we are using Software Development Kits (SDKs) in R that have been developed to interact with APIs. We should be mindful of what the software is allowing us to query on top of the query allowed by the API. 
-
-
->>>>>>> d55731d (Adds slides' draft.)
 ---
 
 ## Formats
@@ -455,17 +404,11 @@ These considerations shed light on the platforms being used that go beyond the t
 
 ---
 
-<<<<<<< HEAD
 class: slide-secondary
 
 ## Using Data APIs
 
 In this lab, we will use both **Reddit** and **Twitter** to search for a common theme, the Paris Agreement about climate change. Through this, you will gain experience of using an API to query data and an understanding of the formats that the data is presented. 
-=======
-## Using Data APIs
-
-In this lab, we will use both Reddit and Twitter to search for a common theme, the Paris Agreement about climate change. Through this, you will gain experience of using an API to query data and an understanding of the formats that the data is presented. 
->>>>>>> d55731d (Adds slides' draft.)
 
 First of all, we need to install 2 R packages. Once these are installed once, they do not need to be re-installed. 
 
@@ -492,7 +435,6 @@ Both exercises will look for data relating to the COP26 event that was held in G
 
 ## ![Reddit](https://upload.wikimedia.org/wikipedia/en/thumb/5/58/Reddit_logo_new.svg/220px-Reddit_logo_new.svg.png)
 
-<<<<<<< HEAD
 .pull-left[
 
 [Reddit](https://www.reddit.com/) is a popular site for commenting on the Web. The site allows users to create reddit, and subreddits, to share and comment on things. It is one of the rare sites that has an API that is relatively open. Many sites require types of login (such as Twitter) or have tightened their API access (such as Facebook). 
@@ -512,20 +454,10 @@ class: interaction
 
 In this first exercise, we will use Reddit to get the reddit comments for the query term (`COP26`). 
 
-=======
-[Reddit](https://www.reddit.com/) is a popular site for commenting on the Web. The site allows users to create reddit, and subreddits, to share and comment on things. It is one of the rare sites that has an API that is relatively open. Many sites require types of login (such as Twitter) or have tightened their API access (such as Facebook). 
-
----
-
-### Exercise
-In this first exercise, we will use Reddit to get the reddit comments for the query term. Is there anything that you notice about the query and how it is structured?
-
-In the first query, we search for all the threads that mention the query term and return a sorted list within the given time frame. 
-
-In the second term, we search for the content belonging to the thread url before merging the two pieces of data to create one spreadsheet. We will be re-using this spreadsheet in week 5 onwards. The data file should save the merged sheets but will take some time.  
->>>>>>> d55731d (Adds slides' draft.)
 
 ```r
+library(RedditExtractoR)
+
 #Save the options as variables
 #try Glasgow+Pact
 query_term = "COP26"
@@ -534,15 +466,11 @@ query_term = "COP26"
 sub_reddit= NA
 
 sort_ops = "comments"
-<<<<<<< HEAD
 
-=======
->>>>>>> d55731d (Adds slides' draft.)
 #period can be changed. Type ?find_thread_urls into the terminal to get help. 
 time_period = "week"
 
 #Get the Reddit urls that match contain the keyword that we are looking for
-<<<<<<< HEAD
 reddit_urls = find_thread_urls(keywords = query_term, subreddit= sub_reddit,
                                sort_by = sort_ops, period = time_period)
 #now we get the associated content
@@ -575,24 +503,10 @@ layout:true
 
 First we might want to **read the column names** to understand the format. You should reflect on how the metadata suggests the data format.
 
-=======
-reddit_urls = find_thread_urls(keywords = query_term, subreddit= sub_reddit, sort_by = sort_ops, period = time_period)
-#now we get the associated content
-reddit_data = get_thread_content(reddit_urls$url)
-
-merged_data = merge(reddit_data$threads, reddit_data$comments, by="url")
-csvFileName = paste("reddit_",query_term, Sys.time(), '.csv',sep = '_')
-write.csv(merged_data, csvFileName)
-```
-Once the initial data has been found, we can use the data to identify potential subreddits to focus our query. We may also need to check our query terms to see what is returned by the query. This is part of the iterative nature of digital methods. We begin with general queries and then follow the signals in the data to test our hypotheses and to refine our query.  
-
-First we might want to read the column names to understand the format. You should reflect on how the metadata suggests the data format and how we might use it to reflect on what type of  
->>>>>>> d55731d (Adds slides' draft.)
 
 ```r
 colnames(reddit_data$threads)
 ```
-<<<<<<< HEAD
 
 ```
 ##  [1] "url"                   "author"                "date"                 
@@ -606,14 +520,10 @@ colnames(reddit_data$threads)
 
 We might want to **inspect the first few rows of data**. We can use R's `head()` function on the reddit dataframe to look at what the data might be. 
 
-=======
-We might want to inspect the first few rows of data. We can use R's head() function on the reddit dataframe to look at what the data might be. 
->>>>>>> d55731d (Adds slides' draft.)
 
 ```r
 head(merged_data)
 ```
-<<<<<<< HEAD
 
 ```
 ##                                                                                                  url
@@ -724,19 +634,10 @@ In this exercise, I want you to look the documentation for one of the software p
 
 ...
 
-=======
-### Reddit API Affordances Lab Exercise
-
-In this exercise, I want you to look the documentation for one of the software packages that we are using and to reflect on the changes between them. The RedditextractoR library changed to echo changes in the Reddit API. By reading and comparing the documentation, we can start to explore the changing affordances and to apply the Davis and Chouinard framework. 
-
-What are the changes between software versions? Hint: compare the functions and read what they do.
-
->>>>>>> d55731d (Adds slides' draft.)
 How has the API changed? How does this explain its slowness to respond to the query? The FAQ may help here. 
 
 What does it also say about the R language version as well?
 
-<<<<<<< HEAD
 In this exercise, you glimpse the changing affordances of the API and the software through reading its documentation. Such readings provide ways of us questioning the affordances and who suggests or controls these changes. 
 
 ---
@@ -781,39 +682,16 @@ In this search, I use the term `COP26`, which is both a username in Twitter and 
 
 
 ```r
+library(rtweet)
+
 #Save the options as variables
-query = 'COP26' #try with GlasgowPact, too
-=======
-Two useful links. 
-
-2.1.5: https://www.rdocumentation.org/packages/RedditExtractoR/versions/2.1.5
-
-3.0.5: https://www.rdocumentation.org/packages/RedditExtractoR/versions/3.0.5
-
-In this exercise, you glimpse the changing affordances of the API and the software through reading its documentation. Such readings provide ways of us questioning the affordances and who suggests or controls these changes. 
-
-## Twitter
-Twitter is a commonly used site for exploring social media. However, it has evolved into having a different purpose in social media than Reddit. Reddit is based on boards and commenting on posts where Twitter has become a perpetual, real-time feed. 
-
-We can use Rtweet's search_tweets to get the tweets data for 6 to 9 days using the Twitter API. By default, we are collecting 1000 tweets but the maximum is 18000. We remove the retweets but change it to true to get them. If we include retweets, then they will be returned in the data and the query will get fewer original tweets. If you are looking at media affects in Twitter, then you might want to use the retweets to examine both how and how a tweet is retweeted in the data set. If you are looking at the information from a term, then you might want to ignore retweets to get more original information. 
-
-### Authentication
-To use rtweet, you will have to sign into Twitter with your own account. The API will open up a browser on the first search. Sign in and close the window. After you have searched once, and while the cookie is active, you should be authenticated automatically. 
-
-### Exercise
-In this search, I use the term "ParisAgreement", which is both a username for the Paris Agreement process and a main hashtag for the event. It is worth taking a moment to compare the terms being used to search for data and to think about what it means for the query term. 
-
-```r
-#Save the options as variables
-query = 'COP26'
->>>>>>> d55731d (Adds slides' draft.)
+query_term = "COP26" #try with GlasgowPact, too
 number_tweets = 1000
 
 #Get the Twitter data. Retweets are excluded.
 tweets &lt;- search_tweets(query, n=number_tweets, include_rts = FALSE)
 
 #Create the CSV name with the source, query and time and write it to local folder
-<<<<<<< HEAD
 csvFileName = paste0("twitter", "_", query, "_", Sys.Date(), '.csv')
 rtweet::write_as_csv(tweets, paste0("data/week2/",csvFileName))
 ```
@@ -834,19 +712,11 @@ layout: true
 
 We can use `colnames()` to see the the names of the attributes/colum names before we open the file. 
 
-=======
-csvFileName = paste("twitter",query, Sys.time(), '.csv',sep = '_')
-rtweet::write_as_csv(tweets, csvFileName)
-```
-
-We can use head() to see the type of data before we open the file. 
->>>>>>> d55731d (Adds slides' draft.)
 
 ```r
 colnames(tweets)
 ```
 
-<<<<<<< HEAD
 ```
 ##  [1] "user_id"                 "status_id"              
 ##  [3] "created_at"              "screen_name"            
@@ -2703,13 +2573,10 @@ str(tweets)
 ...or we can use `head()` to see the type of data before we open the file. 
 
 
-=======
->>>>>>> d55731d (Adds slides' draft.)
 ```r
 head(tweets)
 ```
 
-<<<<<<< HEAD
 ```
 ##               user_id           status_id          created_at screen_name
 ## 1 1151154718447669250 1483454378434600968 2022-01-18 15:00:59 thecurrency
@@ -2936,15 +2803,12 @@ head(tweets)
 layout: false
 class: interaction
 
-=======
->>>>>>> d55731d (Adds slides' draft.)
 ### Format and Data Lab Exercise
 
 In your groups, look at the data that you have from both queries. What does the metadata tell you about the data and the platform? What kind of data might you get from these platforms? You should be considering the affordances of the platform and the data as well as its format. 
 
 You might want to consider the metadata and what that says about the underlying infrastructure. If you compare the files, what differences do you see? 
 
-<<<<<<< HEAD
 ---
 
 class: interaction
@@ -2969,12 +2833,6 @@ In this lab, we look at the same issue but using two different data sources. The
 When we query the data, the format affects how the data is presented but also gives a space for consideration of the medium. 
 
 ---
-=======
-
-## Conclusion
-
-In this lab, we look at the same issue but using two different data sources. These can be used to consider the affordances of APIs against the search in session. When we query the data, the format affects how the data is presented but also gives a space for consideration of the medium. 
->>>>>>> d55731d (Adds slides' draft.)
 
 ## Bibliography
 
@@ -2989,12 +2847,8 @@ Sterne, J. 2012. "Format Theory" in MP3: The Meaning of a Format. Duke Universit
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
-<<<<<<< HEAD
 "ratio": "16:9",
 "highlightLines": true
-=======
-"ratio": "16:9"
->>>>>>> d55731d (Adds slides' draft.)
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
@@ -3060,7 +2914,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
       links[i].target = '_blank';
     }
   }
-<<<<<<< HEAD
 })();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
@@ -3079,9 +2932,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-=======
-})();</script>
->>>>>>> d55731d (Adds slides' draft.)
 
 <script>
 slideshow._releaseMath = function(el) {
