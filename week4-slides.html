@@ -20,8 +20,8 @@
     <script src="week4-slides_files/xaringanExtra_fit-screen-0.2.6/fit-screen.js"></script>
     <link href="week4-slides_files/tachyons-4.12.0/tachyons.min.css" rel="stylesheet" />
     <script src="week4-slides_files/xaringanExtra-progressBar-0.0.1/progress-bar.js"></script>
-    <link rel="stylesheet" href="week4-slides_files/sass5da3691707b7c6f13685fdf276a48fe1/warwick.min.css" type="text/css" />
-    <link rel="stylesheet" href="week4-slides_files/sass3273d0e383f1ce432e8e6e82308d0fbd/warwick-fonts.min.css" type="text/css" />
+    <link rel="stylesheet" href="week4-slides_files/sass938647ea279a9ee61441b7938cb7cb50/warwick.min.css" type="text/css" />
+    <link rel="stylesheet" href="week4-slides_files/sass97ee611b353368eef093cddd7b07d240/warwick-fonts.min.css" type="text/css" />
     <link rel="stylesheet" href="widths.css" type="text/css" />
   </head>
   <body>
@@ -59,7 +59,9 @@ class: center, middle, inverse, title-slide
 
 ## Introduction
 
-In this session, we will be looking at the use of networks and the graphing tools. We will begin with a brief introduction to graphs before looking at building our own small dataset of changes in Wikipedia using an R package. We will then look at using the Gephi tool to further query the data and to explore it. In the first section, we will look at the idea of a graph as an object. 
+In this session, we will be looking at the use of networks and the graphing tools. We will begin with a brief introduction to graphs before looking at building our own small dataset of interactions using an R package. We will then look at using the Gephi tool to further query the data and to explore it. In the first section, we will look at the idea of a graph as an object. 
+
+???
 
 When we are looking at networks, we should be aware of the affordances of the platform or data source. Let's think about friends. What would these mean on the Facebook? Would Twitter or Reddit agree? Why or why not? How are these modelled by the platforms?
 
@@ -108,13 +110,12 @@ The Gephi version used in the tutorial is 0.7 (older than the version you will d
 We will be using the following packages:
 
 * `igraph`: It's a package for Network Analysis and Visualisation, but we will only use it to export data from previous weeks to `graphml` format to be consumed by `Gephi`. It is also available for `Python`
-* `plyr`
+
 
 You will need to install some new packages for this lab session. If you have installed these already, you will not need to install them again. 
 
 
 ```r
-install.packages('plyr')
 install.packages('igraph') # For Network analysis and visualisation.
 ```
 

@@ -85,6 +85,7 @@ We will be using the following packages:
 
 * `igraph`: It's a package for Network Analysis and Visualisation, but we will only use it to export data from previous weeks to `graphml` format to be consumed by `Gephi`. It is also available for `Python`
 
+
 You will need to install some new packages for this lab session. If you have installed these already, you will not need to install them again. 
 
 ```{r installation, eval=FALSE}
