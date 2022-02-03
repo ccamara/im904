@@ -1,5 +1,5 @@
 ---
-title: "Week 4 - Network"
+title: "Week 4 - Networks"
 subtitle: "IM904: Digital Objects, Digital Methods"
 author: "Iain  Emsley, Carlos Cámara-Menoyo"
 institute: "Centre for Interdisciplinary Methodologies"
