@@ -33,7 +33,9 @@ xaringanExtra::use_progress_bar(color = "#552D62", location = "bottom")
 
 ## Introduction
 
-In this session, we will be looking at the use of networks and the graphing tools. We will begin with a brief introduction to graphs before looking at building our own small dataset of changes in Wikipedia using an R package. We will then look at using the Gephi tool to further query the data and to explore it. In the first section, we will look at the idea of a graph as an object. 
+In this session, we will be looking at the use of networks and the graphing tools. We will begin with a brief introduction to graphs before looking at building our own small dataset of interactions using an R package. We will then look at using the Gephi tool to further query the data and to explore it. In the first section, we will look at the idea of a graph as an object. 
+
+???
 
 When we are looking at networks, we should be aware of the affordances of the platform or data source. Let's think about friends. What would these mean on the Facebook? Would Twitter or Reddit agree? Why or why not? How are these modelled by the platforms?
 
@@ -82,12 +84,10 @@ The Gephi version used in the tutorial is 0.7 (older than the version you will d
 We will be using the following packages:
 
 * `igraph`: It's a package for Network Analysis and Visualisation, but we will only use it to export data from previous weeks to `graphml` format to be consumed by `Gephi`. It is also available for `Python`
-* `plyr`
 
 You will need to install some new packages for this lab session. If you have installed these already, you will not need to install them again. 
 
 ```{r installation, eval=FALSE}
-install.packages('plyr')
 install.packages('igraph') # For Network analysis and visualisation.
 ```
 
