@@ -10,3 +10,4 @@ Authors: Iain Emsley, Carlos Cámara-Menoyo
 * [Week 2: Data Affordances](https://pages.github.warwick.ac.uk/u2071219/IM904/week2-slides.html#1)
 * [Week 3: Visual Analysis](https://pages.github.warwick.ac.uk/u2071219/IM904/week3-slides.html#1)
 * [Week 4: Networks](https://pages.github.warwick.ac.uk/u2071219/IM904/week4-slides.html#1)
+* [Week 5: Text Analysis (part 1)](https://pages.github.warwick.ac.uk/u2071219/IM904/week5-slides.html#1)
