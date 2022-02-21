@@ -445,6 +445,7 @@ ggplot(top_bigrams, aes(y=reorder(bigram, n), x=n))+
   ylab("Bigrams") +
   xlab("Counts of Words") 
 ```
+
 ---
 
 We can also use a word cloud to visualise the bigram data. 
