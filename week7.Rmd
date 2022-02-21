@@ -17,7 +17,7 @@ In this, we turn to purely algorithmic methods that are becoming more common. We
 
 Here we begin to use Topic Modelling to take high level approaches to our data and to think about the patterns that might be found in it. Like the first text analysis session and networks, we cannot hope to cover the topics in full in this lab but it should provide enough information to reflect on these approaches. I hope that we can have a group discussion at the end to reflect on the issues raised in this lab and what it means for digital methods presented here and in the previous sessions. 
 
-In this lab, we are going to use topic modelling to reflect on two papers, Thelwall's Social Media for Youtube (2018) and Beytia and Wagner's Visibility Layers (2020). We explore the idea of topical asymmetry from Beytia and Wagner through topic modelling and by using the critical questions as to how to the corpus is created using James Dobson's critique of topic modelling (2019).
+In this lab, we are going to use topic modelling to reflect on two papers, Mike Thelwall's Social Media for Youtube (2018) and Pablo Beytia and Claudia Wagner's Visibility Layers (2020). We explore the idea of topical asymmetry from Beytia and Wagner through topic modelling and by using the critical questions as to how to the corpus is created using James Dobson's critique of topic modelling (2019).
 
 ### Learning Objectives
 By the end of this lesson, you will have a basic understanding of:
@@ -49,9 +49,7 @@ library(stringr)
 library(tidyr)
 library(reshape2)
 ```
-We will use our Reddit data again. If you do not have any Reddit data, you can use this file:
-<https://files.warwick.ac.uk/iainemsley/files/IM904/reddit_parisagreementclimate_2021-01-27+094516_.csv>
-Please change this path to your data.
+We will use our Reddit data again.
 ```{r global, eval=F}
 dataFile = "reddit__COP26_2021-11-22 14:00:31_.csv"
 reddit_df <- read.csv(dataFile, stringsAsFactors = FALSE, encoding = 'UTF-8')
@@ -275,7 +273,11 @@ Rieder, B. 2020. “Interested Learning” in Engines of Order: A Mechanology of
 
 Silge, J and Robinson, D. 2013. Text Mining with R. O'Reilly, Sebastopol.
 
+Thelwall, M. 2018. 'Social Media Analytics for YouTube Comments: Potential and Limitations'. International Journal of Social Research Methodology 21:3, pp 303–16. 
+
 ### Topic Modelling
+
+Beytía, Pablo, and Claudia Wagner. ‘Visibility Layers: A Framework for Facing the Complexity of the Gender Gap in Wikipedia Content [Working Paper]’. SocArXiv, 2020
 
 Blei, D.M., Ng, A.Y. and Jordan, M.I., 2003. Latent Dirichlet Allocation. The Journal of Machine Learning research, 3, pp.993-1022. <https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf>
 
