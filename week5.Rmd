@@ -42,7 +42,7 @@ By the end of this lesson, you will:
 
 Let's get the Reddit data back in from the CSV. You may have to change the filename  and may be add the full file path to it. I am using one of the large dataframes that I originally got from Reddit in week 3 as it has a large range of data to read in. Your data may have a different name. 
 ```{r global, eval=F}
-  redditFile = "reddit__COP26_2021-11-22 14:00:31_.csv"
+redditFile = "reddit__COP26_2022-01-18 10:54:32_.csv"
 reddit_df <- read.csv(redditFile, stringsAsFactors = FALSE, encoding = 'UTF-8')
 head(reddit_df)
 ```
@@ -70,8 +70,9 @@ reddit_df$Date <- as.Date(reddit_df$date.y,  format = "%Y-%m-%d")
 # to determine the counts of each by the data
 #counted_df = aggregate(reddit_df$Date, by=list(reddit_df$Date, reddit_df$subreddit), length)
 #here we just do it with the date to look at the peaks and troughs for all data. 
-counted_df = aggregate(reddit_df$Date, by=list(reddit_df$Date), length)
-#counted_df = aggregate(filtered_subreddit_df$Date, by=list(filtered_subreddit_df$Date), length)
+#counted_df = aggregate(reddit_df$Date, by=list(reddit_df$Date), length)
+#note the changes here with the data frame name to use the filters.
+counted_df = aggregate(filtered_subreddit_df$Date, by=list(filtered_subreddit_df$Date), length)
 head(counted_df)
 ```
 GGplot is used to plot the different subreddits using a line chart to show progression over time. From this, I can see if there are any peaks and troughs in the data that suggest an event has taken place. I have used facet_grid() to split the main graph into one graph for each subreddit. Each facet shows the subreddit as its own graph to allow comparison over time. 
@@ -83,18 +84,10 @@ ggplot(counted_df, aes(x = Group.1, y = x,group=1)) +
     scale_color_brewer("Subreddits") +
     theme_minimal() +
     ylab("Number of Comments") +
-    xlab("Date Comment Posted") #
+    xlab("Date Comment Posted") +
     #facet_grid(rows=vars(Group.2)) +
     theme(legend.position = 'none')
 ```
-As an alternative, we might use a stack chart as an alternative representation that allows us to see the count in relation to other subreddits over time. 
-```{r stackChart, eval=F}
-ggplot(counted_df, aes(x=Group.1, y=x, fill=Group.2)) + 
-    ylab("Number of Comments") +
-    xlab("Date Comment Posted") +
-    geom_area()
-```
-Both types of graph show the data over time, but they have different emphases in how they present the data.
 
 ### Lab Exercise
 In your groups, take one data set and run it through time series analysis graphs. What sort of patterns can you see? Are there peaks and troughs that can be seen? If so, do they link to particular events? 
@@ -108,7 +101,7 @@ In each case, you will need to re-run the aggregation function above to convert 
 ### Filtering Comments by Subreddit
 This code filters the data by subreddits so that you can test each subreddit rather than the while dataset. If you have a particular subreddit that you want to test, then add its name to the filterSub variable. 
 ```{r filterSubreddit, eval=F}
-filterSub = ''
+filterSub = 'wallstreetbets'
 filtered_subreddit_df = reddit_df[reddit_df$subreddit==filterSub, ]
 head(filtered_subreddit_df)
 ```
@@ -127,7 +120,7 @@ head(filtered_word_df)
 In this code, we see the lines where the search string is found in the comment column. 
 
 I'll show a worked example of re-using the R code to generate the table to support a time series analysis. Please do compare this version with the earlier one to understand the changes between them and how to use them with other filters. 
-```{r workedexampe, eval=F}
+```{r workedexample, eval=F}
 counted_df = aggregate(filtered_word_df$Date, by=list(filtered_word_df$Date), length)
 head(counted_df)
 ```
@@ -135,7 +128,7 @@ head(counted_df)
 ### Filtering Comments by Date 
 Here we filter the comments by time. The time format is set by the original data frame. 
 ```{r filterDate, eval=F}
-filtered_date_df = reddit_df[reddit_df$Date > "2021-11-01" & reddit_df$Date < "2021-11-05",]
+filtered_date_df = reddit_df[reddit_df$Date > "2022-01-10" & reddit_df$Date < "2022-01-15",]
 head(filtered_date_df)
 ```
 These data frames can be exported into a csv file or run through the above code, but you will need to make sure that the variable names match. 

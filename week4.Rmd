@@ -76,7 +76,7 @@ Imagine we have collected the following tweets:
 
 In our network, each node will be a hashtag.
 
-```{r hashtag_nodes, echo=FALSE, fig.height = 6, fig.width = 9}
+```{r hashtag_nodes, echo=FALSE, fig.height = 6, fig.width = 9,eval=F}
 x <- make_empty_graph(directed = FALSE) %>%
   add_vertices(1, label = 'trump', name = 'trump') %>%
   add_vertices(1, label = 'great', name = 'great') %>%
@@ -95,7 +95,7 @@ Some of the hashtags occur in same tweet. If we were to create a table of the co
 
 in a co-occurence network, hashtags which co-occur have a line drawn between them like so
 
-```{r hashtag_edges, echo=FALSE, fig.height = 6, fig.width = 9}
+```{r hashtag_edges, echo=FALSE, fig.height = 6, fig.width = 9,eval=F}
 x <- x %>%
   add_edges(c('trump', 'awful'), weight = 2) %>%
   add_edges(c('trump', 'great'), weight = 2)
@@ -133,7 +133,7 @@ Let us consider some data using week 2's Twitter data set.
 twitterFname = "twitter_COP26_2022-01-18 14:21:20_.csv"
 twitter_data = read.csv(twitterFname, stringsAsFactors = F)
 #we'll take a small set of the data
-mentions_df = twitter_data[1:250, ]
+mentions_df = twitter_data[1:500, ]
 ```
 We'll use the network_graph function from rtweet to put into the form that the igraph package expects. We will focus on the mentions in Twitter, but we can look at retweets, replies or quotes. 
 ```{r networkTwitter, eval=F}
@@ -199,7 +199,7 @@ First all of all, we need to make sure that the graph is loaded to review the de
 * Click on `Ranking`
 
 * Select `in-degrees` from the drop down menu. If you do not see this option, make sure that you have clicked on nodes. 
-
+ 
 * Then click on `Apply`.
 
 
