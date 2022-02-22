@@ -83,7 +83,7 @@ If you have installed R using Homebrew, you will need to alter a file to complet
 
 If you have installed the packages, you will not need to do this again. You will need to tell R to use them though. 
 
-```{r libraries}
+```{r libraries, message=FALSE, warning=FALSE}
 library(dplyr)
 library(tidytext)
 library(ggplot2)
@@ -138,26 +138,95 @@ In the first step, **we need to think carefully about what we are modelling**. H
   * Further processing may have taken place to identify particular posts and the data is grouped by these - think about the questions that Beytia and Wagner raise and what steps might be taken to approach them. Hint: think of what they are asking in the reports in their methods and work it backwards.
 
 ---
-layout: true
-### Data preparation
+
+class: slide-secondary
+## Recipe overview
+
+1.  **Split the text into words (Tokenisation):** `tidytext:unnest_tokens()` breaks a column into independent words + transformations (to lower case and removes puntuation signs followed by space).
+
+2. **Filter unneeded words (stopwords)**: `tidytext::stop_words` provides a list of frequent stop words in English. For multilingual texts we may want to use `stopwords` package
+
+3.  **Count word frequencies:** `dplyr::count()` can group by variables and count number of ocurrences
+
+4.  **Getting top words :** `dplyr::row_number()` or `head()`
+
+5.  (optional) Filter unneeded words and repeat steps 1-4 until happy with results
+
+6.  **Cast terms into a document-term matrix (DTM):** `tidytext::cast_dtm()` transforms a table in tidy format into a DTM
+
+7. **Creating a LDA model:** `topicmodels::LDA()`
+
+8. Exploring and interpreting the model
+
+    1. **From LDA model to tidy table**: `tidytext::tidy()` converts a LDA object (model) into a tidy data frame.
+    2. Exploring data via tables or Plots `ggplot()`
+    
+    
+---
+
+## Tokenisation
+
+.panelset.sideways[
+.panel[.panel-name[R Code]
+```{r tokenisation, fig.show='hide'}
+# Create a new column `document`combining values from different columns. We will
+# use it as a unique identifier (id)
+by_subreddit <- reddit_df %>%
+  unite(document, subreddit, X) %>% 
+  select(document, comment)
+
+# now split the comment columns into words
+by_comment_word <- by_subreddit %>% #<<
+  unnest_tokens(word, comment)      #<<
+
+# Explore the data (use use knittr:kable to see it in a nice table)
+# knitr::kable(head(by_comment_word))
+```
+]
+.panel[.panel-name[Output]
+```{r}
+# Explore the data (use use knittr:kable to see it in a nice table)
+knitr::kable(head(by_comment_word, 10))
+```
+
+]
+
+]
+
 
 ---
 
-### Stop words
+layout: true
+## Data preparation
 
+---
+
+.pull-left[
 A process that we might undertake is to prepare our data and one step is to **remove stop words**. Stop words are commonly occurring terms like `the`, `a`, `and`, `from` and so on. They are used frequently but may not add meaning to the data. Removing stop words can be tricky. 
 
-R has a list of stop words that can be used and other tools have their own lists of words (i.e. ). 
+R's `{tidytext}` has a list of `r nrow(tidytext::stop_words)` stop words that can be used and other tools have their own lists of words (i.e. [`{stopwords}`](https://github.com/quanteda/stopwords)). 
 
+```{r}
+nrow(tidytext::stop_words)
+```
+
+
+]
+
+.pull-right[
 ```{r stop_words}
 # Tidytext provides a data frame with 1149 English Stop Words
 head(tidytext::stop_words, 15)
 
 ```
+]
+
+
+
 
 ---
 
-For example, the package [`stopwords`](https://github.com/quanteda/stopwords) provides a multilingual list of stop words that can be used to filter from (see )
+For example, the package [`{stopwords}`](https://github.com/quanteda/stopwords) provides a multilingual list of stop words that can be used to filter from (see week 5's content)
 
 ```{r stop_words_multi_lingual }
 # Explore the first 20 stop words in Chinese.
@@ -170,6 +239,12 @@ length(stopwords::stopwords(language = "zh", source = "misc"))
 # and reuse it later.
 
 ```
+
+---
+
+You may also remove words that are either important to some texts or approaches to the text (see Dobson, 2019:49-57). .highlight[This should be a step for reflection in the use of algorithms to create a reading]. 
+
+* _What, if anything, has been removed or added and why?_
 
 ---
 
@@ -186,15 +261,15 @@ raw_text <- reddit_df[c("X", "comment")]
 
 ---
 
-You may also remove words that are either important to some texts or approaches to the text (see Dobson, 2019:49-57). .highlight[This should be a step for reflection in the use of algorithms to create a reading]. What, if anything, has been removed or added and why? 
-
-In our exercise, we use the Reddit data as it is. However, it can be useful to break down the texts into smaller chunks (Jockers, 2013; Buurma, 2015). Rather than process the text in one chuck, it can be broken down into a number of words, by chapter, by subreddit, or by paragraph. Breaking down the test like this will affect the topics that are read or how they are applied to the text and will give alternate readings. Another key question is what is a document? Is it the subreddit or a post or a comment? These choices will affect the type of language that we use and the returned results.
+In our exercise, we use the Reddit data as it is. However, **it can be useful to break down the texts into smaller chunks** (Jockers, 2013; Buurma, 2015). Rather than process the text in one chuck, it can be **broken down into a number of words, by chapter, by subreddit, or by paragraph**. Breaking down the test like this will affect the topics that are read or how they are applied to the text and will give alternate readings. Another key question is what is a document? Is it the subreddit or a post or a comment? These choices will affect the type of language that we use and the returned results.
 
 These are questions that you should be applying to data cleaning and preparation processes. Although they occur before the processing happens, these steps can alter what the reading. 
 
 ---
 
 layout: false
+
+
 class: interaction
 
 ## Lab Exercise
@@ -207,7 +282,9 @@ Share and discuss findings with the class
 
 ---
 
-## Modelling the Subreddits
+
+
+## Count word frequencies (by subreddit)
 
 In this exercise, we will use the subreddit data again. The subreddits are split up into documents with the name of the subreddit and the document id. We can use this later.  They are then split up into word frequencies and we remove the stop words. 
 
@@ -218,11 +295,11 @@ In this exercise, we will use the subreddit data again. The subreddits are split
 by_subreddit <- reddit_df %>%
   unite(document, subreddit, X)
 
-# now split the comment columns into words
+# Now split the comment columns into words
 by_comment_word <- by_subreddit %>%
   unnest_tokens(word, comment)
 
-#remove the stop words and generate the counts
+# Remove the stop words and generate the counts
 word_counts <- by_comment_word %>%
   anti_join(stop_words) %>%
   count(document, word, sort = TRUE) %>%
@@ -253,6 +330,8 @@ head(word_counts, 20)
 .pull-right[
 
 **Results interpretation (and refinement)**
+
+Do you remember how did we generate the `document` column?
 
 * What processing choices have been made in this code? 
 * How can they be read using the results of the above exercise?
@@ -405,16 +484,44 @@ There is a limitation where you will need to think about what these terms repres
 
 ---
 
+.panelset.sideways[
+.panel[.panel-name[Explanation]
+
+Regrefully, a LDA object does not provide much information when calling it by its name, as it is not a dataframe, like most of the data we've been using so far. 
+
 ```{r exploreLDA}
 # Let's explore our LDA again:
 comments_lda
 ```
 
-Regrefully, a LDA object does not provide much information when calling it by its name, as it is not a dataframe, like most of the data we've been using so far. 
+That's because LDA objects like `comments_lda` contain nested matrices. Two of them are particularly relevant: _beta_ and _gamma:_
+
+* **beta** contains probabilities of words in topics
+* **gamma** contains probabilities of topics in document
+
+we can explore them using `@beta` or `@gamma`
+
+]
+.panel[.panel-name[Code]
+We can see its structure by running this command
+```{r}
+str(comments_lda)
+```
+
+]
+
+]
+
+---
+layout:true
+
+### Applying probabilities of words in topics
 
 ---
 
-The [`tidytext::tidy()`](https://juliasilge.github.io/tidytext/reference/stm_tidiers.html) function, taken from the tidytext package, .highlight[converts the Document Term Matrix into a dataframe]. The beta option for matrix shows the data as per-term-per-topic. So we will get terms for topics. 
+The [`tidytext::tidy()`](https://juliasilge.github.io/tidytext/reference/stm_tidiers.html) function  .highlight[converts the Document Term Matrix into a dataframe]. Pay attention to `matrix` parameter. 
+
+Since we are looking for probabilities of words in topics, .highlight[we'll use the _beta_ option for matrix (shows the data as per-term-per-topic)]. So we will get terms for topics. 
 
 
 ```{r viewTopics}
@@ -447,7 +554,7 @@ top_terms
 
 We can use `ggplot` to create a facetted barplot per topic:
 
-```{r visualiseTopicsModels, eval=FALSE}
+```{r visualiseTopicsModels, fig.show='hide'}
 top_terms %>%
   mutate(term = reorder_within(term, beta, topic)) %>%
   ggplot(aes(beta, term, fill = factor(topic))) +
@@ -459,14 +566,8 @@ top_terms %>%
 
 .pull-right[
 
-```{r visualiseTopicsModels2, echo=FALSE}
-top_terms %>%
-  mutate(term = reorder_within(term, beta, topic)) %>%
-  ggplot(aes(beta, term, fill = factor(topic))) +
-  geom_col(show.legend = FALSE) +
-  facet_wrap(~ topic, scales = "free") +
-  scale_y_reordered()
-```
+![](`r knitr::fig_chunk("visualiseTopicsModels", ".png")`)
+
 ]
 
 ---
@@ -484,11 +585,13 @@ When you read the topics, it might be of interest to try a different number of c
 
 ---
 
-layout: false
+layout: true
 
 ### Applying Topics to Subreddits
 
-We will now apply the LDA model to the comments and classify the topics by comment so that we can see how they are shared across the subrreddits. We use gamma option in matrix to identify the topic per document probabilities. Keep in mind that the topics are statistical probabilities rather than a human constructed topic. 
+---
+
+We will now apply the LDA model to the comments and .highlight[classify the topics by comment] so that we can see how they are shared across the subrreddits. We use gamma option in matrix to identify the topic per document probabilities. Keep in mind that the topics are statistical probabilities rather than a human constructed topic. 
 
 ```{r, convertGamma}
 # Convert to data frame.
@@ -503,35 +606,49 @@ comments_gamma
 
 ---
 
-Let's create a quick boxplot to visualise the subreddits by topic and to understand what topics might be in the subreddit. Boxplots are useful for viewing the distribution of numerical data and how that data is distributed. It is a quick way of showing how the topics are spread across the subreddits but they do take time to read. 
 
 .pull-left[
-```{r boxPlot, eval=FALSE}
+
+Let's create a quick boxplot to visualise the subreddits by topic and to understand what topics might be in every subreddit. 
+
+Boxplots are useful for viewing the distribution of numerical data and how that data is distributed. It is a quick way of showing how the topics are spread across the subreddits but they do take time to read. 
+
+
+```{r gammaBoxPlot, fig.show='hide'}
 comments_gamma %>%
-  mutate(title = reorder(subreddit, gamma * topic)) %>%
+  # mutate(title = reorder(subreddit, gamma * topic)) %>%
   ggplot(aes(factor(topic), gamma)) +
   geom_boxplot() +
-  facet_wrap(~ title) +
-  labs(x = "topic", y = expression(gamma))
+  facet_wrap(~ subreddit) + # You can replace it by title column.
+  labs(title = "Topics distribution by subreddit",
+       x = "topic", y = expression(gamma))
 ```
+<small>How can this help us interpret the topics that might be found within the subreddits? What sort of topics appear? (Hint: compare this graph with the previous one.) </small>
+
 ]
 
 .pull-right[
-```{r boxPlot2, echo=FALSE}
-comments_gamma %>%
-  mutate(title = reorder(subreddit, gamma * topic)) %>%
-  ggplot(aes(factor(topic), gamma)) +
-  geom_boxplot() +
-  facet_wrap(~ title) +
-  labs(x = "topic", y = expression(gamma))
-```
+![](`r knitr::fig_chunk("gammaBoxPlot", ".png")`)
+
 ]
 
 ---
+layout:false
+### Interpreting results
 
-How can this help us interpret the topics that might be found within the subreddits? What sort of topics appear? (Hint: compare this graph with the previous one.) 
+If we compare this with the previous graphs of the topics, can we identify the potential language or themes used and what does that suggest about the subreddit? These questions should encourage you to review your data and to identify examples of the pattern. As with the communities work in week 4, .highlight[these patterns are algorithmic calculations to suggest patterns that we might not be aware of, but they should be treated with caution]. 
 
-If we compare this with the previous graphs of the topics, can we identify the potential language or themes used and what does that suggest about the subreddit? These questions should encourage you to review your data and to identify examples of the pattern. As with the communities work in week 4, these patterns are algorithmic calculations to suggest patterns that we might not be aware of, but they should be treated with caution. 
+.pull-left[
+![](`r knitr::fig_chunk("visualiseTopicsModels", ".png")`)
+
+]
+
+.pull-right[
+![](`r knitr::fig_chunk("gammaBoxPlot", ".png")`)
+
+]
+
+
 
 ---
 
@@ -555,22 +672,45 @@ I will give you 20 minutes in your groups to do this and then we will discuss.
 
 The plots provide a way of viewing how the topics are assigned to the subreddits and we can use this to be critical about the topic modelling process. It is a glimpse of how the algorithms work that gives us a view of how the data is classified. We can already view this in the boxplots, but examining the parts of the structure allow us to gain a clearer view. Before we can visualise the data, we need to run a few conversion to reformat it and filter it correctly. 
 
-Let us turn to the classifications within the topics. We will take the comments_gamma data frame and group it by subreddit, then the id. 
+Let us turn to the classifications within the topics. We will take the `comments_gamma` data frame* and group it by subreddit, then the id. 
 
 ```{r checkClassifications}
 comment_classifications <- comments_gamma %>%
   group_by(subreddit, id) %>%
+  # Select the topic with a higher probability per comment and subreddit.
   slice_max(gamma) %>%
   ungroup()
 
-
 ```
+
+
+\* Remember, it's the one that contains probabilities of topics in document (in this case, by comment and subreddit)
 
 ---
 
+.pull-left[
+This is our newly created data frame 
+
 ```{r}
 comment_classifications
+
+nrow(comment_classifications)
 ```
+
+]
+
+.pull-right[
+...and this is the original one:
+```{r}
+comments_gamma
+
+nrow(comments_gamma)
+```
+
+
+]
+
+We have the same columns but we have reduced the number of rows by selecting the maximum values per subreddit and comment (`id`).
 
 ---
 
@@ -596,6 +736,8 @@ comment_classifications %>%
   filter(subreddit != consensus)
 ```
 
+\* Read about `ìnner_joins()` here: https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf (page 2)
+
 ---
 
 The matrix here can be augmented, using augment to add the columns from the LDA analysis to the Document Term Matrix to get a better view on how the data is created. We separate the names that we originally created to identify the subreddits and comment ids. 
@@ -615,7 +757,9 @@ head(assignments)
 
 The top of the assignments is shown to help you understand what the data is. You can see the two topic assignments for the same word, which is the assignment by the topic model. It is not the easiest form to read, so we will visualise it. 
 
-If you want to explore particualr topic further, a simple tool has been written below for you. We can filter the data by a topic to identify the words and what they might come from. You can alter id == ??? to term==??? to identify terms, if you want to filter it further. 
+---
+
+If you want to explore particular topic further, a simple tool has been written below for you. We can filter the data by a topic to identify the words and what they might come from. You can alter `id == ??=` to `term==???` to identify terms, if you want to filter it further. 
 
 
 ```{r findTopicLanguage} 
@@ -630,7 +774,7 @@ docs
 We can visualise the way that the topics are constructed by creating a graph of the way that the topics are matched. This allows us to see how the machine is viewing the language that is being used. 
 
 
-.panelset[
+.panelset.sideways[
 .panel[.panel-name[R Code]
 ```{r visualiseTopics, fig.show='hide'}
 library(scales)
