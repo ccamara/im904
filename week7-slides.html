@@ -172,7 +172,7 @@ In the first step, **we need to think carefully about what we are modelling**. H
 class: slide-secondary
 ## Recipe overview
 
-1.  **Split the text into words (Tokenisation):** `tidytext:unnest_tokens()` breaks a column into independent words + transformations (to lower case and removes puntuation signs followed by space).
+1.  **Split the text into words (Tokenisation):** `tidytext::unnest_tokens()` breaks a column into independent words + transformations (to lower case and removes puntuation signs followed by space).
 
 2. **Filter unneeded words (stopwords)**: `tidytext::stop_words` provides a list of frequent stop words in English. For multilingual texts we may want to use `stopwords` package
 
@@ -696,7 +696,7 @@ str(comments_lda)
 ##   .. .. ..@ alpha         : num 10
 ##   .. .. ..@ seed          : int 1234
 ##   .. .. ..@ verbose       : int 0
-##   .. .. ..@ prefix        : chr "/var/folders/2r/dw4n067j6jd09f8t1fq9gct00000gn/T//Rtmp4hbR5L/filede2f478a9af7"
+##   .. .. ..@ prefix        : chr "/var/folders/2r/dw4n067j6jd09f8t1fq9gct00000gn/T//RtmpJGKviM/file1f553706c92d"
 ##   .. .. ..@ save          : int 0
 ##   .. .. ..@ nstart        : int 1
 ##   .. .. ..@ best          : logi TRUE
