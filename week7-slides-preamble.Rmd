@@ -1,0 +1,66 @@
+---
+title: "Week 7 - Preamble"
+subtitle: "IM904: Digital Objects, Digital Methods"
+author: "Iain  Emsley, Carlos Cámara-Menoyo"
+institute: "Centre for Interdisciplinary Methodologies"
+# date: "08/12/2020"
+output:
+  xaringan::moon_reader:
+    # css: ["default", "extra.css"]
+    css: ["css/warwick.scss", "css/warwick-fonts.scss", "default", "widths.css"]
+    seal: true #Set false to remove default title slide.
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      # titleSlideClass: ["right", "top", "my-title"]
+    yolo: false
+---
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
+
+# Xaringan Extra configuration. +info: https://pkg.garrickadenbuie.com/xaringanExtra
+xaringanExtra::use_tile_view()
+xaringanExtra::use_broadcast()
+# xaringanExtra::use_scribble()
+xaringanExtra::use_clipboard()
+xaringanExtra::use_fit_screen() # Press ALT/Option+F
+xaringanExtra::use_tachyons()
+xaringanExtra::use_panelset()
+xaringanExtra::use_progress_bar(color = "#552D62", location = "bottom")
+
+```
+
+## Second half of the term
+
+What's going to happen in the following weeks?
+
+* 2 regular labs: topic modelling (today) + visualisation
+* Workgroup preparation
+* Project's presentation
+
+---
+
+## About the project:
+
+* It doesn't have to be too technical, advanced or complicated. 
+
+  * The main goal is that research is coherent and applies at least one of the methods we've seen in the module. 
+
+* Read the [3 worksheets on Moodle](https://moodle.warwick.ac.uk/course/view.php?id=47435#section-3)
+
+---
+
+class: interaction
+
+## Workgroup, now
+
+In groups, write down the following tasks regarding the project (10')
+
+* Research question / goals
+* Define a plan for the following weeks: 
+  * Outline which methods from the provided ones are you planning to use to answer your question
+  * Plan considering the calendar and identify how much time you'll need to work on your own time
+
+One member of the group will share their plan with the class (10')
