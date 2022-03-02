@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Week 7 - Visualisation</title>
+    <title>Week 8 - Visualisation</title>
     <meta charset="utf-8" />
     <meta name="author" content="Iain Emsley, Carlos Cámara-Menoyo" />
     <script src="week8-slides_files/header-attrs-2.11/header-attrs.js"></script>
@@ -22,7 +22,7 @@
     <link href="week8-slides_files/panelset-0.2.6/panelset.css" rel="stylesheet" />
     <script src="week8-slides_files/panelset-0.2.6/panelset.js"></script>
     <script src="week8-slides_files/xaringanExtra-progressBar-0.0.1/progress-bar.js"></script>
-    <link rel="stylesheet" href="week8-slides_files/sass4859b436e9df1f216ae2a1ac56527229/warwick.min.css" type="text/css" />
+    <link rel="stylesheet" href="week8-slides_files/sass938647ea279a9ee61441b7938cb7cb50/warwick.min.css" type="text/css" />
     <link rel="stylesheet" href="week8-slides_files/sass97ee611b353368eef093cddd7b07d240/warwick-fonts.min.css" type="text/css" />
     <link rel="stylesheet" href="widths.css" type="text/css" />
   </head>
@@ -30,7 +30,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Week 7 - Visualisation
+# Week 8 - Visualisation
 ## IM904: Digital Objects, Digital Methods
 ### Iain Emsley, Carlos Cámara-Menoyo
 ### Centre for Interdisciplinary Methodologies
@@ -192,26 +192,7 @@ Now we are going to use R to count the subreddits.
 
 ```r
 library(dplyr)
-```
 
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```r
 # Count number of comments per subreddit.
 number_subreddit &lt;- reddit_df %&gt;% 
   count(subreddit)
@@ -328,24 +309,67 @@ What are the backstories of your own visualisations and the tools that you use?
 ---
 
 class: interaction
-layout: false
+layout: true
 
 ### Lab Exercise
 
-In each of your groups, I would like you to reflect on the data and methods from week 5 that were used to generate the time series image above.  
+---
+
+.pull-left[
+
+In each of your groups, I would like you to reflect on the data and methods from week 5 that were used to generate the time series image.  
 
 1. How was the data gathered? By whom?
 2. What analyses were run. Why?
 3. What are the patterns that you see?
 
-How might you tell a story from a critical medium perspective? If we are looking at media effects, how might they be considered? Van Geenan and Wieringa (2020) may help you here. 
+
+
+]
+
+.pull-right[
+![](figs/visualisation/timeseries.png)
+]
+
+---
+
+.pull-left[
+![](https://d33wubrfki0l68.cloudfront.net/1ea61b9ad84889b884ba6ddded0d0f9cf73b898c/6263a/en/blog/2020/04/05/considerations-on-the-importance-of-data-and-science-in-data-science/img/who-cumulative_hu3fb11aa9b5f538aaf8926b51a5703fdf_76988_2000x2000_fit_lanczos_2.png)
+]
+
+.pull-right[
+![](https://d33wubrfki0l68.cloudfront.net/67105f8670cbfac97fa0acb175a797529e619db0/630c3/en/blog/2020/04/05/considerations-on-the-importance-of-data-and-science-in-data-science/img/ft-rollingdata_huea66d286de1a1d61854aefcf0238f8f5_359223_2000x2000_fit_lanczos_2.png)
+]
+
+---
+
+![](https://www.carloscamara.es/en/blog/2020/04/05/considerations-on-the-importance-of-data-and-science-in-data-science/img/showcase/UKs%20COVID-19%20Dashboard.png)
+---
+
+.pull-left[
+![](https://helloskip.com/blog/content/images/2020/11/306-to-232-Electoral-Map-2020.png)
+]
+
+.pull-right[
+![](https://thewichitan.com/wp-content/uploads/2020/11/counties-map-results.png)
+]
+
+
+
+---
+
+
+How might you tell a story from a critical medium perspective? 
+
+If we are looking at media effects, how might they be considered? Van Geenan and Wieringa (2020) may help you here. 
 
 If we are looking at the data from a social view, we might take a different perspective. D'Ignazio and Klein (2016; 2020) raise questions that challenge the ways that we develop visualisations and the potentials for interpretation. 
+
 
 ---
 
 class: slide-primary
-
+layout: false
 ##  Conclusion
 
 In this session, we think of **visualisation as a way of telling a story, rather than just representing data**. It is also a part of the exploratory process and becomes a way of thinking about your data&lt;sup&gt;1&lt;/sup&gt;.
