@@ -183,7 +183,7 @@ layout: true
 ---
 .pull-left[Now that we have a `CSV` file, we can use Rawgraphs to try various options.
 
-Try the following tpes: bar chart, treemap and circle packing to visualise the same data. 
+Try the following tpes: `bar chart`, `treemap` and `circle packing` to visualise the same data. 
 
 * What is shown by each form of graph? 
 * What aspects does it highlight or minimise? 
