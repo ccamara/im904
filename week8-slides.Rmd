@@ -56,7 +56,7 @@ layout: true
 ---
 
 .pull-left[
-An important part of the digital methods cycle is seeing what the data suggests is present. 
+An important part of the digital methods cycle is seeing what the data suggests. 
 
 You can do this by reading the data, then creating a model, such as a network or topics. Creating a representation - such as the network image or time series graphs as in weeks 4, 5 and 7 - can help us identify trends and begin the interpretative process. 
 
