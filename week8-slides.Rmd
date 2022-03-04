@@ -79,20 +79,6 @@ We will now build on the data collection from previous weeks. Our visualisations
 These steps all fall into the iterative nature of digital methods that are mentioned in many weeks and they lead you towards .highlight[exploratory data analysis (EDA)] and a greater understanding of your data. Having gone through the gathering and the transforming sections, you will be looking at the visualisation in this session.
 
 ---
-layout: false
-### Rawgraphs
-
-.pull-left[
-We use [Rawgraphs](https://rawgraphs.io/) to create visualisations from data in CSV files (check video). Here we develop our ideas and test them in order to build a narrative about our data. We can think of this as a longer story with plot twists and turns. We start at one place and will end up somewhere else. At each step we explore the data and our findings to ground the claims we make.
-]
-
-.pull-right[
-<iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/54efa962-e0e1-4ea0-8118-8b0d869142f4?autoplay=false&showinfo=true" allowfullscreen style="border:none;"></iframe>
-<small>Video: introduction to rawgraphs</small>
-]
-
-
----
 
 layout: true
 
@@ -144,6 +130,19 @@ class: interaction
 ## Lab Exercise
 
 In this lab, we will re-use the existing data to create various graphs and explore the views that we get from them. I will give you 20 minutes to complete the exercise in your groups before we come back to discuss the exercise. 
+
+.pull-left[
+
+### Rawgraphs
+
+We use [Rawgraphs](https://rawgraphs.io/) to create visualisations from data in CSV files (check video). Here we develop our ideas and test them in order to build a narrative about our data. We can think of this as a longer story with plot twists and turns. We start at one place and will end up somewhere else. At each step we explore the data and our findings to ground the claims we make.
+]
+
+.pull-right[
+<iframe width="640" height="360" src="https://web.microsoftstream.com/embed/video/54efa962-e0e1-4ea0-8118-8b0d869142f4?autoplay=false&showinfo=true" allowfullscreen style="border:none;"></iframe>
+<small>Video: introduction to rawgraphs</small>
+]
+
 
 ---
 
